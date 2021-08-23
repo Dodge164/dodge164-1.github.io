@@ -1,0 +1,52 @@
+@import '../../_variables.scss';
+
+.wrapper {
+  flex: 1 1 50%;
+  padding: 32px 128px;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.heroBlock {
+  flex: 1 1 auto;
+}
+.logo {
+}
+.map {
+}
+.btn {
+  background-color: #0ec261;
+  border-radius: 8px;
+  width: 250px;
+  height: 48px;
+  color: #ffffff;
+}
+.title {
+  color: $mainBlack;
+  font-weight: 700;
+}
+.subTitle {
+  color: $mainAccent;
+  font-weight: 700;
+}
+.text {
+  color: $darkGray;
+  font-weight: 260;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footerInfo {
+  color: $darkGray;
+}
+.footerContact {
+  color: $mainBlack;
+}
