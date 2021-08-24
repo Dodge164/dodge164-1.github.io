@@ -10,65 +10,48 @@ import { ReactComponent as Close } from '../../images/svg/x.svg';
 import { ReactComponent as Burger } from '../../images/svg/menu_btn.svg';
 
 function Sidebar() {
-  // const lang = [['eng'], ['rus']];
-  // const [isLangClicked, setIsLangClicked] = useState([]);
-
-  // handleLClick = (i) => {
-  //   this.setState({
-  //     clickedLang: lang[i],
-  //   });
-  // };
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
 
   const showSidebar = () => setIsBurgerClicked((prev) => !prev);
   return (
-    <div className={s.container}>
-      <div className={`d-flex flex-column flex-shrink-0 ${cn(s.sidebar)}`}>
-        <Link href="/" className="d-block p-3 link-main text-decoration-none">
-          {isBurgerClicked ? (
-            <Close className={s.faBars} onClick={showSidebar} />
-          ) : (
-            <Burger className={s.faBars} onClick={showSidebar} />
-          )}
-        </Link>
-
-        <div>
-          <button>
-            <strong>eng</strong>
-          </button>
+    <>
+      <section className={cn(s.container, { [s.active]: isBurgerClicked })}>
+        <div className={`d-flex flex-column flex-shrink-0 ${cn(s.sidebar)}`}>
+          <Link href="/" className="d-block p-3 link-main text-decoration-none">
+            {isBurgerClicked ? (
+              <Close onClick={showSidebar} />
+            ) : (
+              <Burger onClick={showSidebar} />
+            )}
+          </Link>
         </div>
-      </div>
-      {isBurgerClicked && (
-        <>
-          <div className={s.navContainer}>
-            <ul className={s.navText}>
-              {isBurgerClicked &&
-                SidebarData.map((item, index) => {
-                  return (
-                    <li key={index}>
-                      <Link to={item.path}>
-                        <span>{item.title}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              <div className={s.navIcon}>
-                {isBurgerClicked && (
-                  <>
+        {isBurgerClicked && (
+          <>
+            <section className={s.navContainer}>
+              <div className={s.navText}>
+                <div>
+                  {SidebarData.map((item, index) => {
+                    return (
+                      <div key={index}>
+                        <Link to={item.path}>
+                          <span>{item.title}</span>
+                        </Link>
+                      </div>
+                    );
+                  })}
+                  <div className={s.navIcon}>
                     <TelegramSvg className={s.icon} />
-
                     <FacebookSvg className={s.icon} />
-
                     <InstagramSvg />
-                  </>
-                )}
+                  </div>
+                </div>
               </div>
-            </ul>
-          </div>
-          <div className={s.shadow}></div>
-        </>
-      )}
-    </div>
+            </section>
+            <div className={s.shadow}></div>
+          </>
+        )}
+      </section>
+    </>
   );
 }
 export default Sidebar;

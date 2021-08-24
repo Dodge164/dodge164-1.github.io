@@ -1,14 +1,11 @@
 @import '../../_variables.scss';
-
-.wrapper {
-  flex: 1 1 50%;
-  padding: 32px 128px;
-  display: flex;
-  flex-direction: column;
+.container {
+  margin: 0 32px 0 128px;
 }
+
 .header {
   display: flex;
-  flex-wrap: wrap;
+  margin-top: 32px;
   justify-content: space-between;
 }
 .heroBlock {
@@ -19,11 +16,12 @@
 .map {
 }
 .btn {
-  background-color: #0ec261;
-  border-radius: 8px;
   width: 250px;
   height: 48px;
   color: #ffffff;
+  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
 }
 .title {
   color: $mainBlack;

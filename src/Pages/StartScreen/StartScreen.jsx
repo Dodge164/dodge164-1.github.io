@@ -1,22 +1,21 @@
 import React from 'react';
 import MainPage from '../../Components/MainPage';
 import Sidebar from '../../Components/Sidebar';
+// import Slider from '../../Components/SliderNavigation/Slider';
 import Slider from '../../Components/Slider';
+import { SliderData } from '../../Components/Slider/SliderData';
 import s from './StartScreen.module.scss';
 
-function StartScreen() {
+export default function StartScreen() {
   return (
-    <>
-      {/* <div className={s.absolute}> */}
+    <div className={s.mainContainer}>
       <Sidebar />
-      {/* </div> */}
-
-      <div className={s.mainContainer}>
+      <div className={s.mainPageContainer}>
         <MainPage />
-        <Slider />
       </div>
-    </>
+      <div className={s.sliderContainer}>
+        <Slider slides={SliderData} />
+      </div>
+    </div>
   );
 }
-
-export default StartScreen;

@@ -3,11 +3,26 @@
 .container {
   position: absolute;
   height: 100vh;
-  width: 100%;
+  width: 64px;
   display: flex;
+  z-index: 19;
+  &.active {
+    width: 100%;
+  }
 }
 
+// .shadow {
+//   height: 100vh;
+//   background-color: $mainBlack;
+//   opacity: 0.8;
+
+//   // @media (max-width: 1023px) {
+//   //   display: none;
+//   // }
+// }
+
 .sidebar {
+  height: 100vh;
   flex: 0 0 64px;
   background-color: $backgroundDark;
 }
@@ -15,30 +30,31 @@
   color: $lightGray;
 }
 
-.faBars {
-  width: 32px;
-  height: 32px;
-  fill: #ffffff;
-}
-
 .navContainer {
-  flex: 1 1 50%;
+  background-color: $backgroundDark;
+  flex: 0 1 calc(50% - 64px);
   height: 100vh;
+  @media (max-width: 1023px) {
+    flex: 1 1 100%;
+  }
 }
 .navText {
-  background-color: $backgroundDark;
-  list-style: none;
+  display: flex;
   height: 100vh;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 32px;
+  padding: 0 64px;
+  align-items: center;
+  @media (max-width: 1023px) {
+    font-size: 28px;
+    align-items: center;
+  }
 }
 
 .navText a {
-  font-size: 32px;
-  text-transform: uppercase;
   color: $lightGray;
   text-decoration: none;
-  width: 50%;
-  height: 100%;
-  padding: 0 16px;
 }
 .navText a:hover {
   color: $mainAccent;
@@ -47,7 +63,7 @@
 .navIcon {
   display: flex;
   list-style: none;
-  margin: 32px 16px;
+  margin: 32px 0;
 }
 .navIcon :hover {
   fill: $mainAccent;
@@ -57,9 +73,11 @@
 }
 
 .shadow {
+  height: 100vh;
   background-color: $mainBlack;
   opacity: 0.8;
-  flex: 1 1 50%;
+  flex: 0 1 50%;
+
   @media (max-width: 1023px) {
     display: none;
   }
