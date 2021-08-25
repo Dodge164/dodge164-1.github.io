@@ -11,15 +11,16 @@ function MainPage() {
     <section className={s.container}>
       <header className={s.header}>
         <Logo className={s.logo} />
-        <Map className={s.map} />
-        Ульяновск
+        <p>
+          <Map className={s.map} />
+          Ульяновск
+        </p>
       </header>
       <div className={s.heroBlock}>
         <h1 className={s.title}>Каршеринг</h1>
         <h2 className={s.subTitle}>Need for drive</h2>
         <p className={s.text}>Поминутная аренда авто твоего города</p>
-
-        <button className={s.btn}>Забронировать</button>
+        <button className={s.btn}>Забронировать</button>{' '}
       </div>
       <footer className={s.footer}>
         <p className={s.footerInfo}>© 2016-2019 «Need for drive»</p>

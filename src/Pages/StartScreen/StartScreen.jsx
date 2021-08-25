@@ -1,7 +1,7 @@
 import React from 'react';
+// import Carousel from '../../Components/Carousel/Carousel';
 import MainPage from '../../Components/MainPage';
 import Sidebar from '../../Components/Sidebar';
-// import Slider from '../../Components/SliderNavigation/Slider';
 import Slider from '../../Components/Slider';
 import { SliderData } from '../../Components/Slider/SliderData';
 import s from './StartScreen.module.scss';

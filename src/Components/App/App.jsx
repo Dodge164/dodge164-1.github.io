@@ -16,9 +16,6 @@ function App() {
       <Switch>
         <Route path="/" />
       </Switch>
-      {/* <Container>
-        <MainPage />
-      </Container> */}
     </>
   );
 }

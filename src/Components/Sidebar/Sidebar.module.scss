@@ -5,22 +5,14 @@
   height: 100vh;
   width: 64px;
   display: flex;
-  z-index: 19;
+  z-index: 20;
   &.active {
     width: 100%;
   }
 }
-
-// .shadow {
-//   height: 100vh;
-//   background-color: $mainBlack;
-//   opacity: 0.8;
-
-//   // @media (max-width: 1023px) {
-//   //   display: none;
-//   // }
-// }
-
+.burger {
+  margin: 24px 0 0 0;
+}
 .sidebar {
   height: 100vh;
   flex: 0 0 64px;
@@ -51,7 +43,6 @@
     align-items: center;
   }
 }
-
 .navText a {
   color: $lightGray;
   text-decoration: none;

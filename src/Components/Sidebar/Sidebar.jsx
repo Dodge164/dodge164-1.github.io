@@ -19,9 +19,9 @@ function Sidebar() {
         <div className={`d-flex flex-column flex-shrink-0 ${cn(s.sidebar)}`}>
           <Link href="/" className="d-block p-3 link-main text-decoration-none">
             {isBurgerClicked ? (
-              <Close onClick={showSidebar} />
+              <Close onClick={showSidebar} className={s.burger} />
             ) : (
-              <Burger onClick={showSidebar} />
+              <Burger onClick={showSidebar} className={s.burger} />
             )}
           </Link>
         </div>
