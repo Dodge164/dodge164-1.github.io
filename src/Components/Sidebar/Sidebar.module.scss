@@ -10,10 +10,9 @@
     width: 100%;
   }
   @media (max-width: 1023px) {
-    height: 100vh;
   }
-}
-.burger {
+  @media (max-width: 767px) {
+  }
 }
 
 .sidebar {
@@ -25,6 +24,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: $backgroundDark;
+
   @media (max-width: 767px) {
     background-color: transparent;
     &.active {
@@ -60,9 +60,7 @@
 .sidebar a {
   color: $lightGray;
 }
-.hidden {
-  display: none;
-}
+
 .lang {
   width: 48px;
   height: 48px;
@@ -82,6 +80,15 @@
   & > div {
     color: $mainAccent;
   }
+  @media (max-width: 767px) {
+    display: none;
+  }
+  &.hidden {
+    display: none;
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
 }
 
 .navContainer {
@@ -89,7 +96,7 @@
   flex: 0 1 calc(50% - 64px);
   height: 100vh;
   @media (max-width: 1439px) {
-    flex: 0 1 calc(60% + 5px);
+    flex: calc(60% - 64px);
   }
   @media (max-width: 1023px) {
     flex: 1 1 100%;

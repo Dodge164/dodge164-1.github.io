@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { SliderData } from './SliderData';
 import s from './Slider.module.scss';
-// import cn from 'classnames';
-import { ReactComponent as VectorNext } from '../../images/svg/vectors/vectorNext.svg';
-import { ReactComponent as VectorPrev } from '../../images/svg/vectors/vectorPrev.svg';
 import Dots from '../Dots/Dots';
 import Arrows from '../Arrows/Arrows';
 
@@ -30,7 +27,7 @@ export default function Slider({ slides }) {
         return (
           index === currentSlide && (
             <div className={s.slide} key={index}>
-              <div className={s.test}></div>
+              <div className={s.shadowSlide}></div>
               <img alt={index.alt} src={slide.url} className={s.image} />
             </div>
           )

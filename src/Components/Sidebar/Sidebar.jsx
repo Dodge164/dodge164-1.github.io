@@ -41,7 +41,8 @@ function Sidebar() {
             <section className={s.navContainer}>
               <div className={s.navText}>
                 <div>
-                  {SidebarData.map((item, index) => {
+                  123
+                  {/* {SidebarData.map((item, index) => {
                     return (
                       <div key={index}>
                         <Link to={item.path}>
@@ -49,7 +50,7 @@ function Sidebar() {
                         </Link>
                       </div>
                     );
-                  })}
+                  })} */}
                   <div className={s.navIcon}>
                     <TelegramSvg className={s.icon} />
                     <FacebookSvg className={s.icon} />

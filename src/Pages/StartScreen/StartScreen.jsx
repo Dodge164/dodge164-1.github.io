@@ -8,7 +8,7 @@ import s from './StartScreen.module.scss';
 
 export default function StartScreen() {
   return (
-    <div className={s.mainContainer}>
+    <div className={s.startScreenContainer}>
       <Sidebar />
       <div className={s.mainPageContainer}>
         <MainPage />
