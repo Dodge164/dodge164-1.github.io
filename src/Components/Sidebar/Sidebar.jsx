@@ -41,7 +41,6 @@ function Sidebar() {
             <section className={s.navContainer}>
               <div className={s.navText}>
                 <div>
-                  123
                   {SidebarData.map((item, index) => {
                     return (
                       <div key={index}>

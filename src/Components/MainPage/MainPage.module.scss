@@ -1,51 +1,89 @@
 @import '../../_variables.scss';
 .container {
   display: flex;
-  flex: 0 1 100%;
   height: 100vh;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  padding: 32px 64px 32px 128px;
-  @media (max-width: 1439px) {
-    padding: 32px 64px 32px 98px;
-  }
-  @media (max-width: 1023px) {
-    padding: 32px 64px 32px 98px;
-  }
-  @media (min-width: 767px) {
-    flex: 1 1 100%;
-  }
-  @media (max-width: 319px) {
-    flex: 1 1 100%;
+  @media (min-width: 768px) {
+    padding: 0px 32px 0px 98px;
   }
 }
 
 .header {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  flex: 0 0 56px;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  margin: 32px 32px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 }
 .heroBlock {
   display: flex;
   flex: 1 1 auto;
   height: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  font-size: 32px;
+  line-height: 100%;
+
+  .title {
+    padding: 0 16px;
+    color: $mainBlack;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 100%;
+    @media (min-width: 768px) {
+      padding: 0;
+      font-size: 70px;
+      line-height: 66px;
+    }
+  }
+  .subTitle {
+    padding: 0 16px;
+    color: $mainAccent;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 100%;
+    @media (min-width: 768px) {
+      padding: 0;
+      font-size: 70px;
+      line-height: 66px;
+    }
+  }
+  .text {
+    padding: 0 16px;
+    color: $darkGray;
+    font-weight: 300;
+    font-size: 26px;
+    font-size: 18px;
+    line-height: 21px;
+    @media (min-width: 768px) {
+      padding: 0;
+      font-size: 26px;
+      line-height: 30px;
+    }
+  }
+  @media (min-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .map {
   margin: 0 8px;
 }
 .btn {
-  width: 250px;
+  width: 100vw;
   height: 48px;
   margin: 32px 0;
   color: #ffffff;
   background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
   background-blend-mode: darken;
-  border-radius: 8px;
+  font-size: 18px;
+  line-height: 21px;
   border: none;
   outline: none;
   &:hover {
@@ -70,45 +108,59 @@
       darken(#039f67, 20) 112.6%
     );
   }
+  @media (min-width: 768px) {
+    width: 250px;
+    border-radius: 8px;
+  }
 }
-.title {
-  color: $mainBlack;
-  font-weight: 700;
-  font-size: 70px;
-  line-height: 66px;
-}
-.subTitle {
-  color: $mainAccent;
-  font-weight: 700;
-  font-size: 70px;
-  line-height: 66px;
-}
-.text {
-  color: $darkGray;
-  font-weight: 260;
-  font-size: 26px;
-  line-height: 30px;
-  margin: 32px 0;
-}
-
 .footer {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  height: 72px;
+  background-color: $mainBlack;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .footerInfo {
-  color: $darkGray;
+  margin: 4px 16px 16px 0px;
   font-size: 13px;
   line-height: 15px;
+  color: $lightGray;
+  @media (min-width: 768px) {
+    color: $darkGray;
+    font-size: 13px;
+    line-height: 15px;
+    margin: 0 0px 36px 36px;
+  }
 }
+
 .footerContact {
-  color: $mainBlack;
+  margin: 16px 16px 4px 0px;
   font-size: 13px;
   line-height: 15px;
+  color: $mainAccent;
   &:hover {
-    color: $mainAccent;
+    color: $lightGray;
   }
   &:active {
-    color: $mainAccent;
+    color: $lightGray;
+  }
+  @media (min-width: 768px) {
+    color: $mainBlack;
+    font-size: 13px;
+    line-height: 15px;
+    margin: 0 36px 36px 0;
+    &:hover {
+      color: $mainAccent;
+    }
+    &:active {
+      color: $mainAccent;
+    }
   }
 }

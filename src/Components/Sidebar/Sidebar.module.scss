@@ -1,35 +1,31 @@
 @import '../../variables.scss';
 
 .container {
+  z-index: 20;
+  display: flex;
   position: absolute;
   height: 100vh;
   width: 64px;
-  display: flex;
   z-index: 20;
   &.active {
     width: 100%;
-  }
-  @media (max-width: 1023px) {
-  }
-  @media (max-width: 767px) {
   }
 }
 
 .sidebar {
   height: 100%;
-  padding: 32px 0;
+  padding: 24px 0;
   flex: 0 0 64px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: $backgroundDark;
-
-  @media (max-width: 767px) {
-    background-color: transparent;
-    &.active {
-      background-color: $backgroundDark;
-    }
+  background-color: transparent;
+  &.active {
+    background-color: $backgroundDark;
+  }
+  @media (min-width: 768px) {
+    background-color: $backgroundDark;
   }
 }
 
@@ -62,6 +58,9 @@
 }
 
 .lang {
+  @media (min-width: 768px) {
+  }
+
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -92,44 +91,50 @@
 }
 
 .navContainer {
+  display: flex;
+  flex-direction: column;
   background-color: $backgroundDark;
-  flex: 0 1 calc(50% - 64px);
-  height: 100vh;
-  @media (max-width: 1439px) {
-    flex: calc(60% - 64px);
-  }
-  @media (max-width: 1023px) {
+  width: 100%;
+  padding: 80px 0;
+  @media (min-width: 768px) {
     flex: 1 1 100%;
+  }
+  @media (min-width: 1024px) {
+    flex: 0 1 calc(60% - 64px);
+  }
+  @media (min-width: 1440px) {
+    flex: 0 1 calc(50% - 64px);
   }
 }
 
 .shadow {
-  height: 100vh;
-  background-color: $mainBlack;
-  opacity: 0.8;
-  flex: 0 1 50%;
-  @media (max-width: 1439px) {
+  display: none;
+  @media (min-width: 1024px) {
+    display: flex;
     flex: 0 1 40%;
+    height: 100vh;
+    background-color: $mainBlack;
+    opacity: 0.8;
   }
-  @media (max-width: 1023px) {
-    display: none;
+  @media (min-width: 1440px) {
+    flex: 0 1 50%;
   }
 }
 .navText {
-  display: flex;
-  height: 100vh;
-  text-transform: uppercase;
   font-weight: 500;
-  font-size: 32px;
-  margin: 0 64px;
-  align-items: center;
-  @media (max-width: 1439px) {
+  font-size: 22px;
+  line-height: 2.5rem;
+  text-transform: uppercase;
+
+  @media (min-width: 768px) {
+    line-height: 3.5rem;
+    display: flex;
+    height: 100vh;
+    font-size: 32px;
+    margin: 0 64px;
+    align-items: center;
   }
-  @media (max-width: 1023px) {
-  }
-  @media (max-width: 767px) {
-  }
-  @media (max-width: 319px) {
+  @media (min-width: 1024px) {
   }
 }
 .navText a {
@@ -152,19 +157,3 @@
 .icon:hover path {
   fill: $mainAccent;
 }
-
-// @media (max-width: 1400px) {
-//   .container {
-//     max-width: 970px;
-//   }
-// }
-// @media (max-width: 992px) {
-//   .container {
-//     max-width: 750px;
-//   }
-// }
-// @media (max-width: 767px) {
-//   .container {
-//     max-width: none;
-//   }
-// }
