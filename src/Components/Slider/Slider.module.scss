@@ -32,10 +32,10 @@
   position: absolute;
   top: 30%;
   z-index: 5;
-  padding: 0px 128px;
+  margin: 0 128px;
   color: #ffffff;
-  @media (max-width: 1024px) {
-    padding: 0px 64px;
+  @media (max-width: 1439px) {
+    margin: 0px 64px;
   }
 
   h1 {
