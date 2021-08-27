@@ -3,15 +3,31 @@
 .mainContainer {
   display: flex;
   height: 100vh;
+  // width: 100%;
+  // margin: 0 auto;
 }
 
 .mainPageContainer {
-  // этих стилей не было
-  display: flex;
-  height: 100vh;
-  //
   flex: 1 1 50%;
+  @media (max-width: 1439px) {
+    flex: 0 1 60%;
+  }
+  @media (max-width: 1023px) {
+    flex: 1 0 100%;
+    height: 100vh;
+  }
+  @media (max-width: 767px) {
+    flex: 1 0 100%;
+    height: 100vh;
+  }
+  @media (max-width: 319px) {
+    flex: 1 0 100%;
+    height: 100vh;
+  }
 }
 .sliderContainer {
   flex: 1 1 50%;
+  @media (max-width: 1439px) {
+    flex: 0 1 40%;
+  }
 }

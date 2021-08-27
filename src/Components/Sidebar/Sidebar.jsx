@@ -11,19 +11,30 @@ import { ReactComponent as Burger } from '../../images/svg/menu_btn.svg';
 
 function Sidebar() {
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
+  const [lang, setLang] = useState('eng');
+  const changeLang = () => setLang((prev) => (prev === 'Рус' ? 'Eng' : 'Рус'));
 
   const showSidebar = () => setIsBurgerClicked((prev) => !prev);
   return (
     <>
       <section className={cn(s.container, { [s.active]: isBurgerClicked })}>
-        <div className={`d-flex flex-column flex-shrink-0 ${cn(s.sidebar)}`}>
-          <Link href="/" className="d-block p-3 link-main text-decoration-none">
+        <div className={cn(s.sidebar, { [s.active]: isBurgerClicked })}>
+          <div className={s.burger}>
             {isBurgerClicked ? (
-              <Close onClick={showSidebar} className={s.burger} />
+              <Close className={s.close} onClick={showSidebar} />
             ) : (
-              <Burger onClick={showSidebar} className={s.burger} />
+              <Burger
+                className={cn(s.line, { [s.active]: isBurgerClicked })}
+                onClick={showSidebar}
+              />
             )}
-          </Link>
+          </div>
+          <button
+            onClick={changeLang}
+            className={cn(s.lang, { [s.hidden]: isBurgerClicked })}
+          >
+            <div>{lang}</div>
+          </button>
         </div>
         {isBurgerClicked && (
           <>
@@ -42,7 +53,7 @@ function Sidebar() {
                   <div className={s.navIcon}>
                     <TelegramSvg className={s.icon} />
                     <FacebookSvg className={s.icon} />
-                    <InstagramSvg />
+                    <InstagramSvg className={s.icon} />
                   </div>
                 </div>
               </div>

@@ -1,28 +1,28 @@
 @import '../../_variables.scss';
 .allDots {
-  width: 100%;
-  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
   position: absolute;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
   z-index: 10;
-  bottom: 32px;
-}
-
-.dot {
-  border-radius: 50%;
-  cursor: pointer;
-  height: 8px;
-  width: 8px;
-  margin: 0px 8px;
-  border: none;
-  outline: none;
-  background: $lightGray;
-  &.active {
-    background: $mainAccent;
-  }
-  &:hover {
-    background-color: $mainAccent;
+  bottom: 48px;
+  .dot {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 8px;
+    width: 8px;
+    margin: 0px 8px;
+    border: none;
+    outline: none;
+    background: $lightGray;
+    &.active {
+      background: $mainAccent;
+    }
+    &:hover {
+      background-color: $mainAccent;
+    }
   }
 }

@@ -9,25 +9,103 @@
   &.active {
     width: 100%;
   }
+  @media (max-width: 1023px) {
+    height: 100vh;
+  }
 }
 .burger {
-  margin: 24px 0 0 0;
 }
+
 .sidebar {
-  height: 100vh;
+  height: 100%;
+  padding: 32px 0;
   flex: 0 0 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background-color: $backgroundDark;
+  @media (max-width: 767px) {
+    background-color: transparent;
+    &.active {
+      background-color: $backgroundDark;
+    }
+  }
 }
+
+.sidebar {
+  svg {
+    path {
+      stroke: $mainBlack;
+      @media (max-width: 767px) {
+        stroke: white;
+      }
+    }
+  }
+  .line {
+    path {
+      stroke: white;
+      @media (max-width: 767px) {
+        stroke: black;
+      }
+    }
+  }
+  .close {
+    path {
+      stroke: white;
+    }
+  }
+}
+
 .sidebar a {
   color: $lightGray;
+}
+.hidden {
+  display: none;
+}
+.lang {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: $backgroundDark;
+  &:hover {
+    border: 1px solid $lightGray;
+    &:hover > div {
+      color: $lightGray;
+    }
+    &:active > div {
+      color: $mainAccent;
+    }
+  }
+  & > div {
+    color: $mainAccent;
+  }
 }
 
 .navContainer {
   background-color: $backgroundDark;
   flex: 0 1 calc(50% - 64px);
   height: 100vh;
+  @media (max-width: 1439px) {
+    flex: 0 1 calc(60% + 5px);
+  }
   @media (max-width: 1023px) {
     flex: 1 1 100%;
+  }
+}
+
+.shadow {
+  height: 100vh;
+  background-color: $mainBlack;
+  opacity: 0.8;
+  flex: 0 1 50%;
+  @media (max-width: 1439px) {
+    flex: 0 1 40%;
+  }
+  @media (max-width: 1023px) {
+    display: none;
   }
 }
 .navText {
@@ -38,9 +116,13 @@
   font-size: 32px;
   padding: 0 64px;
   align-items: center;
+  @media (max-width: 1439px) {
+  }
   @media (max-width: 1023px) {
-    font-size: 28px;
-    align-items: center;
+  }
+  @media (max-width: 767px) {
+  }
+  @media (max-width: 319px) {
   }
 }
 .navText a {
@@ -53,26 +135,17 @@
 
 .navIcon {
   display: flex;
-  list-style: none;
+  justify-content: space-between;
+  width: 144px;
   margin: 32px 0;
 }
 .navIcon :hover {
   fill: $mainAccent;
 }
-.icon {
-  margin-right: 24px;
+.icon:hover path {
+  fill: $mainAccent;
 }
 
-.shadow {
-  height: 100vh;
-  background-color: $mainBlack;
-  opacity: 0.8;
-  flex: 0 1 50%;
-
-  @media (max-width: 1023px) {
-    display: none;
-  }
-}
 // @media (max-width: 1400px) {
 //   .container {
 //     max-width: 970px;

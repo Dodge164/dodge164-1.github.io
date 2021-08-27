@@ -11,10 +11,10 @@ function MainPage() {
     <section className={s.container}>
       <header className={s.header}>
         <Logo className={s.logo} />
-        <p>
+        <div>
           <Map className={s.map} />
           Ульяновск
-        </p>
+        </div>
       </header>
       <div className={s.heroBlock}>
         <h1 className={s.title}>Каршеринг</h1>

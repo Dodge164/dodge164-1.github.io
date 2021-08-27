@@ -5,11 +5,11 @@ export default function Dots({ currentSlide, onClick, sliderData }) {
   return (
     <div className={s.allDots}>
       {sliderData.map((slide, index) => (
-        <span
+        <div
           key={index}
           className={currentSlide === index ? `${s.dot} ${s.active} ` : s.dot}
           onClick={() => onClick(index)}
-        ></span>
+        ></div>
         //   <span ---- более предпочтительная форма записи
         //   key={index}
         //   className={cn(s.dot, { [s.active] : currentSlide === index })} -- слева классы перманентные, в скобках {[s.class] : условие}

@@ -30,6 +30,7 @@ export default function Slider({ slides }) {
         return (
           index === currentSlide && (
             <div className={s.slide} key={index}>
+              <div className={s.test}></div>
               <img alt={index.alt} src={slide.url} className={s.image} />
             </div>
           )
