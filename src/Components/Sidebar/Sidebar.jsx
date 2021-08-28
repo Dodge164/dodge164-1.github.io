@@ -8,6 +8,7 @@ import { ReactComponent as FacebookSvg } from '../../images/svg/facebook.svg';
 import { ReactComponent as InstagramSvg } from '../../images/svg/instagram.svg';
 import { ReactComponent as Close } from '../../images/svg/x.svg';
 import { ReactComponent as Burger } from '../../images/svg/menu_btn.svg';
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
