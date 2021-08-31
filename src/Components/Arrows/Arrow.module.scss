@@ -1,9 +1,10 @@
 @import '../../_variables.scss';
 .arrowPrev {
   position: absolute;
+  z-index: 20;
+  transform: rotate(180deg);
   top: calc(50% - 18px);
   left: calc(50% - 8px);
-  z-index: 20;
 }
 .arrowNext {
   position: absolute;
@@ -19,6 +20,7 @@
   cursor: pointer;
   right: 0;
   user-select: none;
+
   &:hover {
     background-color: rgba(14, 194, 97, 0.2);
   }

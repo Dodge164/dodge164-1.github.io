@@ -2,22 +2,46 @@
 .container {
   position: relative;
   height: 100vh;
-
+  overflow: hidden;
   @media (max-width: 1023px) {
     display: none;
   }
 }
 
+.carouselContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.carouselContent {
+  display: flex;
+  transition: all 250ms linear;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carouselContent::-webkit-scrollbar,
+.carouselContent::-webkit-scrollbar {
+  display: none;
+}
+
 .slide {
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 100%;
   height: 100vh;
 
-  // overflow: hidden;
   .image {
-    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: inline-block;
   }
+
   .shadowSlide {
     position: absolute;
     width: 100%;
@@ -29,7 +53,7 @@
 
 .slideInfo {
   position: absolute;
-  top: 30%;
+  top: 40%;
   z-index: 5;
   margin: 0 128px;
   color: #ffffff;
@@ -37,7 +61,7 @@
     margin: 0px 64px;
   }
 
-  h1 {
+  h2 {
     font-weight: 500;
     font-size: 40px;
     line-height: 47px;

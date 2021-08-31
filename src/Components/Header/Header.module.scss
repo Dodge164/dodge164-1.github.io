@@ -1,0 +1,22 @@
+@import '../../_variables.scss';
+.header {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 56px;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  margin: 32px 32px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+.map {
+  display: flex;
+  align-items: center;
+}
+.mapText {
+  color: $darkGray;
+  margin-left: 10px;
+}

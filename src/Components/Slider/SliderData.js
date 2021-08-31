@@ -1,9 +1,9 @@
-import slide01 from '../../images/sliders/slider01.png';
-import slide02 from '../../images/sliders/slider02.png';
-import slide03 from '../../images/sliders/slider03.png';
-import slide04 from '../../images/sliders/slider04.png';
+import slide01 from '../../Assets/sliders/slider01.png';
+import slide02 from '../../Assets/sliders/slider02.png';
+import slide03 from '../../Assets/sliders/slider03.png';
+import slide04 from '../../Assets/sliders/slider04.png';
 
-export const SliderData = [
+const SliderData = [
   {
     url: slide01,
     alt: 'slide1',
@@ -29,3 +29,4 @@ export const SliderData = [
     text: 'Автомобиль проходит еженедельное ТО',
   },
 ];
+export default SliderData;

@@ -1,33 +1,29 @@
-import React /* { useState } */ from 'react';
-// import { Link } from 'react-router-dom';
-// import { SidebarData } from './SidebarData';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+
 import s from './MainPage.module.scss';
-//import cn from 'classnames';
-import { ReactComponent as Logo } from '../../images/svg/Logo.svg';
-import { ReactComponent as Map } from '../../images/svg/map.svg';
 
 function MainPage() {
+  const history = useHistory();
   return (
     <section className={s.container}>
-      <header className={s.header}>
-        <Logo className={s.logo} />
-        <div>
-          <Map className={s.map} />
-          Ульяновск
-        </div>
-      </header>
+      <Header />
+
       <div className={s.heroBlock}>
-        <h1 className={s.title}>Каршеринг</h1>
-        <h2 className={s.subTitle}>Need for drive</h2>
+        <h2 className={s.title}>Каршеринг</h2>
+        <h3 className={s.subTitle}>Need for drive</h3>
         <p className={s.text}>Поминутная аренда авто твоего города</p>
-        <button className={s.btn}>Забронировать</button>{' '}
+        <button
+          onClick={() => history.push('/order')}
+          className={s.btn}
+          type="button"
+        >
+          Забронировать
+        </button>
       </div>
-      <footer className={s.footer}>
-        <p className={s.footerInfo}>© 2016-2019 «Need for drive»</p>
-        <a className={s.footerContact} href="tel:+74951234567">
-          8 (495) 234-22-44{' '}
-        </a>
-      </footer>
+      <Footer />
     </section>
   );
 }

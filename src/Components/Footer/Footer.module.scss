@@ -1,0 +1,54 @@
+@import '../../_variables.scss';
+.footer {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  height: 72px;
+  background-color: $mainBlack;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.footerInfo {
+  margin: 4px 16px 16px 0px;
+  font-size: 13px;
+  line-height: 15px;
+  color: $lightGray;
+  @media (min-width: 768px) {
+    color: $darkGray;
+    font-size: 13px;
+    line-height: 15px;
+    margin: 0 0px 36px 36px;
+  }
+}
+
+.footerContact {
+  cursor: pointer;
+  text-decoration: none;
+  margin: 16px 16px 4px 0px;
+  font-size: 13px;
+  line-height: 15px;
+  color: $mainAccent;
+  &:hover {
+    color: $lightGray;
+  }
+  &:active {
+    color: $lightGray;
+  }
+  @media (min-width: 768px) {
+    color: $mainBlack;
+    font-size: 13px;
+    line-height: 15px;
+    margin: 0 36px 36px 0;
+    &:hover {
+      color: $mainAccent;
+    }
+    &:active {
+      color: $mainAccent;
+    }
+  }
+}

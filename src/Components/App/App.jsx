@@ -1,22 +1,16 @@
 import React from 'react';
-import './app.scss';
-
-// import { Container } from 'reactstrap';
-
-import StartScreen from '../../Pages/StartScreen/StartScreen';
-// import MainPage from '../Pages/MainPage';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import StartScreen from '../../Pages/StartScreen/StartScreen';
+import OrderPage from '../../Pages/OrderPage';
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <StartScreen />
-      </BrowserRouter>
+    <BrowserRouter>
       <Switch>
-        <Route path="/" />
+        <Route exact path="/" component={StartScreen} />
+        <Route exact path="/order" component={OrderPage} />
       </Switch>
-    </>
+    </BrowserRouter>
   );
 }
 
