@@ -1,16 +1,18 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import StartScreen from '../../Pages/StartScreen/StartScreen';
 import OrderPage from '../../Pages/OrderPage';
+import Sidebar from '../Sidebar';
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
+      <Sidebar />
       <Switch>
         <Route exact path="/" component={StartScreen} />
         <Route exact path="/order" component={OrderPage} />
       </Switch>
-    </BrowserRouter>
+    </>
   );
 }
 

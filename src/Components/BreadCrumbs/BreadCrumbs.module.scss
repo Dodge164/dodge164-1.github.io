@@ -1,0 +1,27 @@
+@import '../../_variables.scss';
+.breadCrumbs {
+  flex: 0 0 32px;
+  display: flex;
+  align-items: baseline;
+}
+.crumbName {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  &.active {
+    color: $mainAccent;
+  }
+}
+.crumbName a {
+  color: $darkGray;
+  text-decoration: none;
+}
+
+.crumbName a:visited {
+  color: $mainBlack;
+}
+
+.crumbIcon {
+  margin: 0 16px;
+}
