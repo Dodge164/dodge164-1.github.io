@@ -32,11 +32,11 @@
 .navText {
   font-weight: 500;
   font-size: 22px;
-  line-height: 2.5rem;
+  line-height: 1.4rem;
   text-transform: uppercase;
-
+  margin: 0 0 0px -32px;
   @media (min-width: 768px) {
-    line-height: 3.5rem;
+    line-height: 1.6rem;
     display: flex;
     height: 100vh;
     font-size: 32px;

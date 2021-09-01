@@ -12,9 +12,9 @@ function MainPage() {
       <Header />
 
       <div className={s.heroBlock}>
-        <h2 className={s.title}>Каршеринг</h2>
-        <h3 className={s.subTitle}>Need for drive</h3>
-        <p className={s.text}>Поминутная аренда авто твоего города</p>
+        <div className={s.title}>Каршеринг</div>
+        <div className={s.subTitle}>Need for drive</div>
+        <div className={s.text}>Поминутная аренда авто твоего города</div>
         <button
           onClick={() => history.push('/order')}
           className={s.btn}
