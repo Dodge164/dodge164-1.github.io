@@ -16,5 +16,6 @@ module.exports = {
     'react/prop-types': 0,
     'react/jsx-curly-newline': 'off',
     'implicit-arrow-linebreak': 'off',
+   // 'linebreak-style': ['error', 'windows'],
   },
 };

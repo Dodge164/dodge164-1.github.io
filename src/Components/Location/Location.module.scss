@@ -1,0 +1,94 @@
+@import '../../variables.scss';
+.locationWrapper {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+
+  padding: 8px;
+  @media (min-width: 1024px) {
+    display: flex;
+    flex: 1 1 73%;
+
+    flex-direction: column;
+    margin: 0 0 32px 128px;
+    width: 325px;
+    align-items: flex-end;
+  }
+}
+.address {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 40px;
+  @media (min-width: 1024px) {
+  }
+}
+
+.locValue {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 8px;
+  @media (min-width: 1024px) {
+    margin: 0 10px 0 0;
+  }
+}
+.input {
+  outline: none;
+  border: none;
+  width: 192px;
+  border-bottom: solid 1px $mainBlack;
+  .datalist {
+    height: 105px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 12px;
+      margin: 10px;
+    }
+    &::-webkit-scrollbar {
+      display: block;
+    }
+    &::-webkit-scrollbar-thumb {
+      border: 4px solid rgba(0, 0, 0, 0);
+      background-clip: padding-box;
+      border-radius: 9999px;
+      background-color: #aaaaaa;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: rgba(255, 0, 0, 0.8);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    outline: none;
+    border: none;
+    width: 224px;
+  }
+}
+.mapContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  :first-child {
+    padding: 0 0 0 12px;
+  }
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

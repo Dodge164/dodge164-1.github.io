@@ -2,22 +2,22 @@ const breadCrumbsData = [
   {
     title: 'Местоположение',
     path: '/order',
-    id: 1,
+    id: 0,
   },
   {
     title: 'Модель',
     path: '/car',
-    id: 2,
+    id: 1,
   },
   {
     title: 'Дополнительно',
     path: '/extend',
-    id: 3,
+    id: 2,
   },
   {
     title: 'Итого',
     path: '/total',
-    id: 4,
+    id: 3,
   },
 ];
 export default breadCrumbsData;

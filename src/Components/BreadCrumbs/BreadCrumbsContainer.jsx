@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BreadCrumbs from './BreadCrumbs';
 import breadCrumbsData from './BreadCrumbsData';
+import Context from '../../context';
 
 export default function BreadCrumbsContainer() {
-  return <BreadCrumbs data={breadCrumbsData} />;
+  const { step, setStep } = useContext(Context);
+  const handleClickBread = (itemId) => {
+    setStep(itemId);
+    localStorage.setItem('currentStep', itemId);
+  };
+
+  return (
+    <BreadCrumbs
+      data={breadCrumbsData}
+      step={step}
+      onClickBread={handleClickBread}
+    />
+  );
 }

@@ -1,27 +1,32 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/button-has-type */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import cn from 'classnames';
 import s from './BreadCrumbs.module.scss';
 import { ReactComponent as CrumbSvg } from '../../Assets/svg/crumb.svg';
 
-export default function BreadCrumbs({ data }) {
+export default function BreadCrumbs({ data, step, onClickBread }) {
   return (
     <div className={s.breadCrumbs}>
       {data.map((item, id) => (
         <>
-          <div className={s.crumbName} key={item.id}>
-            <Link to={item.path}>
-              <span>{item.title}</span>
-            </Link>
-          </div>
-          {id < data.length - 1 && (
-            <div className={s.crumbIcon}>
-              <CrumbSvg />
-            </div>
-          )}
+          <button
+            key={item.id}
+            className={s.btn}
+            onClick={() => onClickBread(item.id)}
+            to={item.path}
+          >
+            <span className={cn(s.crumbName, { [s.active]: step === item.id })}>
+              {item.title}
+            </span>
+            {id < data.length - 1 && (
+              <span className={s.crumbIcon}>
+                <CrumbSvg />
+              </span>
+            )}
+          </button>
         </>
       ))}
     </div>
   );
 }
-
-// className={cn(s.dot, { [s.active]: currentSlide === index })}
