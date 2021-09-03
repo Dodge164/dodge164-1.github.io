@@ -1,25 +1,39 @@
+/* eslint-disable prefer-const */
+/* eslint-disable arrow-body-style */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { getCityList, getPointListByCityId } from '../../Api/http';
 import mapPng from '../../Assets/map.png';
+import Context from '../../context';
 
 import s from './Location.module.scss';
 
 export default function LocationContainer() {
-  const [cityValue, setCityValue] = useState('');
+  const { orderInfo, setOrderInfo } = useContext(Context);
   const [cityList, setCityList] = useState([]);
-  const [addressValue, setAddressValue] = useState('');
   const [pointList, setPointList] = useState([]);
 
   function handleChangeCityValue(event) {
-    setCityValue(event.target.value);
+    setOrderInfo((prev) => {
+      return {
+        ...prev,
+        location: { ...prev.location, city: event.target.value },
+      };
+    });
   }
-  function handleChangeAddressValue(event) {
-    setAddressValue(event.target.value);
+
+  function handleChangePointValue(event) {
+    console.log('event', event);
+    setOrderInfo((prev) => {
+      return {
+        ...prev,
+        location: { ...prev.location, point: event.target.value },
+      };
+    });
   }
 
   useEffect(async () => {
@@ -27,17 +41,18 @@ export default function LocationContainer() {
     setCityList(listOfCities);
     // console.log('clist', listOfCities);
   }, []);
-  // console.log('cv', cityValue);
 
   useEffect(async () => {
-    if (cityValue !== '') {
-      const cityId = cityList.find((item) => item.name === cityValue);
+    if (orderInfo.location.city !== null) {
+      const cityId = cityList.find(
+        (item) => item.name === orderInfo.location.city,
+      );
       // console.log('cID', cityId);
       const listOfPoints = await getPointListByCityId(cityId.id);
       setPointList(listOfPoints);
       console.log('plist', listOfPoints);
     }
-  }, [cityValue]);
+  }, [orderInfo.location.city]);
 
   return (
     <>
@@ -49,7 +64,7 @@ export default function LocationContainer() {
             list="cityList"
             className={s.input}
             placeholder="Введите город"
-            value={cityValue}
+            value={orderInfo.location.city}
             onChange={handleChangeCityValue}
           />
 
@@ -67,8 +82,8 @@ export default function LocationContainer() {
             list="pointList"
             placeholder="Начните вводить пункт..."
             className={s.input}
-            value={addressValue}
-            onChange={handleChangeAddressValue}
+            value={orderInfo.location.point}
+            onChange={handleChangePointValue}
           />
           <datalist id="pointList">
             {pointList.map((item) => (

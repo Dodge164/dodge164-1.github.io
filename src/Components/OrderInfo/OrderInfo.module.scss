@@ -1,7 +1,13 @@
 @import '../../variables.scss';
 .orderContainer {
-  background-color: $lightGray;
   padding: 8px 0 0 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  @media (min-width: 1024px) {
+    padding: 48px 0 0 32px;
+    border-left: 1px solid $lightGray;
+  }
 }
 
 .orderInfo {
@@ -9,11 +15,113 @@
   font-size: 18px;
   line-height: 21px;
   text-align: right;
+  @media (min-width: 768px) {
+    display: flex;
+  }
   @media (min-width: 1024px) {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 24px 0;
+  }
+}
+.locationStep {
+  @media (min-width: 1024px) {
+    margin: 0 0 24px 0;
+  }
+}
+//////////////
+.locationStep div {
+  display: flex;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+}
+.locationStep div .ttl {
+  order: 1;
+}
+.locationStep div .ch {
+  order: 3;
+}
+.locationStep div::after {
+  background-image: radial-gradient(
+    circle,
+    currentcolor 1px,
+    transparent 1.5px
+  );
+  color: $darkGray;
+  background-position: bottom;
+  background-size: 4px 1px;
+  background-repeat: space no-repeat;
+  content: '';
+  flex-grow: 1;
+  height: 1em;
+  order: 2;
+  margin: 0 12px;
+}
+/* но ответ Rúnar Berg, 3 по счету ответ, предлагает очень элегантный вариант решения через radial-gradient. Этот ответ нужно адаптировать под наш проект (поиграться с background-size, color и тд...). Советую.
+*/
+.ttl {
+  // font-weight: 300;
+  // font-size: 14px;
+  // line-height: 16px;
+}
+.ch {
+  color: $darkGray;
+  // font-weight: 300;
+  // font-size: 14px;
+  // line-height: 16px;
+}
+.totalPrice {
+  @media (min-width: 1024px) {
+    display: flex;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 0 0 32px 0;
   }
 }
 .price {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 16px;
+  font-weight: 700;
+  margin: 0 8px 0 0;
+}
+.btn {
+  width: 100vw;
+  height: 48px;
+  color: #ffffff;
+  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+  background-blend-mode: darken;
+  font-size: 18px;
+  line-height: 21px;
+  border: none;
+  outline: none;
+  &:hover {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 10) 2.61%,
+      darken(#039f67, 10) 112.6%
+    );
+  }
+
+  &:focus {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 10) 2.61%,
+      darken(#039f67, 10) 112.6%
+    );
+  }
+  &:active {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 20) 2.61%,
+      darken(#039f67, 20) 112.6%
+    );
+  }
+  @media (min-width: 768px) {
+    width: 250px;
+    border-radius: 8px;
+  }
+  @media (min-width: 1024px) {
+    width: 287px;
+    border-radius: 8px;
+  }
 }

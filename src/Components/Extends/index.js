@@ -1,3 +1,3 @@
-import Extends from './ExtendsContainer';
+import ExtendsContainer from './ExtendsContainer';
 
-export default Extends;
+export default ExtendsContainer;
