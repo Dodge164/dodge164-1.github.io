@@ -36,6 +36,9 @@
   @media (min-width: 768px) {
     padding: 0 32px 0 96px;
   }
+  @media (min-width: 1440px) {
+    padding: 0 64px 0 128px;
+  }
 }
 
 .orderWrapper {
@@ -46,35 +49,38 @@
     display: flex;
     margin: 0;
     padding: 0 32px 0 96px;
+    height: 100%;
+    // overflow: hidden;
+  }
+  @media (min-width: 1440px) {
+    padding: 0 64px 0 128px;
   }
 }
 .steps {
   @media (min-width: 1024px) {
-    padding: 32px 32px 0 0;
+    padding: 32px 32px 32px 0;
     display: flex;
     flex: 1 1 60%;
+    border-right: 1px solid $lightGray;
   }
   @media (min-width: 1440px) {
-    padding: 32px 0 0 0;
+    padding: 32px 0 32px 0;
     display: flex;
     flex: 1 1 73%;
   }
 }
 .select {
   @media (min-width: 1024px) {
-    background-color: yellow;
   }
 }
 .orderInfo {
   @media (min-width: 1024px) {
     flex: 0 1 40%;
-
     height: 200px;
   }
   @media (min-width: 1440px) {
     flex: 0 1 27%;
-    background: pink;
-    height: 200px;
+    height: 100%;
   }
 }
 

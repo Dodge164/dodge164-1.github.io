@@ -56,6 +56,9 @@
       padding: 0 0 16px 0;
     }
   }
+  @media (min-width: 1440px) {
+    width: 80%;
+  }
 }
 .map {
   width: 100%;

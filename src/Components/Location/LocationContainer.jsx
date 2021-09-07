@@ -39,7 +39,7 @@ export default function LocationContainer() {
   useEffect(async () => {
     const listOfCities = await getCityList();
     setCityList(listOfCities);
-    // console.log('clist', listOfCities);
+    // console.log('clist', listOfCities); // отвечает за выпадающий список городов
   }, []);
 
   useEffect(async () => {
@@ -48,7 +48,7 @@ export default function LocationContainer() {
         (item) => item.name === orderInfo.location.city,
       );
       // console.log('cID', cityId);
-      const listOfPoints = await getPointListByCityId(cityId.id);
+      const listOfPoints = await getPointListByCityId(cityId?.id);
       setPointList(listOfPoints);
       console.log('plist', listOfPoints);
     }

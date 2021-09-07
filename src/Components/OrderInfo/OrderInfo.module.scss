@@ -1,88 +1,155 @@
 @import '../../variables.scss';
 .orderContainer {
-  padding: 8px 0 0 0;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 21px;
   @media (min-width: 1024px) {
+    font-size: 18px;
     padding: 48px 0 0 32px;
-    border-left: 1px solid $lightGray;
+    // border-left: 1px solid orangered;
+  }
+  @media (min-width: 1024px) {
   }
 }
 
-.orderInfo {
+.orderTitle {
+  padding: 0 8px;
   font-weight: 500;
-  font-size: 18px;
   line-height: 21px;
   text-align: right;
   @media (min-width: 768px) {
-    display: flex;
+    // display: flex;
+    text-align: left;
+    font-size: 18px;
+    padding: 8px 0 0 0;
   }
   @media (min-width: 1024px) {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0 0 24px 0;
+    text-align: right;
+    // display: flex;
+    // justify-content: flex-end;
+    // margin: 0 0 24px 0;
   }
 }
+
 .locationStep {
-  @media (min-width: 1024px) {
-    margin: 0 0 24px 0;
-  }
-}
-//////////////
-.locationStep div {
-  display: flex;
+  width: 100%;
+  position: relative;
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
+  padding: 0 8px;
+  &::before {
+    content: '';
+    // width: 100%;
+    height: 100%;
+    order: 2;
+    overflow: hidden;
+    flex-grow: 1;
+    background-image: radial-gradient(
+      circle,
+      currentcolor 1px,
+      transparent 1.5px
+    );
+    background-position: bottom;
+    background-size: 4px 1px;
+    background-repeat: space no-repeat;
+    position: absolute;
+    top: auto;
+    right: 8px;
+    bottom: 5px;
+    left: 8px;
+    color: $darkGray;
+  }
+  @media (min-width: 768px) {
+    padding: 0 0;
+    width: 50%;
+  }
+  @media (min-width: 1024px) {
+    padding: 0 0;
+    width: 100%;
+    height: 44px;
+  }
+
+  .ttl {
+    max-width: 95px;
+    display: inline;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: 2px;
+    left: auto;
+    padding: 0 8px 0 0;
+    z-index: 10;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: white;
+    @media (min-width: 1024px) {
+      top: 27px;
+      bottom: 2px;
+    }
+  }
+
+  .spots {
+    //max-width: 110px;
+    max-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    top: auto;
+    right: 8px;
+    bottom: 3px;
+    left: auto;
+    color: $darkGray;
+    padding: 0 0 0 8px;
+    z-index: 10;
+    text-align: right;
+    background-color: white;
+    @media (min-width: 1024px) {
+      right: 0px;
+    }
+  }
 }
-.locationStep div .ttl {
-  order: 1;
-}
-.locationStep div .ch {
-  order: 3;
-}
-.locationStep div::after {
-  background-image: radial-gradient(
-    circle,
-    currentcolor 1px,
-    transparent 1.5px
-  );
-  color: $darkGray;
-  background-position: bottom;
-  background-size: 4px 1px;
-  background-repeat: space no-repeat;
-  content: '';
-  flex-grow: 1;
-  height: 1em;
-  order: 2;
-  margin: 0 12px;
-}
-/* но ответ Rúnar Berg, 3 по счету ответ, предлагает очень элегантный вариант решения через radial-gradient. Этот ответ нужно адаптировать под наш проект (поиграться с background-size, color и тд...). Советую.
-*/
-.ttl {
-  // font-weight: 300;
-  // font-size: 14px;
-  // line-height: 16px;
-}
-.ch {
-  color: $darkGray;
-  // font-weight: 300;
-  // font-size: 14px;
-  // line-height: 16px;
-}
+
 .totalPrice {
+  text-align: right;
+  margin: 8px 8px 0 0;
+
+  @media (min-width: 768px) {
+    display: flex;
+    width: 50%;
+    text-align: left;
+  }
+
   @media (min-width: 1024px) {
     display: flex;
+    width: 100%;
     font-weight: 500;
     font-size: 16px;
     line-height: 16px;
-    margin: 0 0 32px 0;
+    margin: 32px 0 32px 0;
+    text-align: right;
   }
 }
 .price {
   font-weight: 700;
-  margin: 0 8px 0 0;
+
+  @media (min-width: 768px) {
+    display: flex;
+    font-size: 18px;
+    margin: 0 8px 0 0;
+  }
+  @media (min-width: 1024px) {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 8px 24px 0;
+  }
+}
+.btn:disabled {
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background: $lightGray;
 }
 .btn {
   width: 100vw;
@@ -119,9 +186,11 @@
   @media (min-width: 768px) {
     width: 250px;
     border-radius: 8px;
+    margin: 24px 32px;
   }
   @media (min-width: 1024px) {
     width: 287px;
     border-radius: 8px;
+    margin: 0 0 0 56px;
   }
 }

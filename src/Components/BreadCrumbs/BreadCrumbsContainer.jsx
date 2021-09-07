@@ -12,7 +12,7 @@ export default function BreadCrumbsContainer() {
 
   return (
     <BreadCrumbs
-      data={breadCrumbsData}
+      crumbs={breadCrumbsData}
       step={step}
       onClickBread={handleClickBread}
     />

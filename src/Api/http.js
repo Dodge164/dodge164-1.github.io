@@ -3,9 +3,8 @@ import axios from 'axios';
 // const queryString = require('query-string');
 
 const API_KEY = process.env.REACT_APP_DB_API_KEY;
-const url = process.env.REACT_APP_NFDDB_URL;
-console.log('url', url);
-console.log('key', API_KEY);
+export const url = process.env.REACT_APP_NFDDB_URL;
+
 const fetchRequest = async (way) => {
   const res = await axios.get(`${url}${way}`, {
     headers: {
@@ -24,6 +23,12 @@ export const getPointListByCityId = async (cityId) => {
   const res = await fetchRequest(`/db/point?cityId=${cityId}`);
   return res.data;
 };
+
+export const getCarList = async () => {
+  const res = await fetchRequest('/db/car');
+  return res.data;
+};
+
 // export const getLeagueCalendarPage = async (leagueId) => {
 //   const data = await fetchRequest(`/competitions/${leagueId}`);
 //   return data;

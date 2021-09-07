@@ -2,35 +2,52 @@
 import React, { useContext } from 'react';
 import Context from '../../context';
 import s from './OrderInfo.module.scss';
+import btnData from './OrderBtnData';
 
 export default function OrderInfo() {
-  const { orderInfo } = useContext(Context);
+  const { orderInfo, step, setStep } = useContext(Context);
   const {
     location: { city, point },
   } = orderInfo;
+  function onCheckStep(id) {
+    if (step === id) {
+      return !city || !point;
+    }
+    return true;
+  }
   return (
     <>
-      <div className={s.orderContainer}>
-        <div className={s.orderInfo}>Ваш заказ: </div>
+      <form className={s.orderContainer}>
+        <h3 className={s.orderTitle}>Ваш заказ: </h3>
         <div className={s.locationStep}>
-          {city && (
-            <div>
-              <span className={s.ttl}>Пункт выдачи</span>
-              <div className={s.ch}>
-                <span>{city}</span>
-                <span>{point}</span>
-              </div>
-            </div>
-          )}
+          {/* {city && ( */}
+
+          <h4 className={s.ttl}>Пункт выдачи</h4>
+          <div className={s.spots}>
+            <div>{city}</div>
+            <div>{point}</div>
+          </div>
+          {/* )} */}
         </div>
         <div className={s.totalPrice}>
           <div className={s.price}>Цена:</div>
           <div>от $calc1$ до $calc2$</div>
         </div>
-        <button className={s.btn} type="button">
-          $orderStepButton$
-        </button>
-      </div>
+      </form>
+
+      {btnData.map(
+        (btn) =>
+          btn.id === step && (
+            <button
+              disabled={onCheckStep(btn.id)}
+              className={s.btn}
+              type="button"
+              onClick={() => setStep((prev) => prev + 1)}
+            >
+              {btn.title}
+            </button>
+          ),
+      )}
     </>
   );
 }
