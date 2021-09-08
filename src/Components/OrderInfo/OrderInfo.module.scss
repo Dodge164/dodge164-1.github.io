@@ -62,7 +62,6 @@
   }
   @media (min-width: 768px) {
     padding: 0 0;
-    width: 50%;
   }
   @media (min-width: 1024px) {
     padding: 0 0;
@@ -116,7 +115,6 @@
 
   @media (min-width: 768px) {
     display: flex;
-    width: 50%;
     text-align: left;
   }
 
@@ -130,8 +128,9 @@
     text-align: right;
   }
 }
-.price {
+.priceLabel {
   font-weight: 700;
+  align-items: baseline;
 
   @media (min-width: 768px) {
     display: flex;
@@ -143,6 +142,12 @@
     justify-content: flex-end;
     margin: 0 8px 24px 0;
   }
+}
+.price {
+  font-weight: 400;
+  padding: 0 0 0 8px;
+  font-size: 16px;
+  line-height: 16px;
 }
 .btn:disabled {
   pointer-events: none;

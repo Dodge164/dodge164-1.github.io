@@ -20,18 +20,21 @@ export default function OrderInfo() {
       <form className={s.orderContainer}>
         <h3 className={s.orderTitle}>Ваш заказ: </h3>
         <div className={s.locationStep}>
-          {/* {city && ( */}
-
-          <h4 className={s.ttl}>Пункт выдачи</h4>
-          <div className={s.spots}>
-            <div>{city}</div>
-            <div>{point}</div>
-          </div>
-          {/* )} */}
+          {city && (
+            <>
+              <h4 className={s.ttl}>Пункт выдачи</h4>
+              <div className={s.spots}>
+                <div>{city}</div>
+                <div>{point}</div>
+              </div>
+            </>
+          )}
         </div>
         <div className={s.totalPrice}>
-          <div className={s.price}>Цена:</div>
-          <div>от $calc1$ до $calc2$</div>
+          <div className={s.priceLabel}>
+            Цена:
+            <span className={s.price}> 0 ₽</span>
+          </div>
         </div>
       </form>
 

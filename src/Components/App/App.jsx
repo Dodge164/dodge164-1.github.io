@@ -10,9 +10,11 @@ import OrderData from '../OrderInfo/OrderData';
 function App() {
   const [orderInfo, setOrderInfo] = useState(OrderData);
   const [step, setStep] = useState(+localStorage.getItem('currentStep') || 0);
-
+  const [loading, setLoading] = useState(true);
   return (
-    <Context.Provider value={{ step, setStep, orderInfo, setOrderInfo }}>
+    <Context.Provider
+      value={{ step, setStep, orderInfo, setOrderInfo, loading, setLoading }}
+    >
       <Sidebar />
       <Switch>
         <Route exact path="/" component={StartScreen} />
