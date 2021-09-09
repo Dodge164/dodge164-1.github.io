@@ -29,6 +29,15 @@ export const getCarList = async () => {
   return res.data;
 };
 
+export const getCarCategory = async () => {
+  const res = await fetchRequest('/db/category');
+  return res.data;
+};
+
+export const getCarListByCategory = async (catId) => {
+  const res = await fetchRequest(`/db/car?categoryId=${catId}`);
+  return res.data;
+};
 // export const getLeagueCalendarPage = async (leagueId) => {
 //   const data = await fetchRequest(`/competitions/${leagueId}`);
 //   return data;

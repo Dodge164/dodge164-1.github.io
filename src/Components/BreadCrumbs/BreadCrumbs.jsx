@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/button-has-type */
+
 import React, { useContext } from 'react';
 import cn from 'classnames';
 import s from './BreadCrumbs.module.scss';
@@ -25,29 +25,28 @@ export default function BreadCrumbs({ crumbs, step, onClickBread }) {
   return (
     <div className={s.breadCrumbs}>
       {crumbs.map((crumb, id) => (
-        <>
-          <button
-            // disabled={onCheckStep(crumb.id)}
-            key={crumb.id}
-            className={s.btn}
-            onClick={() => onClickBread(crumb.id)}
-            to={crumb.path}
+        <button
+          // disabled={onCheckStep(crumb.id)}
+          key={crumb.id.toString()}
+          className={s.btn}
+          onClick={() => onClickBread(crumb.id)}
+          to={crumb.path}
+          type="button"
+        >
+          <span
+            className={cn(s.crumbName, {
+              [s.active]: step === crumb.id,
+              [s.done]: step > crumb.id,
+            })}
           >
-            <span
-              className={cn(s.crumbName, {
-                [s.active]: step === crumb.id,
-                [s.done]: step > crumb.id,
-              })}
-            >
-              {crumb.title}
+            {crumb.title}
+          </span>
+          {id < crumbs.length - 1 && (
+            <span className={s.crumbIcon}>
+              <CrumbSvg />
             </span>
-            {id < crumbs.length - 1 && (
-              <span className={s.crumbIcon}>
-                <CrumbSvg />
-              </span>
-            )}
-          </button>
-        </>
+          )}
+        </button>
       ))}
     </div>
   );

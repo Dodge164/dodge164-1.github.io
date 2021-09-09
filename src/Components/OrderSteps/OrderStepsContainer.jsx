@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import CarsContainer from '../Cars';
 import Location from '../Location';
 import Context from '../../context';
-import ExtendsContainer from '../Extends';
+// import ExtendsContainer from '../Extends';
 
 export default function OrderStepsContainer() {
   const { step } = useContext(Context);
