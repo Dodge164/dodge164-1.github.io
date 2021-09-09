@@ -1,5 +1,8 @@
 @import '../../variables.scss';
 .locationWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
   color: $mainBlack;
   font-weight: 300;
   font-size: 14px;
@@ -51,12 +54,13 @@
     padding: 0 0 0 12px;
   }
   @media (min-width: 768px) {
-    padding: 48px 0 0 0;
+    padding: 16px 0 0 0;
     :first-child {
       padding: 0 0 16px 0;
     }
   }
   @media (min-width: 1440px) {
+    padding: 48px 0 0 0;
     width: 80%;
   }
 }

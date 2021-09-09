@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 import React from 'react';
 import mapPng from '../../Assets/map.png';
 import s from './Location.module.scss';
@@ -20,13 +21,14 @@ export default function Location({
             list="cityList"
             className={s.input}
             placeholder="Введите город"
-            value={valueCity}
+            value={valueCity ? valueCity : ''}
+            // value={valueCity && valueCity}
             onChange={onChangeCityValue}
           />
 
           <datalist className={s.datalist} id="cityList">
             {cityList.map((item) => (
-              <option aria-label="text" value={item.name} />
+              <option key={item.id} aria-label="text" value={item.name} />
             ))}
           </datalist>
         </div>
@@ -38,12 +40,13 @@ export default function Location({
             list="pointList"
             placeholder="Начните вводить пункт..."
             className={s.input}
-            value={valuePoint}
+            // value={valuePoint && valuePoint}
+            value={valuePoint ? valuePoint : ''}
             onChange={onChangePointValue}
           />
           <datalist id="pointList">
             {pointList.map((item) => (
-              <option aria-label="text" value={item.name} />
+              <option key={item.id} aria-label="text" value={item.name} />
             ))}
           </datalist>
         </div>

@@ -5,6 +5,9 @@
   align-items: center;
   min-height: 56px;
   overflow-x: scroll;
+  @media (min-width: 400px) {
+    overflow-x: auto;
+  }
   @media (min-width: 768px) {
     min-height: 42px;
   }
@@ -30,7 +33,7 @@
 }
 .crumbName {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 16px;
   color: $darkGray;
   &.active {

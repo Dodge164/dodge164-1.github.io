@@ -68,45 +68,6 @@
     width: 100%;
     height: 44px;
   }
-
-  .ttl {
-    max-width: 95px;
-    display: inline;
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: 2px;
-    left: auto;
-    padding: 0 8px 0 0;
-    z-index: 10;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: white;
-    @media (min-width: 1024px) {
-      top: 27px;
-      bottom: 2px;
-    }
-  }
-
-  .spots {
-    //max-width: 110px;
-    max-height: 32px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: absolute;
-    top: auto;
-    right: 8px;
-    bottom: 3px;
-    left: auto;
-    color: $darkGray;
-    padding: 0 0 0 8px;
-    z-index: 10;
-    text-align: right;
-    background-color: white;
-    @media (min-width: 1024px) {
-      right: 0px;
-    }
-  }
 }
 
 .totalPrice {
@@ -164,6 +125,7 @@
   background-blend-mode: darken;
   font-size: 18px;
   line-height: 21px;
+  margin: 16px 0; ///
   border: none;
   outline: none;
   &:hover {

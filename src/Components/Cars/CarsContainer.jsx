@@ -76,7 +76,7 @@ export default function CarsContainer() {
                   checked={checkedId === category.id}
                   className={s.input}
                   name="class"
-                  value={category?.id}
+                  value="category?.id"
                   onChange={() => handleCarByCategoryId(category?.id)}
                   id={category?.id} // из CCAT
                   type="radio"
