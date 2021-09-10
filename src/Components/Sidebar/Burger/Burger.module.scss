@@ -10,17 +10,17 @@
   svg {
     cursor: pointer;
     path {
-      stroke: $mainBlack;
-      @media (max-width: 767px) {
-        stroke: white;
+      stroke: white;
+      @media (min-width: 768px) {
+        stroke: $mainBlack;
       }
     }
   }
   .line {
     path {
-      stroke: white;
-      @media (max-width: 767px) {
-        stroke: black;
+      stroke: black;
+      @media (min-width: 768px) {
+        stroke: white;
       }
     }
   }

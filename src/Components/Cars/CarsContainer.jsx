@@ -63,36 +63,38 @@ export default function CarsContainer() {
         <Loading />
       ) : (
         <>
-          <form className={s.radioGroup}>
-            <label className={s.labelInput}>
-              <input
-                checked={checkedId === 'all'}
-                className={s.input}
-                name="class"
-                value="category?.id"
-                onChange={() => handleAllCategories()}
-                type="radio"
-                id="all"
-              />
-              {console.log('IDD', carList.id)} Все модели
-            </label>
-
-            {categoryList.map((category) => (
+          <div>
+            <div className={s.radioGroup}>
               <label className={s.labelInput}>
                 <input
-                  checked={checkedId === category.id}
+                  checked={checkedId === 'all'}
                   className={s.input}
                   name="class"
                   value="category?.id"
-                  onChange={() => handleCarByCategoryId(category?.id)}
-                  id={category?.id} // из CCAT
+                  onChange={() => handleAllCategories()}
                   type="radio"
+                  id="all"
                 />
-
-                {category?.name}
+                {console.log('IDD', carList.id)} Все модели
               </label>
-            ))}
-          </form>
+
+              {categoryList.map((category) => (
+                <label className={s.labelInput}>
+                  <input
+                    checked={checkedId === category.id}
+                    className={s.input}
+                    name="class"
+                    value="category?.id"
+                    onChange={() => handleCarByCategoryId(category?.id)}
+                    id={category?.id} // из CCAT
+                    type="radio"
+                  />
+
+                  <span>{category?.name}</span>
+                </label>
+              ))}
+            </div>
+          </div>
           <section className={s.carsPhotoContainer}>
             {carList.length > 0 &&
               carList?.map((car) => (
@@ -102,15 +104,17 @@ export default function CarsContainer() {
                     {car?.priceMin.toLocaleString('ru')} -{' '}
                     {car?.priceMax.toLocaleString('ru')} ₽
                   </div>
-                  <img
-                    className={s.photo}
-                    alt="car"
-                    src={
-                      car?.thumbnail?.path.includes('base64')
-                        ? car?.thumbnail?.path
-                        : BASE_URL + car?.thumbnail?.path
-                    }
-                  />
+                  <div className={s.photoContainer}>
+                    <img
+                      className={s.photo}
+                      alt="car"
+                      src={
+                        car?.thumbnail?.path.includes('base64')
+                          ? car?.thumbnail?.path
+                          : BASE_URL + car?.thumbnail?.path
+                      }
+                    />
+                  </div>
                 </div>
               ))}
           </section>

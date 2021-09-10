@@ -151,12 +151,14 @@
     );
   }
   @media (min-width: 768px) {
-    width: 250px;
+    width: 150px;
+    // width: 250px;
     border-radius: 8px;
     margin: 24px 32px;
   }
   @media (min-width: 1024px) {
-    width: 287px;
+    width: 150px;
+    // width: 287px;
     border-radius: 8px;
     margin: 0 0 0 56px;
   }

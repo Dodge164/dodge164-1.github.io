@@ -59,16 +59,19 @@
   }
 }
 .steps {
+  @media (min-width: 768px) {
+    flex-direction: column;
+  }
   @media (min-width: 1024px) {
     padding: 32px 32px 32px 0;
     display: flex;
-    flex: 1 1 60%;
+    flex: 0 1 60%;
     border-right: 1px solid $lightGray;
   }
   @media (min-width: 1440px) {
     padding: 32px 0 32px 0;
     display: flex;
-    flex: 1 1 73%;
+    flex: 0 1 73%;
   }
 }
 .select {
@@ -77,11 +80,10 @@
 }
 .orderInfo {
   @media (min-width: 1024px) {
-    flex: 0 1 40%;
-    height: 200px;
+    flex: 0 0 40%;
   }
   @media (min-width: 1440px) {
-    flex: 0 1 27%;
+    flex: 0 0 27%;
     height: 100%;
   }
 }
