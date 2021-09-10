@@ -1,0 +1,36 @@
+@import '../../../variables.scss';
+.burger {
+  top: 16px;
+  left: 16px;
+  position: absolute;
+  z-index: 25;
+  @media (min-width: 768px) {
+    top: 24px;
+  }
+  svg {
+    cursor: pointer;
+    path {
+      stroke: $mainBlack;
+      @media (max-width: 767px) {
+        stroke: white;
+      }
+    }
+  }
+  .line {
+    path {
+      stroke: white;
+      @media (max-width: 767px) {
+        stroke: black;
+      }
+    }
+  }
+  .close {
+    path {
+      stroke: white;
+    }
+  }
+}
+
+.burger a {
+  color: $lightGray;
+}

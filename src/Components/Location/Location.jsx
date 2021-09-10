@@ -23,7 +23,7 @@ export default function Location({
             placeholder="Введите город"
             value={valueCity ? valueCity : ''}
             // value={valueCity && valueCity}
-            onChange={onChangeCityValue}
+            onChange={(event) => onChangeCityValue(event.target.value)}
           />
 
           <datalist className={s.datalist} id="cityList">
@@ -42,7 +42,7 @@ export default function Location({
             className={s.input}
             // value={valuePoint && valuePoint}
             value={valuePoint ? valuePoint : ''}
-            onChange={onChangePointValue}
+            onChange={(event) => onChangePointValue(event.target.value)}
           />
           <datalist id="pointList">
             {pointList.map((item) => (

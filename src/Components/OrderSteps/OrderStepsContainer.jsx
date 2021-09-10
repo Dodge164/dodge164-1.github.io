@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
-import CarsContainer from '../Cars';
+
 import Location from '../Location';
 import Context from '../../context';
+import CarsContainer from '../Cars/CarsContainer';
+
 // import ExtendsContainer from '../Extends';
 
 export default function OrderStepsContainer() {

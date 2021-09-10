@@ -8,6 +8,10 @@
   display: inline-block;
 }
 .radioGroup {
+  // position: sticky;
+  // top: 0;
+  // z-index: 20;
+  // background: white;
   margin: 0 8px;
   display: flex;
   align-items: center;
@@ -16,12 +20,15 @@
   font-size: 14px;
 }
 .carsPhotoContainer {
+  // height: 40%; ///
+  // overflow: hidden; //
+  // overflow-y: scroll; ///
   margin: 8px;
   background-color: burlywood;
   font-size: 14px;
 }
 .carsPhotoCard {
-  position: relative;
+  // position: relative;
   background-color: cadetblue;
 }
 .carsPhotoName {
@@ -35,7 +42,7 @@
   display: flex;
   padding: 0 16px 0 0;
   align-items: center;
-  z-index: 20;
+  // z-index: 20;
   // margin: 0 32px;
 }
 .input {

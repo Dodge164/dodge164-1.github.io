@@ -11,9 +11,19 @@ function App() {
   const [orderInfo, setOrderInfo] = useState(OrderData);
   const [step, setStep] = useState(+localStorage.getItem('currentStep') || 0);
   const [loading, setLoading] = useState(true);
+  const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   return (
     <Context.Provider
-      value={{ step, setStep, orderInfo, setOrderInfo, loading, setLoading }}
+      value={{
+        step,
+        setStep,
+        orderInfo,
+        setOrderInfo,
+        loading,
+        setLoading,
+        isBurgerClicked,
+        setIsBurgerClicked,
+      }}
     >
       <Sidebar />
       <Switch>

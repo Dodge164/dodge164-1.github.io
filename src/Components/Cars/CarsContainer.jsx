@@ -9,7 +9,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import Context from '../../context';
 import Loading from '../../Helpers/Loading/Loading';
 import s from './Cars.module.scss';
-
 import {
   getCarCategory,
   getCarList,
@@ -28,7 +27,7 @@ export default function CarsContainer() {
     setCarList(listOfCars);
     const listOfCategory = await getCarCategory();
     setCategoryList(listOfCategory);
-    console.log('CCAT', listOfCategory);
+    // console.log('CCAT', listOfCategory);
     setLoading(false);
   }, []);
 
@@ -48,9 +47,17 @@ export default function CarsContainer() {
     setLoading(false);
   }
 
-  console.log('carlist', carList);
-
+  // console.log('carlist', carList);
   return (
+    // <Cars
+    //   onChangeCategories={handleAllCategories()}
+    //   onChangeCarCategories={() => handleCarByCategoryId(categoryList?.id)}
+    //   checkedId={checkedId}
+    //   categoryList={categoryList}
+    //   carList={carList}
+    //   baseUrl={BASE_URL}
+    // />
+    // );
     <>
       {loading ? (
         <Loading />
@@ -108,36 +115,36 @@ export default function CarsContainer() {
               ))}
           </section>
           {/* <table className="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Класс</th>
-            <th scope="col">Модель</th>
-            <th scope="col">Гос. номер</th>
-            <th scope="col">Фото</th>
-          </tr>
-        </thead>
-        <tbody>
-          {carList.length > 0 &&
-            carList?.map((car) => (
-              <tr key={car?.id}>
-                <td>{car?.categoryId?.name}</td>
-                <td>{car?.name}</td>
-                <td>{car?.number}</td>
-                <td>
-                  <img
-                    className={s.photo}
-                    alt="car"
-                    src={
-                      car?.thumbnail?.path.includes('base64')
-                        ? car?.thumbnail?.path
-                        : BASE_URL + car?.thumbnail?.path
-                    }
-                  />
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table> */}
+  //     <thead>
+  //       <tr>
+  //         <th scope="col">Класс</th>
+  //         <th scope="col">Модель</th>
+  //         <th scope="col">Гос. номер</th>
+  //         <th scope="col">Фото</th>
+  //       </tr>
+  //     </thead>
+  //     <tbody>
+  //       {carList.length > 0 &&
+  //         carList?.map((car) => (
+  //           <tr key={car?.id}>
+  //             <td>{car?.categoryId?.name}</td>
+  //             <td>{car?.name}</td>
+  //             <td>{car?.number}</td>
+  //             <td>
+  //               <img
+  //                 className={s.photo}
+  //                 alt="car"
+  //                 src={
+  //                   car?.thumbnail?.path.includes('base64')
+  //                     ? car?.thumbnail?.path
+  //                     : BASE_URL + car?.thumbnail?.path
+  //                 }
+  //               />
+  //             </td>
+  //           </tr>
+  //         ))}
+  //     </tbody>
+  //   </table> */}
         </>
       )}
     </>

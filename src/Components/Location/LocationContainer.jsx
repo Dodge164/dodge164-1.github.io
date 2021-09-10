@@ -8,17 +8,19 @@ export default function LocationContainer() {
   const [cityList, setCityList] = useState([]);
   const [pointList, setPointList] = useState([]);
 
-  function handleChangeCityValue(event) {
+  function handleChangePointValue(point) {
     setOrderInfo((prev) => ({
       ...prev,
-      location: { ...prev.location, city: event.target.value },
+      location: { ...prev.location, point },
     }));
   }
-
-  function handleChangePointValue(event) {
+  function handleChangeCityValue(city) {
+    if (city === '') {
+      handleChangePointValue(null);
+    }
     setOrderInfo((prev) => ({
       ...prev,
-      location: { ...prev.location, point: event.target.value },
+      location: { ...prev.location, city },
     }));
   }
 
