@@ -1,3 +1,3 @@
-import CarsContainer from './CarsContainer';
+import Cars from './CarsContainer';
 
-export default CarsContainer;
+export default Cars;

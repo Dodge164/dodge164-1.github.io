@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import City from './City';
+import LocationComponent from './LocationComponent';
 import Context from '../../../../context';
 
-export default function CityContainer() {
+export default function LocationComponentContainer() {
   const { orderInfo } = useContext(Context);
   const {
     location: { city, point },
   } = orderInfo;
-  return city && <City city={city} point={point} />;
+  return city && <LocationComponent city={city} point={point} />;
 }

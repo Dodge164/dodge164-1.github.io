@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import BreadCrumbs from './BreadCrumbs';
+import BreadCrumb from './BreadCrumb';
 import breadCrumbsData from './BreadCrumbsData';
 import Context from '../../context';
+import s from './BreadCrumbs.module.scss';
 
 export default function BreadCrumbsContainer() {
   const { step, setStep } = useContext(Context);
@@ -11,10 +12,16 @@ export default function BreadCrumbsContainer() {
   };
 
   return (
-    <BreadCrumbs
-      crumbs={breadCrumbsData}
-      step={step}
-      onClickBread={handleClickBread}
-    />
+    <div className={s.breadCrumbs}>
+      {breadCrumbsData.map((crumb) => (
+        <BreadCrumb
+          length={breadCrumbsData.length}
+          key={crumb.id.toString()}
+          crumb={crumb}
+          step={step}
+          onClickBread={handleClickBread}
+        />
+      ))}
+    </div>
   );
 }

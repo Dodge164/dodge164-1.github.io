@@ -30,7 +30,7 @@ export default function Slider({ slides }) {
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {SliderData.map((slide) => (
-            <div className={s.slide} key={slide.id}>
+            <div className={s.slide} key={slide.alt}>
               <div className={s.shadowSlide} />
               <img alt={slide.alt} src={slide.url} className={s.image} />
             </div>
@@ -44,7 +44,12 @@ export default function Slider({ slides }) {
         {SliderData.map(
           (slide, index) =>
             index === currentSlide && (
-              <button data-background={index} className={s.btn} type="button">
+              <button
+                key={slide.alt}
+                data-background={index}
+                className={s.btn}
+                type="button"
+              >
                 Подробнее
               </button>
             ),

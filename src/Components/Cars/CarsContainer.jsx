@@ -1,3 +1,4 @@
+/* eslint-disable spaced-comment */
 /* eslint-disable react/void-dom-elements-no-children */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/control-has-associated-label */
@@ -8,6 +9,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Context from '../../context';
 import Loading from '../../Helpers/Loading/Loading';
+import Cars from './Cars';
 import s from './Cars.module.scss';
 import {
   getCarCategory,
@@ -47,17 +49,10 @@ export default function CarsContainer() {
     setLoading(false);
   }
 
-  // console.log('carlist', carList);
+  /////////
+  // function handleChosenCar(car)
+
   return (
-    // <Cars
-    //   onChangeCategories={handleAllCategories()}
-    //   onChangeCarCategories={() => handleCarByCategoryId(categoryList?.id)}
-    //   checkedId={checkedId}
-    //   categoryList={categoryList}
-    //   carList={carList}
-    //   baseUrl={BASE_URL}
-    // />
-    // );
     <>
       {loading ? (
         <Loading />
@@ -75,18 +70,18 @@ export default function CarsContainer() {
                   type="radio"
                   id="all"
                 />
-                {console.log('IDD', carList.id)} Все модели
+                Все модели
               </label>
 
               {categoryList.map((category) => (
-                <label className={s.labelInput}>
+                <label key={category?.id} className={s.labelInput}>
                   <input
                     checked={checkedId === category.id}
                     className={s.input}
                     name="class"
                     value="category?.id"
                     onChange={() => handleCarByCategoryId(category?.id)}
-                    id={category?.id} // из CCAT
+                    id={category?.id}
                     type="radio"
                   />
 
@@ -95,60 +90,7 @@ export default function CarsContainer() {
               ))}
             </div>
           </div>
-          <section className={s.carsPhotoContainer}>
-            {carList.length > 0 &&
-              carList?.map((car) => (
-                <div className={s.carsPhotoCard}>
-                  <h3 className={s.carsPhotoName}>{car?.name}</h3>
-                  <div className={s.carsPhotoPrice}>
-                    {car?.priceMin.toLocaleString('ru')} -{' '}
-                    {car?.priceMax.toLocaleString('ru')} ₽
-                  </div>
-                  <div className={s.photoContainer}>
-                    <img
-                      className={s.photo}
-                      alt="car"
-                      src={
-                        car?.thumbnail?.path.includes('base64')
-                          ? car?.thumbnail?.path
-                          : BASE_URL + car?.thumbnail?.path
-                      }
-                    />
-                  </div>
-                </div>
-              ))}
-          </section>
-          {/* <table className="table table-hover">
-  //     <thead>
-  //       <tr>
-  //         <th scope="col">Класс</th>
-  //         <th scope="col">Модель</th>
-  //         <th scope="col">Гос. номер</th>
-  //         <th scope="col">Фото</th>
-  //       </tr>
-  //     </thead>
-  //     <tbody>
-  //       {carList.length > 0 &&
-  //         carList?.map((car) => (
-  //           <tr key={car?.id}>
-  //             <td>{car?.categoryId?.name}</td>
-  //             <td>{car?.name}</td>
-  //             <td>{car?.number}</td>
-  //             <td>
-  //               <img
-  //                 className={s.photo}
-  //                 alt="car"
-  //                 src={
-  //                   car?.thumbnail?.path.includes('base64')
-  //                     ? car?.thumbnail?.path
-  //                     : BASE_URL + car?.thumbnail?.path
-  //                 }
-  //               />
-  //             </td>
-  //           </tr>
-  //         ))}
-  //     </tbody>
-  //   </table> */}
+          <Cars carList={carList} baseUrl={BASE_URL} />
         </>
       )}
     </>

@@ -1,0 +1,33 @@
+.extendsContainer {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+}
+.radioBtn {
+  :checked {
+    background-color: orange;
+  }
+}
+// .datapickerWrapper {
+//   padding-bottom: 13px;
+//   display: flex;
+//   flex: 1 0 220px;
+//   span {
+//     display: flex;
+//     justify-content: flex-end;
+//     align-items: flex-end;
+//     flex: 1 0 18px;
+//     padding-right: 4px;
+//     color: black;
+//     font-style: normal;
+//     font-weight: 300;
+//     font-size: 14px;
+//     line-height: 16px;
+//   }
+//   .datapicker {
+//     border: none;
+//     border-bottom: 1px solid gray;
+//     outline: none;
+//     padding-left: 8px;
+//   }
+// }

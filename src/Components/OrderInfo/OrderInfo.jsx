@@ -1,7 +1,7 @@
 /* eslint-disable object-curly-newline */
 import React from 'react';
 import btnData from './OrderBtnData';
-import City from './OrderComponents/OrderCityComponent/CityContainer';
+import LocationComponent from './OrderComponents/OrderLocationComponent/LocationComponentContainer';
 import s from './OrderInfo.module.scss';
 
 export default function OrderInfo({ onDisabled, step, onSetStep }) {
@@ -10,7 +10,7 @@ export default function OrderInfo({ onDisabled, step, onSetStep }) {
       <form className={s.orderContainer}>
         <h3 className={s.orderTitle}>Ваш заказ: </h3>
         <div className={s.locationStep}>
-          <City />
+          <LocationComponent />
         </div>
         <div className={s.totalPrice}>
           <div className={s.priceLabel}>

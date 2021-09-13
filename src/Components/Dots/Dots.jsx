@@ -12,7 +12,7 @@ export default function Dots({ currentSlide, onClick, sliderData }) {
           role="button"
           onKeyPress={() => onClick(index)}
           tabIndex="0"
-          key={slide.id}
+          key={slide.url}
           className={cn(s.dot, { [s.active]: currentSlide === index })}
           onClick={() => onClick(index)}
         />

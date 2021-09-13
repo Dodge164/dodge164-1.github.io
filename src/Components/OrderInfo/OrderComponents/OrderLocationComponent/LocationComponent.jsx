@@ -1,7 +1,7 @@
 import React from 'react';
-import s from './City.module.scss';
+import s from './LocationComponent.module.scss';
 
-export default function City({ city, point }) {
+export default function LocationComponent({ city, point }) {
   return (
     <>
       <h4 className={s.ttl}>Пункт выдачи</h4>
