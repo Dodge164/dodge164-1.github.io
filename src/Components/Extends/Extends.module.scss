@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .extendsContainer {
   font-weight: 300;
   font-size: 14px;
@@ -31,3 +33,43 @@
 //     padding-left: 8px;
 //   }
 // }
+
+.radioContainer {
+  display: flex;
+}
+.radioLabel {
+  display: flex;
+  flex-direction: row-reverse;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 10px 0;
+
+  &:hover .radioBtn ~ .customIndicator {
+    border-color: $mainAccent;
+  }
+}
+
+.customIndicator {
+  margin: 0 8px 0 0;
+  background-color: white;
+  border: 1px solid $darkGray;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+}
+
+.radioBtn {
+  opacity: 0;
+  z-index: -1;
+
+  &:focus ~ .customIndicator {
+    border-color: $mainAccent;
+  }
+
+  &:checked ~ .customIndicator {
+    border: 3px solid $mainAccent;
+  }
+}
+
+.radioText {
+}

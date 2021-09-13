@@ -1,8 +1,6 @@
 /* eslint-disable no-unneeded-ternary */
 import React from 'react';
-import DatePicker from 'react-datepicker';
 import mapPng from '../../Assets/map.png';
-import 'react-datepicker/dist/react-datepicker.css';
 import s from './Location.module.scss';
 
 export default function Location({
@@ -57,15 +55,6 @@ export default function Location({
           <img className={s.map} src={mapPng} alt="map" />
         </div>
       </div>
-      <DatePicker
-        showTimeSelect
-        timeFormat="HH:mm"
-        timeIntervals={30}
-        dateFormat="dd.MM.yyyy HH:mm"
-        timeCaption="time"
-        minDate={new Date()}
-        placeholderText="Ведите дату и время"
-      />
     </div>
   );
 }

@@ -10,16 +10,40 @@ export default function ExtendsContainer() {
   return (
     <>
       <div className={s.extendsContainer}>
-        <div className={s.radioContainer}>Цвет</div>
-        <label className={s.ssss}>
-          <input className={s.radioBtn} type="radio" name="color" />
-          <span>Все</span>
-          <input type="radio" name="color" />
-          <span>Красный</span>
-          <input type="radio" name="color" />
-          <span>Голубой</span>
-        </label>
-
+        <div className={s.radioTtl}>Цвет</div>
+        <div className={s.radioContainer}>
+          <label className={s.radioLabel} htmlFor="radio-1">
+            <input
+              id="radio-1"
+              className={s.radioBtn}
+              type="radio"
+              name="color"
+              checked="checked"
+            />
+            <div className={s.radioText}>Любой</div>
+            <div className={s.customIndicator} />
+          </label>
+          <label htmlFor="radio-2" className={s.radioLabel}>
+            <input
+              id="radio-2"
+              className={s.radioBtn}
+              type="radio"
+              name="color"
+            />
+            <div className={s.radioText}>Красный</div>
+            <div className={s.customIndicator} />
+          </label>
+          <label htmlFor="radio-3" className={s.radioLabel}>
+            <input
+              id="radio-3"
+              className={s.radioBtn}
+              type="radio"
+              name="color"
+            />
+            <div className={s.radioText}>Голубой</div>
+            <div className={s.customIndicator} />
+          </label>
+        </div>
         <div>
           <div>Дата аренды</div>
           <span>C</span>
