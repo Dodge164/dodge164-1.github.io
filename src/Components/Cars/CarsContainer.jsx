@@ -25,27 +25,28 @@ export default function CarsContainer() {
   const { loading, setLoading } = useContext(Context);
 
   useEffect(async () => {
-    const listOfCars = await getCarList();
-    setCarList(listOfCars);
     const listOfCategory = await getCarCategory();
     setCategoryList(listOfCategory);
+    // ToDo 31-32 строку раскомментить !загрузка машин
+    // const listOfCars = await getCarList();
+    // setCarList(listOfCars);
     // console.log('CCAT', listOfCategory);
     setLoading(false);
   }, []);
 
   async function handleCarByCategoryId(id) {
     setLoading(true);
+    setCheckedId(id);
     const categoryById = await getCarListByCategory(id);
     setCarList(categoryById);
-    setCheckedId(id);
     setLoading(false);
   }
 
   async function handleAllCategories() {
     setLoading(true);
+    setCheckedId('all');
     const carListAll = await getCarList();
     setCarList(carListAll);
-    setCheckedId('all');
     setLoading(false);
   }
 
@@ -54,45 +55,41 @@ export default function CarsContainer() {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <div>
-            <div className={s.radioGroup}>
-              <label className={s.labelInput}>
-                <input
-                  checked={checkedId === 'all'}
-                  className={s.input}
-                  name="class"
-                  value="category?.id"
-                  onChange={() => handleAllCategories()}
-                  type="radio"
-                  id="all"
-                />
-                Все модели
-              </label>
+      <div className={s.radioGroup}>
+        <label className={s.radioLabel}>
+          <input
+            checked={checkedId === 'all'}
+            className={s.radioBtn}
+            name="class"
+            value="category?.id"
+            onChange={() => handleAllCategories()}
+            type="radio"
+            id="all"
+          />
+          <div className={s.customIndicator} />
+          <span>Все модели</span>
+        </label>
 
-              {categoryList.map((category) => (
-                <label key={category?.id} className={s.labelInput}>
-                  <input
-                    checked={checkedId === category.id}
-                    className={s.input}
-                    name="class"
-                    value="category?.id"
-                    onChange={() => handleCarByCategoryId(category?.id)}
-                    id={category?.id}
-                    type="radio"
-                  />
+        {categoryList.map((category) => (
+          <>
+            <label key={category?.id} className={s.radioLabel}>
+              <input
+                checked={checkedId === category.id}
+                className={s.radioBtn}
+                name="class"
+                value="category?.id"
+                onChange={() => handleCarByCategoryId(category?.id)}
+                id={category?.id}
+                type="radio"
+              />
+              <div className={s.customIndicator} />
+              <span>{category?.name}</span>
+            </label>
+          </>
+        ))}
+      </div>
 
-                  <span>{category?.name}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-          <Cars carList={carList} baseUrl={BASE_URL} />
-        </>
-      )}
+      {loading ? <Loading /> : <Cars carList={carList} baseUrl={BASE_URL} />}
     </>
   );
 }

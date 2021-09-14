@@ -11,7 +11,7 @@ export default function ExtendsContainer() {
     <>
       <div className={s.extendsContainer}>
         <div className={s.radioTtl}>Цвет</div>
-        <div className={s.radioContainer}>
+        <div className={s.radioGroup}>
           <label className={s.radioLabel} htmlFor="radio-1">
             <input
               id="radio-1"

@@ -1,16 +1,15 @@
 @import '../../variables.scss';
 
 .radioGroup {
-  // position: sticky;
-  // top: 0;
-  // z-index: 10;
-  // background: white;
-  margin: 0 8px;
   display: flex;
-  align-items: center;
-  min-height: 56px;
+
   overflow-x: scroll;
+  margin: 0 8px;
+  min-height: 56px;
   font-size: 14px;
+  color: $darkGray;
+
+  // align-items: center;
   @media (min-width: 768px) {
     overflow-x: unset;
   }
@@ -44,11 +43,44 @@
   }
 }
 
-.labelInput {
+.radioLabel {
   padding: 0 16px 0 0;
   flex: 0 0 auto;
+  display: flex;
+
+  //
+
+  &:hover .radioBtn ~ .customIndicator {
+    border-color: $mainAccent;
+  }
+  &:hover {
+    color: black;
+  }
 }
-.input {
+
+.customIndicator {
+  margin: 0 8px 0 0;
+  background-color: white;
+  border: 1px solid $darkGray;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+}
+.radioBtn {
   padding: 0 0 0 8px;
   margin: 0px 4px 0px 0;
+  //
+  opacity: 0;
+  z-index: -1;
+  &:focus ~ .customIndicator {
+    border-color: $mainAccent;
+    border: 3px solid $mainAccent;
+  }
+
+  &:checked ~ .customIndicator {
+    border: 3px solid $mainAccent;
+  }
+  &:active {
+    color: black;
+  }
 }
