@@ -54,6 +54,7 @@ export default function CarsContainer() {
 
   ///////////
   function handleChosenCar(model) {
+    console.log('model', model);
     setOrderInfo((prev) => ({
       ...prev,
       car: { ...prev.car, model },

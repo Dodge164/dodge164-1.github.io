@@ -3,9 +3,16 @@
 import React from 'react';
 import s from './Car.module.scss';
 
-export default function Car({ car, baseUrl }) {
+export default function Car({ onChangeChosenCar, car, baseUrl }) {
   return (
-    <div key={car.id} className={s.carsPhotoCard}>
+    <div
+      key={car.id}
+      className={s.carsPhotoCard}
+      onClick={() => onChangeChosenCar(car.model)}
+      role="button"
+      tabIndex="0"
+      onKeyPress={() => onChangeChosenCar(car.model)}
+    >
       <h3 className={s.carsPhotoName}>{car?.name}</h3>
       <div className={s.carsPhotoPrice}>
         {car?.priceMin.toLocaleString('ru')}&nbsp;-&nbsp;
