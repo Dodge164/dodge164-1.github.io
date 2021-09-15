@@ -1,10 +1,12 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './Extends.module.scss';
+import './datepicker.scss';
 
-export default function ExtendsContainer() {
+export default function ExtendsContainer({ step }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -48,35 +50,40 @@ export default function ExtendsContainer() {
 
         <div className={s.extendsTtl}>Дата аренды</div>
         <div className={s.pickerWrapper}>
-          <span>C</span>
-          <DatePicker
-            className={s.datePicker}
-            placeholderText="Ведите дату и время"
-            selected={startDate}
-            showTimeSelect
-            onChange={(date) => setStartDate(date)}
-            timeFormat="HH:mm"
-            timeIntervals={30}
-            dateFormat="dd.MM.yyyy HH:mm"
-            timeCaption="time"
-            minDate={new Date()}
-            isClearable
-          />
-
-          <span>По</span>
-          <DatePicker
-            className={s.datePicker}
-            selected={endDate}
-            showTimeSelect
-            onChange={(date) => setEndDate(date)}
-            timeFormat="HH:mm"
-            timeIntervals={30}
-            dateFormat="dd.MM.yyyy HH:mm"
-            timeCaption="time"
-            minDate={new Date()}
-            placeholderText="Ведите дату и время"
-            isClearable
-          />
+          <div>C</div>
+          <div>
+            <DatePicker
+              className={s.datePicker}
+              placeholderText="Ведите дату и время"
+              selected={startDate}
+              showTimeSelect
+              onChange={(date) => setStartDate(date)}
+              timeFormat="HH:mm"
+              timeIntervals={30}
+              dateFormat="dd.MM.yyyy HH:mm"
+              timeCaption="time"
+              minDate={new Date()}
+              isClearable
+            />
+          </div>
+        </div>
+        <div className={s.pickerWrapper}>
+          <div>По</div>
+          <div>
+            <DatePicker
+              className={s.datePicker}
+              selected={endDate}
+              showTimeSelect
+              onChange={(date) => setEndDate(date)}
+              timeFormat="HH:mm"
+              timeIntervals={30}
+              dateFormat="dd.MM.yyyy HH:mm"
+              timeCaption="time"
+              minDate={new Date()}
+              placeholderText="Ведите дату и время"
+              isClearable
+            />
+          </div>
         </div>
 
         <div>
@@ -125,6 +132,12 @@ export default function ExtendsContainer() {
           </label>
         </div>
       </div>
+      {step === 3 && (
+        <div className={s.modal}>
+          <button>setStep+1</button>
+          <button>setStep-1</button>
+        </div>
+      )}
     </>
   );
 }

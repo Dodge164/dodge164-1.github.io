@@ -2,10 +2,10 @@
 .header {
   display: flex;
   flex-direction: column;
-  flex: 0 0 72px;
+  flex: 0 0 42px;
   justify-content: space-evenly;
   align-items: flex-end;
-  margin: 12px 16px 0 16px;
+  margin: 12px 16px 2px 16px;
 
   @media (min-width: 768px) {
     flex-direction: row;

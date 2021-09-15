@@ -5,6 +5,8 @@ const OrderData = {
   },
   car: {
     model: null,
+    priceMax: null,
+    priceMin: null,
   },
   extends: {
     color: null,

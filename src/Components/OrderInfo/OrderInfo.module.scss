@@ -31,16 +31,14 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  ///
-
   width: 100%;
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
-  padding: 0 8px;
+  padding: 8px 8px;
 
   @media (min-width: 768px) {
-    padding: 0 0;
+    // padding: 0 0;
   }
   @media (min-width: 1024px) {
     padding: 0 0;
@@ -89,56 +87,9 @@
   font-size: 16px;
   line-height: 16px;
 }
-.btn:disabled {
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  background: $lightGray;
-}
 .btn {
-  width: 100vw;
-  height: 48px;
-  color: #ffffff;
-  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
-  background-blend-mode: darken;
-  font-size: 18px;
-  line-height: 21px;
-  margin: 10px 0; ///
-  border: none;
-  outline: none;
-  &:hover {
-    background: linear-gradient(
-      90deg,
-      darken(#0ec261, 10) 2.61%,
-      darken(#039f67, 10) 112.6%
-    );
-  }
-
-  &:focus {
-    background: linear-gradient(
-      90deg,
-      darken(#0ec261, 10) 2.61%,
-      darken(#039f67, 10) 112.6%
-    );
-  }
-  &:active {
-    background: linear-gradient(
-      90deg,
-      darken(#0ec261, 20) 2.61%,
-      darken(#039f67, 20) 112.6%
-    );
-  }
-  @media (min-width: 768px) {
-    width: 150px;
-    width: 250px;
-    border-radius: 8px;
-    margin: 24px 32px;
-  }
+  display: none;
   @media (min-width: 1024px) {
-    width: 150px;
-    width: 287px;
-    border-radius: 8px;
-    margin: 0 0 0 56px;
+    display: block;
   }
 }

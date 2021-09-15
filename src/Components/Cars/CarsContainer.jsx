@@ -53,18 +53,19 @@ export default function CarsContainer() {
   }
 
   ///////////
-  function handleChosenCar(model) {
-    console.log('model', model);
+  function handleChosenCar(car) {
+    console.log('model', car);
     setOrderInfo((prev) => ({
       ...prev,
-      car: { ...prev.car, model },
+      car: {
+        ...prev.car,
+        model: car.name,
+        priceMin: car.priceMin,
+        priceMax: car.priceMax,
+      },
     }));
   }
-  useEffect(async () => {
-    if (orderInfo.car.model !== null) {
-      const carName = carList.find((item) => item.name === orderInfo.car.model);
-    }
-  }, [orderInfo.car.model]);
+
   return (
     <>
       <div className={s.radioGroup}>

@@ -17,32 +17,29 @@
   flex-direction: column;
   margin: 0 16px 0 16px;
   @media (min-width: 768px) {
-    height: 88px;
+    height: 130px;
     margin: 0px 32px 0 96px;
   }
-  @media (min-width: 1024px) {
-    height: 88px;
-    margin: 0px 32px 0 96px;
-  }
+  // @media (min-width: 1024px) {
+  //   margin: 0px 32px 0 96px;
+  // }
   @media (min-width: 1440px) {
-    height: 88px;
     margin: 0px 64px 0 128px;
   }
 }
 .breadCrumbsWrapper {
   border-top: 1px solid $lightGray;
   border-bottom: 1px solid $lightGray;
-  padding: 0 8px;
 
   @media (min-width: 768px) {
-    padding: 0 32px 0 96px;
   }
   @media (min-width: 1440px) {
-    padding: 0 64px 0 128px;
+    padding: 0;
   }
 }
 
 .orderWrapper {
+  flex: 1 1 auto;
   overflow: hidden;
   overflow-y: auto;
   display: flex;
@@ -82,11 +79,43 @@
   }
 }
 .orderInfo {
+  display: none;
+  position: fixed;
+  height: 100%;
+  bottom: 0;
+  background: white;
+  &.active {
+    display: block;
+    width: 100%;
+    top: 118px;
+    @media (min-width: 768px) {
+      padding: 0 128px 0 0px;
+      width: 100%;
+      position: fixed;
+      height: 100%;
+      bottom: 0;
+      background: white;
+    }
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
   @media (min-width: 1024px) {
+    display: block;
+    position: static;
     flex: 0 0 40%;
   }
   @media (min-width: 1440px) {
     flex: 0 0 27%;
     height: 100%;
   }
+}
+.btn {
+  display: block;
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+.orderBurger {
+  display: flex;
 }

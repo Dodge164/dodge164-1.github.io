@@ -1,20 +1,23 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable object-curly-newline */
-import React from 'react';
-import btnData from './OrderBtnData';
-import CarComponent from './OrderComponents/OrderCarComponent/CarComponent';
-import LocationComponent from './OrderComponents/OrderLocationComponent/LocationComponentContainer';
+import React, { useContext } from 'react';
+import Context from '../../context';
+import CarComponentContainer from './OrderComponents/OrderCarComponent/CarComponentContainer';
+import LocationComponentContainer from './OrderComponents/OrderLocationComponent/LocationComponentContainer';
+import OrderStepBtnContainer from './OrderStepBtn';
 import s from './OrderInfo.module.scss';
 
-export default function OrderInfo({ onDisabled, step, onSetStep }) {
+export default function OrderInfo() {
   return (
     <>
       <form className={s.orderContainer}>
         <h3 className={s.orderTitle}>Ваш заказ: </h3>
         <div className={s.locationStep}>
-          <LocationComponent />
+          <LocationComponentContainer />
         </div>
         <div className={s.locationStep}>
-          <CarComponent />
+          <CarComponentContainer />
         </div>
         <div className={s.totalPrice}>
           <div className={s.priceLabel}>
@@ -23,20 +26,9 @@ export default function OrderInfo({ onDisabled, step, onSetStep }) {
           </div>
         </div>
       </form>
-      {btnData.map(
-        (btn) =>
-          btn.id === step && (
-            <button
-              disabled={onDisabled(btn.id)}
-              className={s.btn}
-              type="button"
-              onClick={onSetStep}
-              key={btn.id}
-            >
-              {btn.title}
-            </button>
-          ),
-      )}
+      <div className={s.btn}>
+        <OrderStepBtnContainer />
+      </div>
     </>
   );
 }

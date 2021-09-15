@@ -8,10 +8,10 @@ export default function Car({ onChangeChosenCar, car, baseUrl }) {
     <div
       key={car.id}
       className={s.carsPhotoCard}
-      onClick={() => onChangeChosenCar(car.model)}
+      onClick={() => onChangeChosenCar(car)}
       role="button"
       tabIndex="0"
-      onKeyPress={() => onChangeChosenCar(car.model)}
+      onKeyPress={() => onChangeChosenCar(car)}
     >
       <h3 className={s.carsPhotoName}>{car?.name}</h3>
       <div className={s.carsPhotoPrice}>

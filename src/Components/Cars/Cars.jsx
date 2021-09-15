@@ -10,7 +10,11 @@ export default function Cars({ onChangeChosenCar, carList, baseUrl }) {
       <section className={s.carsPhotoContainer}>
         {carList.length > 0 &&
           carList?.map((car) => (
-            <Car onClick={onChangeChosenCar} car={car} baseUrl={baseUrl} />
+            <Car
+              onChangeChosenCar={onChangeChosenCar}
+              car={car}
+              baseUrl={baseUrl}
+            />
           ))}
       </section>
     </>
