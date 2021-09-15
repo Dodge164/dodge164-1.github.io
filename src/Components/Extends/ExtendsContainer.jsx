@@ -6,12 +6,13 @@ import s from './Extends.module.scss';
 
 export default function ExtendsContainer() {
   const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   return (
     <>
       <div className={s.extendsContainer}>
-        <div className={s.radioTtl}>Цвет</div>
-        <div className={s.radioGroup}>
+        <div className={s.extendsTtl}>Цвет</div>
+        <div className={s.radioGroupColor}>
           <label className={s.radioLabel} htmlFor="radio-1">
             <input
               id="radio-1"
@@ -44,10 +45,13 @@ export default function ExtendsContainer() {
             <div className={s.customIndicator} />
           </label>
         </div>
-        <div>
-          <div>Дата аренды</div>
+
+        <div className={s.extendsTtl}>Дата аренды</div>
+        <div className={s.pickerWrapper}>
           <span>C</span>
           <DatePicker
+            className={s.datePicker}
+            placeholderText="Ведите дату и время"
             selected={startDate}
             showTimeSelect
             onChange={(date) => setStartDate(date)}
@@ -56,38 +60,67 @@ export default function ExtendsContainer() {
             dateFormat="dd.MM.yyyy HH:mm"
             timeCaption="time"
             minDate={new Date()}
-            placeholderText="Ведите дату и время"
+            isClearable
           />
+
           <span>По</span>
           <DatePicker
-            selected={startDate}
+            className={s.datePicker}
+            selected={endDate}
             showTimeSelect
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) => setEndDate(date)}
             timeFormat="HH:mm"
             timeIntervals={30}
             dateFormat="dd.MM.yyyy HH:mm"
             timeCaption="time"
             minDate={new Date()}
             placeholderText="Ведите дату и время"
+            isClearable
           />
         </div>
+
         <div>
-          <div>Тариф</div>
-          <label>
-            <input type="radio" name="rate" />
-            <span>Поминутно, 7 ₽/мин </span>
-            <input type="radio" name="rate" />
-            <span>На сутки, 1999 ₽/сутки</span>
-          </label>
+          <div className={s.extendsTtl}>Тариф</div>
+          <div className={s.radioGroupRate}>
+            <label className={s.radioLabel} htmlFor="radio-2.1">
+              <span>Поминутно, 7 ₽/мин </span>
+              <input
+                type="radio"
+                name="rate"
+                id="radio-2.1"
+                className={s.radioBtn}
+                checked="checked"
+              />
+              <div className={s.customIndicator} />
+            </label>
+            <label className={s.radioLabel} htmlFor="radio-2.1">
+              <span>На сутки, 1999 ₽/сутки</span>
+              <input
+                type="radio"
+                name="rate"
+                id="radio-2.2"
+                className={s.radioBtn}
+                checked="checked"
+              />
+              <div className={s.customIndicator} />
+            </label>
+          </div>
         </div>
         <div>
-          <div>Доп услуги</div>
-          <label>
-            <input type="checkbox" name="extra" />
+          <div className={s.extendsTtl}>Доп услуги</div>
+          <label className={s.checkboxGroup}>
+            <input type="checkbox" name="extra" className={s.checkBtn} />
+            <div className={s.customCheckbox} />
             <span>Полный бак, 500р</span>
-            <input type="checkbox" name="extra" />
+          </label>
+          <label className={s.checkboxGroup}>
+            <input type="checkbox" name="extra" className={s.checkBtn} />
+            <div className={s.customCheckbox} />
             <span>Детское кресло, 200р</span>
-            <input type="checkbox" name="extra" />
+          </label>
+          <label className={s.checkboxGroup}>
+            <input type="checkbox" name="extra" className={s.checkBtn} />
+            <div className={s.customCheckbox} />
             <span>Правый руль, 1600р</span>
           </label>
         </div>

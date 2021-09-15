@@ -12,7 +12,7 @@ export default function Location({
   pointList,
 }) {
   return (
-    <div>
+    <>
       <div className={s.locationWrapper}>
         <div className={s.address}>
           <div className={s.locValue}>Город</div>
@@ -55,6 +55,6 @@ export default function Location({
           <img className={s.map} src={mapPng} alt="map" />
         </div>
       </div>
-    </div>
+    </>
   );
 }

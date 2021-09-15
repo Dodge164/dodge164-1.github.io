@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable spaced-comment */
 /* eslint-disable react/void-dom-elements-no-children */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -7,6 +8,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useContext } from 'react';
+import cn from 'classnames';
 import Context from '../../context';
 import Loading from '../../Helpers/Loading/Loading';
 import Cars from './Cars';
@@ -22,6 +24,7 @@ export default function CarsContainer() {
   const [carList, setCarList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [checkedId, setCheckedId] = useState('all');
+  const { orderInfo, setOrderInfo } = useContext(Context);
   const { loading, setLoading } = useContext(Context);
 
   useEffect(async () => {
@@ -33,7 +36,6 @@ export default function CarsContainer() {
     // console.log('CCAT', listOfCategory);
     setLoading(false);
   }, []);
-
   async function handleCarByCategoryId(id) {
     setLoading(true);
     setCheckedId(id);
@@ -50,9 +52,18 @@ export default function CarsContainer() {
     setLoading(false);
   }
 
-  /////////
-  // function handleChosenCar(car)
-
+  ///////////
+  function handleChosenCar(model) {
+    setOrderInfo((prev) => ({
+      ...prev,
+      car: { ...prev.car, model },
+    }));
+  }
+  useEffect(async () => {
+    if (orderInfo.car.model !== null) {
+      const carName = carList.find((item) => item.name === orderInfo.car.model);
+    }
+  }, [orderInfo.car.model]);
   return (
     <>
       <div className={s.radioGroup}>
@@ -72,7 +83,12 @@ export default function CarsContainer() {
 
         {categoryList.map((category) => (
           <>
-            <label key={category?.id} className={s.radioLabel}>
+            <label
+              key={category?.id}
+              className={cn(s.radioLabel, {
+                [s.active]: category === checkedId,
+              })}
+            >
               <input
                 checked={checkedId === category.id}
                 className={s.radioBtn}
@@ -89,7 +105,16 @@ export default function CarsContainer() {
         ))}
       </div>
 
-      {loading ? <Loading /> : <Cars carList={carList} baseUrl={BASE_URL} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <Cars
+          valueModel={orderInfo.car.model}
+          onChangeChosenCar={handleChosenCar}
+          carList={carList}
+          baseUrl={BASE_URL}
+        />
+      )}
     </>
   );
 }

@@ -1,6 +1,7 @@
 /* eslint-disable object-curly-newline */
 import React from 'react';
 import btnData from './OrderBtnData';
+import CarComponent from './OrderComponents/OrderCarComponent/CarComponent';
 import LocationComponent from './OrderComponents/OrderLocationComponent/LocationComponentContainer';
 import s from './OrderInfo.module.scss';
 
@@ -11,6 +12,9 @@ export default function OrderInfo({ onDisabled, step, onSetStep }) {
         <h3 className={s.orderTitle}>Ваш заказ: </h3>
         <div className={s.locationStep}>
           <LocationComponent />
+        </div>
+        <div className={s.locationStep}>
+          <CarComponent />
         </div>
         <div className={s.totalPrice}>
           <div className={s.priceLabel}>

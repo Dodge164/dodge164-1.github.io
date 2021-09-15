@@ -4,11 +4,15 @@ import React from 'react';
 import Car from './Car';
 import s from './Cars.module.scss';
 
-export default function Cars({ carList, baseUrl }) {
+export default function Cars({ onChangeChosenCar, carList, baseUrl }) {
   return (
-    <section className={s.carsPhotoContainer}>
-      {carList.length > 0 &&
-        carList?.map((car) => <Car car={car} baseUrl={baseUrl} />)}
-    </section>
+    <>
+      <section className={s.carsPhotoContainer}>
+        {carList.length > 0 &&
+          carList?.map((car) => (
+            <Car onClick={onChangeChosenCar} car={car} baseUrl={baseUrl} />
+          ))}
+      </section>
+    </>
   );
 }

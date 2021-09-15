@@ -7,9 +7,18 @@ export default function OrderInfoContainer() {
   const {
     location: { city, point },
   } = orderInfo;
+  const {
+    car: { model },
+  } = orderInfo;
+  // function onCheckStep(id) {
+  //   if (step === id) {
+  //     return !city || !point;
+  //   }
+  //   return true;
+  // }
   function onCheckStep(id) {
     if (step === id) {
-      return !city || !point;
+      return !city || !point || !model;
     }
     return true;
   }
@@ -21,6 +30,7 @@ export default function OrderInfoContainer() {
       onDisabled={onCheckStep}
       city={city}
       point={point}
+      model={model}
       step={step}
       onSetStep={handleSetStep}
     />

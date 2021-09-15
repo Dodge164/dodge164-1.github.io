@@ -8,14 +8,14 @@
   @media (min-width: 768px) {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
   }
-  // @media (min-width: 1440px) {
-  // }
 
   .carsPhotoName {
     display: flex;
     align-items: center;
-    padding: 0 0 0 16px;
+    padding: 8px 0 0 16px;
     margin: 0;
     text-transform: uppercase;
     font-weight: normal;
@@ -39,11 +39,13 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    padding: 0 16px 16px 0;
+    // padding: 0 16px 16px 0;
+    padding: 16px;
     .photo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 90%;
+      height: 90%;
+      // object-fit: cover;
+      object-fit: contain;
       display: inline-block;
       @media (min-width: 768px) {
         width: 80%;

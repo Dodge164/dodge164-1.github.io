@@ -45,11 +45,14 @@
 .orderWrapper {
   overflow: hidden;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  // 48-49 добавлено
   @media (min-width: 768px) {
     padding: 0 32px 0 96px;
   }
   @media (min-width: 1024px) {
-    display: flex;
+    flex-direction: row;
     margin: 0;
     padding: 0 32px 0 96px;
     height: 100%;

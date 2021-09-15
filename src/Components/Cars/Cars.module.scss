@@ -1,15 +1,19 @@
 @import '../../variables.scss';
 
 .radioGroup {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  ///
   display: flex;
-
+  overflow: hidden;
   overflow-x: scroll;
-  margin: 0 8px;
   min-height: 56px;
   font-size: 14px;
   color: $darkGray;
-
-  // align-items: center;
+  margin: 0 8px;
+  align-items: center;
   @media (min-width: 768px) {
     overflow-x: unset;
   }
@@ -24,17 +28,33 @@
   }
 }
 .carsPhotoContainer {
-  overflow: hidden;
-  overflow-y: auto;
-  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 186px;
 
+  ///
+  overflow: hidden;
+  overflow-y: scroll;
+  margin: 8px 0;
   font-size: 14px;
+  @media (min-height: 667px) {
+    height: 280px;
+  }
+  @media (min-height: 736px) {
+    height: 350px;
+  }
+  @media (min-height: 812px) {
+    height: 410px;
+  }
+
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
   @media (min-width: 1024px) {
     grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+    height: 100%;
   }
   @media (min-width: 1440px) {
     width: 80%;
@@ -44,11 +64,8 @@
 }
 
 .radioLabel {
-  padding: 0 16px 0 0;
+  padding: 0 12px 0 0;
   flex: 0 0 auto;
-  display: flex;
-
-  //
 
   &:hover .radioBtn ~ .customIndicator {
     border-color: $mainAccent;
@@ -59,17 +76,19 @@
 }
 
 .customIndicator {
-  margin: 0 8px 0 0;
+  margin: 0 4px 0 0;
   background-color: white;
   border: 1px solid $darkGray;
   border-radius: 50%;
   height: 12px;
   width: 12px;
+  display: inline-block;
 }
 .radioBtn {
-  padding: 0 0 0 8px;
-  margin: 0px 4px 0px 0;
+  // padding: 0 0 0 8px;
+  // margin: 0px 4px 0px 0;
   //
+  display: none;
   opacity: 0;
   z-index: -1;
   &:focus ~ .customIndicator {
