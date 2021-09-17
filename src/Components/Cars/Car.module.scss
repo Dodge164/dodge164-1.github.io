@@ -1,69 +1,53 @@
 @import '../../variables.scss';
 .carsPhotoCard {
   border: 1px solid $lightGray;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   &:hover {
     border: 1px solid $mainAccent;
   }
-
-  @media (min-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+  @media (min-width: 640px) {
+    max-width: none;
   }
 
   .carsPhotoName {
-    display: flex;
-    align-items: center;
-    padding: 8px 0 0 16px;
-    margin: 0;
+    font-size: calc(14px + (4 + 4 * 0.7) * ((100vw - 320px) / 1440));
+    height: 50px;
+    padding: 8px 16px 0 16px;
     text-transform: uppercase;
     font-weight: normal;
-    font-size: 18px;
     line-height: 21px;
     color: $mainBlack;
-    ///
-    flex: 0 0 32px;
+    @media (min-width: 1024px) {
+      font-size: calc(14px + 4 * (100vw / 1440));
+    }
   }
   .carsPhotoPrice {
-    display: flex;
-    align-items: center;
     padding: 0 0 0 16px;
-    flex: 0 0 16px;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 16px;
+    @media (min-width: 1024px) {
+      font-size: 14px;
+    }
   }
   .photoContainer {
-    flex: 1 1 auto;
+    // background-color: pink;
+    min-height: 144px;
+    max-height: 144px;
+    //
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-end;
-    // padding: 0 16px 16px 0;
-    padding: 16px;
+    overflow: hidden;
+    padding: 0 52px;
     .photo {
-      width: 90%;
-      height: 90%;
-      // object-fit: cover;
+      width: 200px;
+      height: 200px;
+
       object-fit: contain;
-      display: inline-block;
-      @media (min-width: 768px) {
-        width: 80%;
-        height: 80%;
-        object-fit: contain;
-      }
-      @media (min-width: 1024px) {
-        // width: 80%;
-        // height: 80%;
-        height: auto;
-        object-fit: contain;
-      }
-      // @media (min-width: 1024px) {
-      //   background: white;
-      //   width: 256px;
-      //   height: 117px;
-      //   object-fit: contain;
-      // }
+      overflow: hidden;
     }
   }
 }

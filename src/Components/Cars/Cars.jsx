@@ -11,6 +11,7 @@ export default function Cars({ onChangeChosenCar, carList, baseUrl }) {
         {carList.length > 0 &&
           carList?.map((car) => (
             <Car
+              key={car.id}
               onChangeChosenCar={onChangeChosenCar}
               car={car}
               baseUrl={baseUrl}

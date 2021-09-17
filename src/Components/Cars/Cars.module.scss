@@ -48,7 +48,7 @@
     height: 444px;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
@@ -71,6 +71,9 @@
     border-color: $mainAccent;
   }
   &:hover {
+    color: black;
+  }
+  &.active {
     color: black;
   }
 }

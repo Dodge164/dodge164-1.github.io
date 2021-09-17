@@ -11,6 +11,15 @@
   display: flex;
   //   overflow-x: scroll;
   margin: 0 8px;
+  &:hover .radioBtn ~ .customIndicator {
+    border-color: $mainAccent;
+  }
+  &:hover {
+    color: black;
+  }
+  &.active {
+    color: black;
+  }
   @media (min-width: 768px) {
     overflow-x: unset;
   }

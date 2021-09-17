@@ -4,6 +4,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useState } from 'react';
+import cn from 'classnames';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './Extends.module.scss';
@@ -12,13 +13,12 @@ import Context from '../../context';
 
 export default function ExtendsContainer() {
   const { step, setStep, orderInfo, setOrderInfo } = useContext(Context);
+  const { car } = orderInfo;
   //
-  const [checkedId, setCheckedId] = useState('any');
-  async function handleAnyColor(color) {
-    setCheckedId('any');
-  }
-  console.log('color', orderInfo);
-  function handleTest(color) {
+  const [checkedColor, setCheckedColor] = useState('Любой');
+
+  function handleAnyColor(color) {
+    setCheckedColor(color);
     setOrderInfo((prev) => ({
       ...prev,
       extends: {
@@ -27,7 +27,6 @@ export default function ExtendsContainer() {
       },
     }));
   }
-
   //
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -39,12 +38,16 @@ export default function ExtendsContainer() {
       <div className={s.extendsContainer}>
         <div className={s.extendsTtl}>Цвет</div>
         <div className={s.radioGroupColor}>
-          <label className={s.radioLabel} htmlFor="radio-1">
+          <label
+            htmlFor="any"
+            className={cn(s.radioLabel, {
+              [s.active]: checkedColor === 'Любой',
+            })}
+          >
             <input
-              checked={checkedId === 'any'}
+              checked={checkedColor === 'Любой'}
               className={s.radioBtn}
               name="color"
-              value="car?.color?.id"
               onChange={() => handleAnyColor('Любой')}
               type="radio"
               id="any"
@@ -52,28 +55,27 @@ export default function ExtendsContainer() {
             <div className={s.radioText}>Любой</div>
             <div className={s.customIndicator} />
           </label>
-          <label htmlFor="radio-2" className={s.radioLabel}>
-            <input
-              id="radio-2"
-              onChange={() => handleTest('color2')}
-              className={s.radioBtn}
-              type="radio"
-              name="color"
-            />
-            <div className={s.radioText}>Красный</div>
-            <div className={s.customIndicator} />
-          </label>
-          <label htmlFor="radio-3" className={s.radioLabel}>
-            <input
-              id="radio-3"
-              className={s.radioBtn}
-              onChange={() => handleTest('color')}
-              type="radio"
-              name="color"
-            />
-            <div className={s.radioText}>Голубой</div>
-            <div className={s.customIndicator} />
-          </label>
+          {car?.colors?.map((color) => (
+            <label
+              key={color}
+              htmlFor={color}
+              className={cn(s.radioLabel, {
+                [s.active]: color === checkedColor,
+              })}
+            >
+              <input
+                checked={checkedColor === color}
+                id={color}
+                onChange={() => handleAnyColor(color)}
+                className={s.radioBtn}
+                type="radio"
+                name="color"
+              />
+
+              <div className={s.radioText}>{color}</div>
+              <div className={s.customIndicator} />
+            </label>
+          ))}
         </div>
 
         <div className={s.extendsTtl}>Дата аренды</div>
@@ -125,18 +127,17 @@ export default function ExtendsContainer() {
                 name="rate"
                 id="radio-2.1"
                 className={s.radioBtn}
-                checked="checked"
               />
               <div className={s.customIndicator} />
             </label>
-            <label className={s.radioLabel} htmlFor="radio-2.1">
+            <label className={s.radioLabel} htmlFor="radio-2.2">
               <span>На сутки, 1999 ₽/сутки</span>
               <input
                 type="radio"
                 name="rate"
                 id="radio-2.2"
                 className={s.radioBtn}
-                checked="checked"
+                defaultChecked
               />
               <div className={s.customIndicator} />
             </label>

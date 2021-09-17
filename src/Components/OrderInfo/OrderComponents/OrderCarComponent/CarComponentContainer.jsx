@@ -5,7 +5,11 @@ import Context from '../../../../context';
 export default function CarComponentContainer() {
   const { orderInfo } = useContext(Context);
   const {
-    car: { model },
+    car: { model, priceMax, priceMin },
   } = orderInfo;
-  return model && <CarComponent model={model} />;
+  return (
+    model && (
+      <CarComponent model={model} priceMax={priceMax} priceMin={priceMin} />
+    )
+  );
 }

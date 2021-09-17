@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import StartScreen from '../../Pages/StartScreen/StartScreen';
 import OrderPage from '../../Pages/OrderPage';
@@ -13,6 +13,10 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const [isOrderBurgerClicked, setIsOrderBurgerClicked] = useState(false);
+  useEffect(() => {
+    console.log('orderInfo', orderInfo);
+  }, [orderInfo]);
+
   return (
     <Context.Provider
       value={{

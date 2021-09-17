@@ -13,7 +13,7 @@ export default function Car({ onChangeChosenCar, car, baseUrl }) {
       tabIndex="0"
       onKeyPress={() => onChangeChosenCar(car)}
     >
-      <h3 className={s.carsPhotoName}>{car?.name}</h3>
+      <div className={s.carsPhotoName}>{car?.name}</div>
       <div className={s.carsPhotoPrice}>
         {car?.priceMin.toLocaleString('ru')}&nbsp;-&nbsp;
         {car?.priceMax.toLocaleString('ru')}₽

@@ -67,7 +67,9 @@ export default function CarsContainer() {
   return (
     <>
       <div className={s.radioGroup}>
-        <label className={s.radioLabel}>
+        <label
+          className={cn(s.radioLabel, { [s.active]: checkedId === 'all' })}
+        >
           <input
             checked={checkedId === 'all'}
             className={s.radioBtn}
@@ -82,26 +84,24 @@ export default function CarsContainer() {
         </label>
 
         {categoryList.map((category) => (
-          <>
-            <label
-              key={category?.id}
-              className={cn(s.radioLabel, {
-                [s.active]: category === checkedId,
-              })}
-            >
-              <input
-                checked={checkedId === category.id}
-                className={s.radioBtn}
-                name="class"
-                value="category?.id"
-                onChange={() => handleCarByCategoryId(category?.id)}
-                id={category?.id}
-                type="radio"
-              />
-              <div className={s.customIndicator} />
-              <span>{category?.name}</span>
-            </label>
-          </>
+          <label
+            key={category?.id}
+            className={cn(s.radioLabel, {
+              [s.active]: category === checkedId,
+            })}
+          >
+            <input
+              checked={checkedId === category.id}
+              className={s.radioBtn}
+              name="class"
+              value="category?.id"
+              onChange={() => handleCarByCategoryId(category?.id)}
+              id={category?.id}
+              type="radio"
+            />
+            <div className={s.customIndicator} />
+            <span>{category?.name}</span>
+          </label>
         ))}
       </div>
 
