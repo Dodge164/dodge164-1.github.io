@@ -4,11 +4,11 @@ import Context from '../../../context';
 
 export default function BurgerContainer() {
   const { isOrderBurgerClicked, setIsOrderBurgerClicked } = useContext(Context);
-  const showSidebar = () => setIsOrderBurgerClicked((prev) => !prev);
+  const handleBurgerClicked = () => setIsOrderBurgerClicked((prev) => !prev);
   return (
     <Burger
-      onBurgerClicked={isOrderBurgerClicked}
-      onSidebarClicked={showSidebar}
+      isBurgerClicked={isOrderBurgerClicked}
+      onBurgerClicked={handleBurgerClicked}
     />
   );
 }

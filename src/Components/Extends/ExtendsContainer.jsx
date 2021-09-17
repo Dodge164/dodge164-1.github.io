@@ -1,15 +1,39 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './Extends.module.scss';
 import './datepicker.scss';
+import Context from '../../context';
 
-export default function ExtendsContainer({ step }) {
+export default function ExtendsContainer() {
+  const { step, setStep, orderInfo, setOrderInfo } = useContext(Context);
+  //
+  const [checkedId, setCheckedId] = useState('any');
+  async function handleAnyColor(color) {
+    setCheckedId('any');
+  }
+  console.log('color', orderInfo);
+  function handleTest(color) {
+    setOrderInfo((prev) => ({
+      ...prev,
+      extends: {
+        ...prev.extends,
+        color,
+      },
+    }));
+  }
+
+  //
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-
+  function handlePrevStep() {
+    setStep((prev) => prev - 1);
+  }
   return (
     <>
       <div className={s.extendsContainer}>
@@ -17,11 +41,13 @@ export default function ExtendsContainer({ step }) {
         <div className={s.radioGroupColor}>
           <label className={s.radioLabel} htmlFor="radio-1">
             <input
-              id="radio-1"
+              checked={checkedId === 'any'}
               className={s.radioBtn}
-              type="radio"
               name="color"
-              checked="checked"
+              value="car?.color?.id"
+              onChange={() => handleAnyColor('Любой')}
+              type="radio"
+              id="any"
             />
             <div className={s.radioText}>Любой</div>
             <div className={s.customIndicator} />
@@ -29,6 +55,7 @@ export default function ExtendsContainer({ step }) {
           <label htmlFor="radio-2" className={s.radioLabel}>
             <input
               id="radio-2"
+              onChange={() => handleTest('color2')}
               className={s.radioBtn}
               type="radio"
               name="color"
@@ -40,6 +67,7 @@ export default function ExtendsContainer({ step }) {
             <input
               id="radio-3"
               className={s.radioBtn}
+              onChange={() => handleTest('color')}
               type="radio"
               name="color"
             />
@@ -49,43 +77,44 @@ export default function ExtendsContainer({ step }) {
         </div>
 
         <div className={s.extendsTtl}>Дата аренды</div>
-        <div className={s.pickerWrapper}>
-          <div>C</div>
-          <div>
-            <DatePicker
-              className={s.datePicker}
-              placeholderText="Ведите дату и время"
-              selected={startDate}
-              showTimeSelect
-              onChange={(date) => setStartDate(date)}
-              timeFormat="HH:mm"
-              timeIntervals={30}
-              dateFormat="dd.MM.yyyy HH:mm"
-              timeCaption="time"
-              minDate={new Date()}
-              isClearable
-            />
+        <div className={s.test}>
+          <div className={s.pickerWrapper}>
+            <div>C</div>
+            <div>
+              <DatePicker
+                className={s.datePicker}
+                placeholderText="Ведите дату и время"
+                selected={startDate}
+                showTimeSelect
+                onChange={(date) => setStartDate(date)}
+                timeFormat="HH:mm"
+                timeIntervals={30}
+                dateFormat="dd.MM.yyyy HH:mm"
+                timeCaption="time"
+                minDate={new Date()}
+                isClearable
+              />
+            </div>
+          </div>
+          <div className={s.pickerWrapper}>
+            <div>По</div>
+            <div>
+              <DatePicker
+                className={s.datePicker}
+                selected={endDate}
+                showTimeSelect
+                onChange={(date) => setEndDate(date)}
+                timeFormat="HH:mm"
+                timeIntervals={30}
+                dateFormat="dd.MM.yyyy HH:mm"
+                timeCaption="time"
+                minDate={new Date()}
+                placeholderText="Ведите дату и время"
+                isClearable
+              />
+            </div>
           </div>
         </div>
-        <div className={s.pickerWrapper}>
-          <div>По</div>
-          <div>
-            <DatePicker
-              className={s.datePicker}
-              selected={endDate}
-              showTimeSelect
-              onChange={(date) => setEndDate(date)}
-              timeFormat="HH:mm"
-              timeIntervals={30}
-              dateFormat="dd.MM.yyyy HH:mm"
-              timeCaption="time"
-              minDate={new Date()}
-              placeholderText="Ведите дату и время"
-              isClearable
-            />
-          </div>
-        </div>
-
         <div>
           <div className={s.extendsTtl}>Тариф</div>
           <div className={s.radioGroupRate}>
@@ -134,8 +163,22 @@ export default function ExtendsContainer({ step }) {
       </div>
       {step === 3 && (
         <div className={s.modal}>
-          <button>setStep+1</button>
-          <button>setStep-1</button>
+          <button
+            className={s.btn}
+            type="button"
+            onClick={handlePrevStep}
+            key={step}
+          >
+            setStep+1
+          </button>
+          <button
+            className={s.btn}
+            type="button"
+            onClick={handlePrevStep}
+            key={step}
+          >
+            setStep-1
+          </button>
         </div>
       )}
     </>

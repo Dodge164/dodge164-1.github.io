@@ -40,8 +40,8 @@
 
 .btn {
   border-radius: 4px;
-  width: 90px;
-  height: 48px;
+  width: 73px;
+  height: 36px;
   color: #ffffff;
   background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
   background-blend-mode: darken;
@@ -73,7 +73,7 @@
     );
   }
   @media (min-width: 768px) {
-    width: 150px;
+    height: 48px;
     width: 250px;
     border-radius: 8px;
     margin: 24px 32px;

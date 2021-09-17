@@ -33,7 +33,6 @@ export default function CarsContainer() {
     // ToDo 31-32 строку раскомментить !загрузка машин
     // const listOfCars = await getCarList();
     // setCarList(listOfCars);
-    // console.log('CCAT', listOfCategory);
     setLoading(false);
   }, []);
   async function handleCarByCategoryId(id) {
@@ -52,9 +51,7 @@ export default function CarsContainer() {
     setLoading(false);
   }
 
-  ///////////
   function handleChosenCar(car) {
-    console.log('model', car);
     setOrderInfo((prev) => ({
       ...prev,
       car: {
@@ -62,6 +59,7 @@ export default function CarsContainer() {
         model: car.name,
         priceMin: car.priceMin,
         priceMax: car.priceMax,
+        colors: car.colors,
       },
     }));
   }

@@ -27,18 +27,21 @@
 
 .extendsTtl {
   color: $mainBlack;
-  margin: 22px 8px 0 8px;
+  margin: 16px 8px 0 8px;
+  @media (min-width: 1024px) {
+    margin: 0;
+  }
 }
 .radioGroupColor {
   display: flex;
-  margin: 0 8px;
+  margin: 8px 8px 0 8px;
   //   @media (min-width: 768px) {
   //     overflow-x: unset;
   //   }
-  //   @media (min-width: 1024px) {
-  //     overflow-x: scroll;
-  //     margin: 0;
-  //   }
+  @media (min-width: 1024px) {
+    // overflow-x: scroll;
+    margin: 16px 0 32px 0;
+  }
   //   @media (min-width: 1440px) {
   //     overflow-x: unset;
   //     margin: 0;
@@ -47,16 +50,15 @@
 }
 .radioGroupRate {
   display: flex;
-  margin: 0 8px;
+  margin: 8px 8px 0 8px;
   flex-direction: column;
   align-items: flex-start;
   //   @media (min-width: 768px) {
   //     overflow-x: unset;
   //   }
-  //   @media (min-width: 1024px) {
-  //     overflow-x: scroll;
-  //     margin: 0;
-  //   }
+  @media (min-width: 1024px) {
+    margin: 16px 0 32px 0;
+  }
   //   @media (min-width: 1440px) {
   //     overflow-x: unset;
   //     margin: 0;
@@ -65,16 +67,15 @@
 }
 .checkboxGroup {
   display: flex;
-  margin: 0 8px;
+  margin: 8px 8px 0 8px;
   align-items: flex-start;
 
   //   @media (min-width: 768px) {
   //     overflow-x: unset;
   //   }
-  //   @media (min-width: 1024px) {
-  //     overflow-x: scroll;
-  //     margin: 0;
-  //   }
+  @media (min-width: 1024px) {
+    margin: 16px 0 0 0;
+  }
   //   @media (min-width: 1440px) {
   //     overflow-x: unset;
   //     margin: 0;
@@ -82,7 +83,7 @@
   //   }
 }
 .radioLabel {
-  padding: 0 10px 0 0;
+  padding: 0 10px 4px 0;
   flex: 0 0 auto;
   display: flex;
   flex-direction: row-reverse;
@@ -98,12 +99,12 @@
 }
 
 .customIndicator {
-  margin: 0 4px 0 0;
+  margin: 1px 4px 0 0;
   background-color: white;
   border: 1px solid $darkGray;
   border-radius: 50%;
-  height: 14px;
-  width: 14px;
+  height: 11px;
+  width: 11px;
 }
 .customCheckbox {
   display: inline-block;
@@ -158,20 +159,32 @@
 .pickerWrapper {
   display: flex;
   align-items: flex-end;
-
   color: $mainBlack;
   padding: 8px 0 0 0;
-  width: 50%;
+  width: 228px;
   justify-content: flex-end;
+  // @media (min-width: 768px) {
+  //   width: 246px;
+  // }
+  @media (min-width: 1024px) {
+    padding: 16px 0 0 0;
+    width: 220px;
+  }
 }
 .datePicker {
-  width: 120px;
+  width: 187px;
   margin: 0 4px;
   border: none;
   outline: none;
   border-bottom: 1px solid $darkGray;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
+  // @media (min-width: 768px) {
+  //   width: 205px;
+  // }
+  // @media (min-width: 1024px) {
+  //   width: 205px;
+  // }
 }
 
 .modal {
@@ -186,4 +199,10 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
+}
+.test {
+  padding: 0 0 8px 0;
+  @media (min-width: 1024px) {
+    padding: 0 0 32px 0;
+  }
 }

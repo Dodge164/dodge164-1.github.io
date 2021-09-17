@@ -7,6 +7,7 @@ const OrderData = {
     model: null,
     priceMax: null,
     priceMin: null,
+    colors: null,
   },
   extends: {
     color: null,
