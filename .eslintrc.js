@@ -16,6 +16,14 @@ module.exports = {
     'react/prop-types': 0,
     'react/jsx-curly-newline': 'off',
     'implicit-arrow-linebreak': 'off',
+    'jsx-a11y/label-has-associated-control': ['error', {
+      required:
+      { some: ['nesting', 'id'] },
+    }],
+    'jsx-a11y/label-has-for': ['error', {
+      required:
+      { some: ['nesting', 'id'] },
+    }],
     // 'linebreak-style': ['error', 'windows'],
   },
 };

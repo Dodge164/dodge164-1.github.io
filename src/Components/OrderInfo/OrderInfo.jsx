@@ -8,6 +8,7 @@ import CarComponentContainer from './OrderComponents/OrderCarComponent/CarCompon
 import LocationComponentContainer from './OrderComponents/OrderLocationComponent/LocationComponentContainer';
 import OrderStepBtnContainer from './OrderStepBtn';
 import s from './OrderInfo.module.scss';
+import ExtendComponentContainer from './OrderComponents/OrderExtendsComponent/ExtendComponentContainer';
 
 export default function OrderInfo() {
   const { orderInfo } = useContext(Context);
@@ -25,6 +26,10 @@ export default function OrderInfo() {
         <div className={s.locationStep}>
           <CarComponentContainer />
         </div>
+        <div className={s.locationStep}>
+          <ExtendComponentContainer />
+        </div>
+
         <div className={s.totalPrice}>
           <div className={s.priceLabel}>
             Цена:

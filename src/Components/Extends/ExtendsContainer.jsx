@@ -5,18 +5,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useState } from 'react';
 import cn from 'classnames';
-import DatePicker from 'react-datepicker';
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import ru from 'date-fns/locale/ru';
 import s from './Extends.module.scss';
 import './datepicker.scss';
 import Context from '../../context';
 
+registerLocale('ru', ru);
+setDefaultLocale('ru', ru);
 export default function ExtendsContainer() {
   const { step, setStep, orderInfo, setOrderInfo } = useContext(Context);
   const { car } = orderInfo;
-  //
   const [checkedColor, setCheckedColor] = useState('Любой');
-
   function handleAnyColor(color) {
     setCheckedColor(color);
     setOrderInfo((prev) => ({
@@ -29,10 +30,38 @@ export default function ExtendsContainer() {
   }
   //
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  function handlePrevStep() {
-    setStep((prev) => prev - 1);
+  const [endDate, setEndDate] = useState('');
+  const [allTime, setAllTime] = useState('');
+
+  function handleChosenColor(color) {
+    setOrderInfo((prev) => ({
+      ...prev,
+      extends: {
+        ...prev.extends,
+        color,
+      },
+    }));
   }
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+    return currentDate < selectedDate.getTime();
+  };
+
+  function handleSetStartTime() {
+    setOrderInfo((prev) => ({
+      ...prev,
+      time: { ...prev.time, timeFrom },
+    }));
+  }
+
+  function handleSetEndTime() {
+    setOrderInfo((prev) => ({
+      ...prev,
+      time: { ...prev.time, timeTo },
+    }));
+  }
+
   return (
     <>
       <div className={s.extendsContainer}>
@@ -72,23 +101,36 @@ export default function ExtendsContainer() {
                 name="color"
               />
 
-              <div className={s.radioText}>{color}</div>
+              <div
+                className={s.radioText}
+                onClick={() => handleChosenColor(color)}
+                onKeyPress={() => handleChosenColor(color)}
+                role="button"
+                tabIndex="0"
+              >
+                {color}
+              </div>
               <div className={s.customIndicator} />
             </label>
           ))}
         </div>
-
+        {console.log('ccc', car?.colors)}
         <div className={s.extendsTtl}>Дата аренды</div>
         <div className={s.test}>
           <div className={s.pickerWrapper}>
             <div>C</div>
             <div>
               <DatePicker
+                locale="ru"
                 className={s.datePicker}
                 placeholderText="Ведите дату и время"
                 selected={startDate}
                 showTimeSelect
-                onChange={(date) => setStartDate(date)}
+                filterTime={filterPassedTime}
+                // onChange={(date) => setStartDate(date)}
+                // onSetStartTime={(date) => handleSetStartTime(date)}
+                // value={orderInfo.extends.timeFrom}
+                onClick={(event) => handleSetStartTime(event.target.value)}
                 timeFormat="HH:mm"
                 timeIntervals={30}
                 dateFormat="dd.MM.yyyy HH:mm"
@@ -96,21 +138,26 @@ export default function ExtendsContainer() {
                 minDate={new Date()}
                 isClearable
               />
+
+              {console.log('date', orderInfo.extends.color)}
             </div>
           </div>
           <div className={s.pickerWrapper}>
             <div>По</div>
             <div>
               <DatePicker
+                locale="ru"
                 className={s.datePicker}
                 selected={endDate}
                 showTimeSelect
+                filterTime={filterPassedTime}
                 onChange={(date) => setEndDate(date)}
+                onSetEndTime={(date) => handleSetEndTime(date)}
                 timeFormat="HH:mm"
                 timeIntervals={30}
                 dateFormat="dd.MM.yyyy HH:mm"
                 timeCaption="time"
-                minDate={new Date()}
+                minDate={new Date(startDate)}
                 placeholderText="Ведите дату и время"
                 isClearable
               />
@@ -118,7 +165,7 @@ export default function ExtendsContainer() {
           </div>
         </div>
         <div>
-          <div className={s.extendsTtl}>Тариф</div>
+          <div className={s.extendsTtlT}>Тариф</div>
           <div className={s.radioGroupRate}>
             <label className={s.radioLabel} htmlFor="radio-2.1">
               <span>Поминутно, 7 ₽/мин </span>
@@ -146,7 +193,12 @@ export default function ExtendsContainer() {
         <div>
           <div className={s.extendsTtl}>Доп услуги</div>
           <label className={s.checkboxGroup}>
-            <input type="checkbox" name="extra" className={s.checkBtn} />
+            <input
+              type="checkbox"
+              name="extra"
+              className={s.checkBtn}
+              defaultChecked
+            />
             <div className={s.customCheckbox} />
             <span>Полный бак, 500р</span>
           </label>
@@ -162,26 +214,6 @@ export default function ExtendsContainer() {
           </label>
         </div>
       </div>
-      {step === 3 && (
-        <div className={s.modal}>
-          <button
-            className={s.btn}
-            type="button"
-            onClick={handlePrevStep}
-            key={step}
-          >
-            setStep+1
-          </button>
-          <button
-            className={s.btn}
-            type="button"
-            onClick={handlePrevStep}
-            key={step}
-          >
-            setStep-1
-          </button>
-        </div>
-      )}
     </>
   );
 }

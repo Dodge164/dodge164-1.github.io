@@ -9,6 +9,8 @@ const fetchRequest = async (way) => {
   const res = await axios.get(`${url}${way}`, {
     headers: {
       'X-Api-Factory-Application-Id': API_KEY,
+      'Access-Control-Allow-Origin': '*',
+      'Content-type': 'text-html',
     },
   });
   return res.data;

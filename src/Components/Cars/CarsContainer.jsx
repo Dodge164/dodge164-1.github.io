@@ -82,7 +82,7 @@ export default function CarsContainer() {
           <div className={s.customIndicator} />
           <span>Все модели</span>
         </label>
-
+        {console.log('car', carList)}
         {categoryList.map((category) => (
           <label
             key={category?.id}
@@ -109,7 +109,7 @@ export default function CarsContainer() {
         <Loading />
       ) : (
         <Cars
-          valueModel={orderInfo.car.model}
+          // valueModel={orderInfo.car.model}
           onChangeChosenCar={handleChosenCar}
           carList={carList}
           baseUrl={BASE_URL}

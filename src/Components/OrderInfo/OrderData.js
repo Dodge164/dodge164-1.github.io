@@ -8,16 +8,14 @@ const OrderData = {
     priceMax: null,
     priceMin: null,
     colors: null,
+    number: null,
   },
   extends: {
     color: null,
-    time: {
-      from: null,
-      to: null,
-    },
+    timeFrom: null,
+    timeTo: null,
+    totalTime: null,
     tax: null,
-  },
-  addition: {
     fuelTank: true,
     chair: false,
     wheel: false,

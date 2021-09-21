@@ -10,6 +10,9 @@ export default function OrderStepBtnContainer() {
   const {
     car: { model },
   } = orderInfo;
+  const {
+    extends: { color, totalTime, tax },
+  } = orderInfo;
 
   function onCheckStep() {
     if (step === 0) {
@@ -19,7 +22,7 @@ export default function OrderStepBtnContainer() {
       return !model;
     }
     if (step === 2) {
-      return false;
+      return !color || !totalTime || !tax;
     }
     if (step === 3) {
       return false;
