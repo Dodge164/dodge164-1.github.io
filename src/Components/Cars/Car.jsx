@@ -17,8 +17,6 @@ export default function Car({ onChangeChosenCar, car, baseUrl }) {
       <div className={s.carsPhotoPrice}>
         {car?.priceMin.toLocaleString('ru')}&nbsp;-&nbsp;
         {car?.priceMax.toLocaleString('ru')}₽
-        {/* {console.log('c.n.', car?.colors)}
-        {console.log('c.n.', car?.name)} */}
       </div>
       <div className={s.photoContainer}>
         <img

@@ -73,7 +73,10 @@
   &:hover {
     color: black;
   }
-  &.active {
+  .active {
+    color: black;
+  }
+  .active ~ span {
     color: black;
   }
 }
@@ -102,7 +105,9 @@
   &:checked ~ .customIndicator {
     border: 3px solid $mainAccent;
   }
-  &:active {
+}
+.radioText {
+  .active {
     color: black;
   }
 }

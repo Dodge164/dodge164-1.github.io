@@ -1,3 +1,3 @@
-import LocationComponentContainer from './LocationComponentContainer';
+import PriceComponent from './PriceComponent';
 
-export default LocationComponentContainer;
+export default PriceComponent;

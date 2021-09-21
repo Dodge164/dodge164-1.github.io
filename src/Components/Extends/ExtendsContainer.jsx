@@ -32,6 +32,7 @@ export default function ExtendsContainer() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState('');
   const [allTime, setAllTime] = useState('');
+  const [checkedTax, setCheckedTax] = useState('Поминутно');
 
   function handleChosenColor(color) {
     setOrderInfo((prev) => ({
@@ -62,6 +63,16 @@ export default function ExtendsContainer() {
     }));
   }
 
+  function handleChosenTax(tax) {
+    setCheckedTax(tax);
+    setOrderInfo((prev) => ({
+      ...prev,
+      extends: {
+        ...prev.extends,
+        tax,
+      },
+    }));
+  }
   return (
     <>
       <div className={s.extendsContainer}>
@@ -81,7 +92,13 @@ export default function ExtendsContainer() {
               type="radio"
               id="any"
             />
-            <div className={s.radioText}>Любой</div>
+            <div
+              className={cn(s.radioText, {
+                [s.active]: checkedColor === 'Любой',
+              })}
+            >
+              Любой
+            </div>
             <div className={s.customIndicator} />
           </label>
           {car?.colors?.map((color) => (
@@ -114,7 +131,7 @@ export default function ExtendsContainer() {
             </label>
           ))}
         </div>
-        {console.log('ccc', car?.colors)}
+
         <div className={s.extendsTtl}>Дата аренды</div>
         <div className={s.test}>
           <div className={s.pickerWrapper}>
@@ -167,24 +184,44 @@ export default function ExtendsContainer() {
         <div>
           <div className={s.extendsTtlT}>Тариф</div>
           <div className={s.radioGroupRate}>
-            <label className={s.radioLabel} htmlFor="radio-2.1">
-              <span>Поминутно, 7 ₽/мин </span>
+            <label
+              htmlFor="radio-2.1"
+              className={cn(s.radioLabel, {
+                [s.active]: checkedTax === 'Поминутно',
+              })}
+            >
+              <span
+                className={cn(s.radioText, {
+                  [s.active]: checkedTax === 'Поминутно',
+                })}
+              >
+                Поминутно, 7 ₽/мин
+              </span>
               <input
-                type="radio"
-                name="rate"
-                id="radio-2.1"
+                checked={checkedTax === 'Поминутно'}
                 className={s.radioBtn}
+                name="rate"
+                onChange={() => handleChosenTax('Поминутно')}
+                type="radio"
+                id="radio-2.1"
               />
               <div className={s.customIndicator} />
             </label>
-            <label className={s.radioLabel} htmlFor="radio-2.2">
+            <label
+              className={cn(s.radioLabel, {
+                [s.active]: checkedTax === 'На сутки',
+              })}
+              htmlFor="radio-2.2"
+              checkedDefault
+            >
               <span>На сутки, 1999 ₽/сутки</span>
               <input
+                checked={checkedTax === 'На сутки'}
                 type="radio"
                 name="rate"
                 id="radio-2.2"
                 className={s.radioBtn}
-                defaultChecked
+                onChange={() => handleChosenTax('На сутки')}
               />
               <div className={s.customIndicator} />
             </label>

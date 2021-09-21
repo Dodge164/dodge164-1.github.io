@@ -80,14 +80,17 @@ export default function CarsContainer() {
             id="all"
           />
           <div className={s.customIndicator} />
-          <span>Все модели</span>
+          <span
+            className={cn(s.radioLabel, { [s.active]: checkedId === 'all' })}
+          >
+            Все модели
+          </span>
         </label>
-        {console.log('car', carList)}
         {categoryList.map((category) => (
           <label
             key={category?.id}
             className={cn(s.radioLabel, {
-              [s.active]: category === checkedId,
+              [s.active]: checkedId === category.id,
             })}
           >
             <input
@@ -96,11 +99,17 @@ export default function CarsContainer() {
               name="class"
               value="category?.id"
               onChange={() => handleCarByCategoryId(category?.id)}
-              id={category?.id}
               type="radio"
+              id={category?.id}
             />
             <div className={s.customIndicator} />
-            <span>{category?.name}</span>
+            <span
+              className={cn(s.radioLabel, {
+                [s.active]: checkedId === category.id,
+              })}
+            >
+              {category?.name}
+            </span>
           </label>
         ))}
       </div>
