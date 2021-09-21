@@ -15,10 +15,12 @@ import Context from '../../context';
 registerLocale('ru', ru);
 setDefaultLocale('ru', ru);
 export default function ExtendsContainer() {
-  const { step, setStep, orderInfo, setOrderInfo } = useContext(Context);
+  const { orderInfo, setOrderInfo } = useContext(Context);
   const { car } = orderInfo;
   const [checkedColor, setCheckedColor] = useState('Любой');
-  function handleAnyColor(color) {
+  const [checkedTax, setCheckedTax] = useState('Поминутно');
+
+  function handleColor(color) {
     setCheckedColor(color);
     setOrderInfo((prev) => ({
       ...prev,
@@ -28,47 +30,6 @@ export default function ExtendsContainer() {
       },
     }));
   }
-  //
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState('');
-  const [allTime, setAllTime] = useState('');
-  const [checkedTax, setCheckedTax] = useState('Поминутно');
-
-  function handleChosenColor(color) {
-    setOrderInfo((prev) => ({
-      ...prev,
-      extends: {
-        ...prev.extends,
-        color,
-      },
-    }));
-  }
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
-    const selectedDate = new Date(time);
-    return currentDate < selectedDate.getTime();
-  };
-
-  const filterEndTime = (time) => {
-    const selectedStartDate = new Date();
-    const selectedEndDate = new Date(time);
-    return selectedStartDate < selectedEndDate.getTime();
-  };
-
-  function handleSetStartTime() {
-    setOrderInfo((prev) => ({
-      ...prev,
-      time: { ...prev.time, timeFrom },
-    }));
-  }
-
-  function handleSetEndTime() {
-    setOrderInfo((prev) => ({
-      ...prev,
-      time: { ...prev.time, timeTo },
-    }));
-  }
-
   function handleChosenTax(tax) {
     setCheckedTax(tax);
     setOrderInfo((prev) => ({
@@ -79,6 +40,40 @@ export default function ExtendsContainer() {
       },
     }));
   }
+  //
+  const [selectedStartDate, setSelectedStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [allTime, setAllTime] = useState('');
+
+  function handleStartTime(timeFrom) {
+    setSelectedStartDate(timeFrom);
+    setOrderInfo((prev) => ({
+      ...prev,
+      time: {
+        ...prev.time,
+        timeFrom,
+      },
+    }));
+  }
+
+  function handleEndTime() {
+    setOrderInfo((prev) => ({
+      ...prev,
+      time: { ...prev.time, timeTo },
+    }));
+  }
+
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+    return currentDate < selectedDate.getTime();
+  };
+
+  const filterEndTime = (time) => {
+    const selectedEndDate = new Date(time);
+    return selectedStartDate < selectedEndDate.getTime();
+  };
+
   return (
     <>
       <div className={s.extendsContainer}>
@@ -94,7 +89,7 @@ export default function ExtendsContainer() {
               checked={checkedColor === 'Любой'}
               className={s.radioBtn}
               name="color"
-              onChange={() => handleAnyColor('Любой')}
+              onChange={() => handleColor('Любой')}
               type="radio"
               id="any"
             />
@@ -118,7 +113,7 @@ export default function ExtendsContainer() {
               <input
                 checked={checkedColor === color}
                 id={color}
-                onChange={() => handleAnyColor(color)}
+                onChange={() => handleColor(color)}
                 className={s.radioBtn}
                 type="radio"
                 name="color"
@@ -126,8 +121,8 @@ export default function ExtendsContainer() {
 
               <div
                 className={s.radioText}
-                onClick={() => handleChosenColor(color)}
-                onKeyPress={() => handleChosenColor(color)}
+                onClick={() => handleColor(color)}
+                onKeyPress={() => handleColor(color)}
                 role="button"
                 tabIndex="0"
               >
@@ -147,22 +142,23 @@ export default function ExtendsContainer() {
                 locale="ru"
                 className={s.datePicker}
                 placeholderText="Ведите дату и время"
-                selected={startDate}
+                selected={selectedStartDate}
                 showTimeSelect
                 filterTime={filterPassedTime}
-                onChange={(date) => setStartDate(date)}
-                onSetStartTime={(date) => handleSetStartTime(date)}
-                value={orderInfo.extends.timeFrom}
-                onClick={(event) => handleSetStartTime(event.target.value)}
+                onChange={(date) => setSelectedStartDate(date)}
+                onClick={(timeFrom) => handleStartTime(timeFrom)}
+                // onSetStartTime={(date) => handleSetStartTime(date)}
+                // value={orderInfo.extends.timeFrom}
                 timeFormat="HH:mm"
                 timeIntervals={30}
                 dateFormat="dd.MM.yyyy HH:mm"
                 timeCaption="time"
                 minDate={new Date()}
                 isClearable
+                checked={setSelectedStartDate === new Date()}
               />
 
-              {console.log('date', orderInfo.extends.color)}
+              {/* {console.log('date', timeFrom)} */}
             </div>
           </div>
           <div className={s.pickerWrapper}>
@@ -175,14 +171,14 @@ export default function ExtendsContainer() {
                 showTimeSelect
                 filterTime={filterEndTime}
                 onChange={(date) => setEndDate(date)}
-                onSetEndTime={(date) => handleSetEndTime(date)}
+                onSetEndTime={(date) => handleEndTime(date)}
                 value={orderInfo.extends.timeTo}
-                onClick={(event) => handleSetEndTime(event.target.value)}
+                onClick={(timeTo) => handleStartTime(timeTo)}
                 timeFormat="HH:mm"
                 timeIntervals={30}
                 dateFormat="dd.MM.yyyy HH:mm"
                 timeCaption="time"
-                minDate={new Date(startDate)}
+                minDate={new Date(selectedStartDate)}
                 placeholderText="Ведите дату и время"
                 isClearable
               />

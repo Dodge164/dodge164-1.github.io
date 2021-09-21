@@ -30,9 +30,8 @@ export default function CarsContainer() {
   useEffect(async () => {
     const listOfCategory = await getCarCategory();
     setCategoryList(listOfCategory);
-    // ToDo 31-32 строку раскомментить !загрузка машин
-    // const listOfCars = await getCarList();
-    // setCarList(listOfCars);
+    const listOfCars = await getCarList();
+    setCarList(listOfCars);
     setLoading(false);
   }, []);
   async function handleCarByCategoryId(id) {
@@ -63,7 +62,7 @@ export default function CarsContainer() {
       },
     }));
   }
-
+  // console.log('car', car);
   return (
     <>
       <div className={s.radioGroup}>
