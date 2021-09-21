@@ -49,6 +49,12 @@ export default function ExtendsContainer() {
     return currentDate < selectedDate.getTime();
   };
 
+  const filterEndTime = (time) => {
+    const selectedStartDate = new Date();
+    const selectedEndDate = new Date(time);
+    return selectedStartDate < selectedEndDate.getTime();
+  };
+
   function handleSetStartTime() {
     setOrderInfo((prev) => ({
       ...prev,
@@ -144,9 +150,9 @@ export default function ExtendsContainer() {
                 selected={startDate}
                 showTimeSelect
                 filterTime={filterPassedTime}
-                // onChange={(date) => setStartDate(date)}
-                // onSetStartTime={(date) => handleSetStartTime(date)}
-                // value={orderInfo.extends.timeFrom}
+                onChange={(date) => setStartDate(date)}
+                onSetStartTime={(date) => handleSetStartTime(date)}
+                value={orderInfo.extends.timeFrom}
                 onClick={(event) => handleSetStartTime(event.target.value)}
                 timeFormat="HH:mm"
                 timeIntervals={30}
@@ -167,9 +173,11 @@ export default function ExtendsContainer() {
                 className={s.datePicker}
                 selected={endDate}
                 showTimeSelect
-                filterTime={filterPassedTime}
+                filterTime={filterEndTime}
                 onChange={(date) => setEndDate(date)}
                 onSetEndTime={(date) => handleSetEndTime(date)}
+                value={orderInfo.extends.timeTo}
+                onClick={(event) => handleSetEndTime(event.target.value)}
                 timeFormat="HH:mm"
                 timeIntervals={30}
                 dateFormat="dd.MM.yyyy HH:mm"
@@ -212,7 +220,6 @@ export default function ExtendsContainer() {
                 [s.active]: checkedTax === 'На сутки',
               })}
               htmlFor="radio-2.2"
-              checkedDefault
             >
               <span>На сутки, 1999 ₽/сутки</span>
               <input

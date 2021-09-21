@@ -10,12 +10,14 @@ export default function FuelComponent() {
     extends: { fuelTank },
   } = orderInfo;
   return (
-    <>
-      <div className={s.ttl}>Полный бак</div>
-      <div className={s.dottedBottom}>{}</div>
-      <div className={s.spots}>
-        <div>{fuelTank}</div>
-      </div>
-    </>
+    fuelTank && (
+      <>
+        <div className={s.ttl}>Полный бак</div>
+        <div className={s.dottedBottom}>{}</div>
+        <div className={s.spots}>
+          <div>{fuelTank}</div>
+        </div>
+      </>
+    )
   );
 }

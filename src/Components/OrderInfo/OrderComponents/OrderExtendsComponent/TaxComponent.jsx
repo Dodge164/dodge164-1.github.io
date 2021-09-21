@@ -10,12 +10,14 @@ export default function TaxComponent() {
     extends: { tax },
   } = orderInfo;
   return (
-    <>
-      <div className={s.ttl}>Тариф</div>
-      <div className={s.dottedBottom}>{}</div>
-      <div className={s.spots}>
-        <div>{tax || 'На сутки'}</div>
-      </div>
-    </>
+    tax && (
+      <>
+        <div className={s.ttl}>Тариф</div>
+        <div className={s.dottedBottom}>{}</div>
+        <div className={s.spots}>
+          <div>{tax || 'На сутки'}</div>
+        </div>
+      </>
+    )
   );
 }
