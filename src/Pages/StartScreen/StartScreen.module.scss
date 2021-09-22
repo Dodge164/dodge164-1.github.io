@@ -1,0 +1,31 @@
+@import '../../variables.scss';
+
+.startScreenContainer {
+  display: flex;
+  height: 100vh;
+}
+
+.mainPageContainer {
+  height: 100%;
+  flex: 1;
+  @media (min-width: 768px) {
+    flex: 1 0 100%;
+    height: 100vh;
+  }
+  @media (min-width: 1024px) {
+    flex: 0 1 60%;
+  }
+  @media (min-width: 1440px) {
+    flex: 1 1 50%;
+  }
+}
+.sliderContainer {
+  display: none;
+  @media (min-width: 1024px) {
+    display: block;
+    flex: 40%;
+  }
+  @media (min-width: 1440px) {
+    flex: 1 1 50%;
+  }
+}

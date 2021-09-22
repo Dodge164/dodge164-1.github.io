@@ -1,0 +1,55 @@
+@import '../../variables.scss';
+.orderContainer {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  @media (min-width: 1024px) {
+    font-size: 18px;
+    padding: 48px 0 0 32px;
+  }
+  @media (min-width: 1024px) {
+  }
+}
+
+.orderTitle {
+  padding: 8px 8px 0 8px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: right;
+  @media (min-width: 768px) {
+    text-align: left;
+    font-size: 18px;
+    padding: 16px 0 0 0;
+  }
+  @media (min-width: 1024px) {
+    text-align: right;
+    padding: 8px 8px 0 8px;
+  }
+}
+
+.step {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 8px 8px;
+
+  @media (min-width: 768px) {
+    // padding: 0 0;
+  }
+  @media (min-width: 1024px) {
+    padding: 0 0;
+    width: 100%;
+    height: 44px;
+  }
+}
+
+.btn {
+  display: none;
+  @media (min-width: 1024px) {
+    display: block;
+  }
+}

@@ -1,0 +1,72 @@
+@import '../../variables.scss';
+
+.container {
+  z-index: 20;
+  display: none;
+  position: absolute;
+  height: 100vh;
+  width: 64px;
+  z-index: 20;
+  &.active {
+    width: 100%;
+    display: flex;
+  }
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.sidebar {
+  display: none;
+  height: 100%;
+  padding: 16px 0;
+  flex: 0 0 64px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: transparent;
+  &.active {
+    display: flex;
+    background-color: $backgroundDark;
+  }
+  @media (min-width: 768px) {
+    display: flex;
+    padding: 24px 0;
+    background-color: $backgroundDark;
+  }
+}
+
+.lang {
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15px;
+  @media (min-width: 768px) {
+  }
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: $backgroundDark;
+  &:hover {
+    border: 1px solid $lightGray;
+    &:hover > div {
+      color: $lightGray;
+    }
+    &:active > div {
+      color: $mainAccent;
+    }
+  }
+  & > div {
+    color: $mainAccent;
+  }
+  @media (max-width: 767px) {
+    display: none;
+  }
+  &.hidden {
+    display: none;
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
+}

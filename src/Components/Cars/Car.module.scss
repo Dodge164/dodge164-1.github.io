@@ -1,0 +1,53 @@
+@import '../../variables.scss';
+.carsPhotoCard {
+  border: 1px solid $lightGray;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  &:hover {
+    border: 1px solid $mainAccent;
+  }
+  @media (min-width: 640px) {
+    max-width: none;
+  }
+
+  .carsPhotoName {
+    font-size: calc(14px + (4 + 4 * 0.7) * ((100vw - 320px) / 1440));
+    height: 50px;
+    padding: 8px 16px 0 16px;
+    text-transform: uppercase;
+    font-weight: normal;
+    line-height: 21px;
+    color: $mainBlack;
+    @media (min-width: 1024px) {
+      font-size: calc(14px + 4 * (100vw / 1440));
+    }
+  }
+  .carsPhotoPrice {
+    padding: 0 0 0 16px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    @media (min-width: 1024px) {
+      font-size: 14px;
+    }
+  }
+  .photoContainer {
+    // background-color: pink;
+    min-height: 144px;
+    max-height: 144px;
+    //
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 0 52px;
+    .photo {
+      width: 200px;
+      height: 200px;
+
+      object-fit: contain;
+      overflow: hidden;
+    }
+  }
+}

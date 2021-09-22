@@ -1,0 +1,29 @@
+@import '../../_variables.scss';
+.allDots {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  bottom: 48px;
+
+  .dot {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 8px;
+    width: 8px;
+    margin: 0px 8px;
+    border: none;
+    outline: none;
+    background: $lightGray;
+    &.active {
+      background: $mainAccent;
+    }
+    &:hover {
+      background-color: $mainAccent;
+    }
+  }
+}

@@ -1,0 +1,113 @@
+@import '../../variables.scss';
+
+.radioGroup {
+  // position: sticky;
+  // top: 0;
+  // z-index: 10;
+  // background: white;
+  ///
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+  min-height: 56px;
+  font-size: 14px;
+  color: $darkGray;
+  margin: 0 8px;
+  align-items: center;
+  @media (min-width: 768px) {
+    overflow-x: unset;
+  }
+  @media (min-width: 1024px) {
+    overflow-x: scroll;
+    margin: 0;
+  }
+  @media (min-width: 1440px) {
+    overflow-x: unset;
+    margin: 0;
+    width: 80%;
+  }
+}
+.carsPhotoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 224px;
+
+  ///
+  overflow: hidden;
+  overflow-y: scroll;
+  margin: 8px 0;
+  font-size: 14px;
+  @media (min-height: 640px) {
+    height: 280px;
+  }
+  @media (min-height: 731px) {
+    height: 350px;
+  }
+  @media (min-height: 812px) {
+    height: 444px;
+  }
+
+  @media (min-width: 640px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+    height: 100%;
+  }
+  @media (min-width: 1440px) {
+    width: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    // grid-template-columns: repeat(auto-fit, minmax(369px, 1fr));
+  }
+}
+
+.radioLabel {
+  padding: 0 12px 0 0;
+  flex: 0 0 auto;
+
+  &:hover .radioBtn ~ .customIndicator {
+    border-color: $mainAccent;
+  }
+  &:hover {
+    color: black;
+  }
+  .active {
+    color: black;
+  }
+  .active ~ span {
+    color: black;
+  }
+}
+
+.customIndicator {
+  margin: 0 4px 0 0;
+  background-color: white;
+  border: 1px solid $darkGray;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+}
+.radioBtn {
+  // padding: 0 0 0 8px;
+  // margin: 0px 4px 0px 0;
+  //
+  display: none;
+  opacity: 0;
+  z-index: -1;
+  &:focus ~ .customIndicator {
+    border-color: $mainAccent;
+    border: 3px solid $mainAccent;
+  }
+
+  &:checked ~ .customIndicator {
+    border: 3px solid $mainAccent;
+  }
+}
+.radioText {
+  .active {
+    color: black;
+  }
+}

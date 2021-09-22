@@ -1,0 +1,69 @@
+@import '../../_variables.scss';
+
+.breadCrumbs {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  overflow-x: scroll;
+  @media (min-width: 400px) {
+    overflow-x: auto;
+  }
+  @media (min-width: 768px) {
+    min-height: 42px;
+  }
+  @media (min-width: 1024px) {
+    min-height: 32px;
+  }
+}
+.btn:disabled {
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background: pink;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+
+  @media (min-width: 1024px) {
+  }
+}
+.crumbName {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px;
+  color: $darkGray;
+  &.active {
+    color: $mainAccent;
+  }
+  &.done {
+    color: $mainBlack;
+  }
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+.crumbName a {
+  @media (min-width: 1024px) {
+    color: $darkGray;
+    text-decoration: none;
+  }
+}
+
+.crumbName a:visited {
+  @media (min-width: 1024px) {
+    color: $mainBlack;
+  }
+}
+
+.crumbIcon {
+  display: flex;
+  align-items: center;
+  margin: 0 16px;
+
+  @media (min-width: 1024px) {
+  }
+}

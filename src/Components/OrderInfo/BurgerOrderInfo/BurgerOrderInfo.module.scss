@@ -1,0 +1,88 @@
+@import '../../../variables.scss';
+.burger {
+  bottom: 73px;
+  right: 8px;
+  position: absolute;
+  z-index: 15;
+  @media (min-width: 768px) {
+    bottom: 24px;
+  }
+  @media (min-width: 1024px) {
+    display: none;
+  }
+  svg {
+    cursor: pointer;
+    path {
+      stroke: black;
+      @media (min-width: 768px) {
+        stroke: $mainBlack;
+      }
+    }
+  }
+  .line {
+    path {
+      stroke: black;
+      @media (min-width: 768px) {
+        stroke: black;
+      }
+    }
+  }
+  .close {
+    path {
+      stroke: black;
+    }
+  }
+}
+
+.burger a {
+  color: $lightGray;
+}
+
+.btn {
+  border-radius: 4px;
+  width: 73px;
+  height: 36px;
+  color: #ffffff;
+  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+  background-blend-mode: darken;
+  font-size: 14px;
+  line-height: 21px;
+  margin: 10px 0; ///
+  border: none;
+  outline: none;
+  &:hover {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 10) 2.61%,
+      darken(#039f67, 10) 112.6%
+    );
+  }
+
+  &:focus {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 10) 2.61%,
+      darken(#039f67, 10) 112.6%
+    );
+  }
+  &:active {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 20) 2.61%,
+      darken(#039f67, 20) 112.6%
+    );
+  }
+  @media (min-width: 768px) {
+    height: 48px;
+    width: 250px;
+    border-radius: 8px;
+    margin: 24px 32px;
+    font-size: 18px;
+  }
+  @media (min-width: 1024px) {
+    width: 150px;
+    width: 287px;
+    border-radius: 8px;
+    margin: 0 0 0 56px;
+  }
+}
