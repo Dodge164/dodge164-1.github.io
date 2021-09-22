@@ -15,7 +15,7 @@ export default function TaxComponent() {
         <div className={s.ttl}>Тариф</div>
         <div className={s.dottedBottom}>{}</div>
         <div className={s.spots}>
-          <div>{tax || 'На сутки'}</div>
+          <div>{tax}</div>
         </div>
       </>
     )

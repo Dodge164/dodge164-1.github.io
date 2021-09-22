@@ -1,0 +1,74 @@
+@import '../../../variables';
+
+.extendsTtl {
+  color: $mainBlack;
+  margin: 16px 0 0 8px;
+  @media (min-width: 768px) {
+    margin: 16px 0 0 0;
+  }
+  @media (min-width: 1024px) {
+    margin: 32px 0 0 0;
+  }
+}
+.checkboxGroup {
+  display: flex;
+  margin: 8px 0 0 8px;
+  align-items: flex-start;
+  align-items: center;
+  @media (min-width: 768px) {
+    margin: 8px 0 0 0;
+  }
+  @media (min-width: 1024px) {
+    margin: 16px 0 0 0;
+  }
+  .active {
+    color: black;
+  }
+  &:hover .radioBtn ~ .customIndicator {
+    border-color: $mainAccent;
+  }
+  &:hover {
+    color: black;
+  }
+  .span {
+    padding: 0 10px 0 0;
+  }
+}
+.checkBtn {
+  display: none;
+  opacity: 0;
+  z-index: -1;
+
+  &:focus ~ .customCheckbox {
+    border-color: $mainAccent;
+    border: 2px solid $mainAccent;
+  }
+
+  &:checked ~ .customCheckbox {
+    border: 2px solid $mainAccent;
+    &:after {
+      content: '\2714';
+      color: black;
+      padding: 0 0;
+    }
+  }
+  &:active {
+    color: black;
+    &:after {
+      padding: 0 0;
+      content: '\2714';
+      color: black;
+    }
+  }
+}
+
+.customCheckbox {
+  margin: 0 4px 0 0;
+  background-color: white;
+  border: 1px solid $darkGray;
+  height: 12px;
+  width: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

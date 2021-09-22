@@ -16,7 +16,7 @@ const OrderData = {
     timeTo: null,
     totalTime: null,
     tax: null,
-    fuelTank: true,
+    fuelTank: false,
     chair: false,
     wheel: false,
   },

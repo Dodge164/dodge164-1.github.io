@@ -7,10 +7,10 @@ export default function ChairComponent() {
 
   const {
     // eslint-disable-next-line object-curly-newline
-    extends: { color, chair },
+    extends: { chair },
   } = orderInfo;
   return (
-    color && (
+    chair && (
       <>
         <div className={s.ttl}>Детское кресло</div>
         <div className={s.dottedBottom}>{}</div>

@@ -7,10 +7,10 @@ export default function WheelComponent() {
 
   const {
     // eslint-disable-next-line object-curly-newline
-    extends: { color, wheel },
+    extends: { wheel },
   } = orderInfo;
   return (
-    color && (
+    wheel && (
       <>
         <div className={s.ttl}>Правый руль</div>
         <div className={s.dottedBottom}>{}</div>
