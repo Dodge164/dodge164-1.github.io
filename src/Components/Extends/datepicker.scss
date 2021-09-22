@@ -106,12 +106,15 @@
   vertical-align: middle;
   content: '×';
 }
-.react-datepicker__time-container {
+
+.react-datepicker__time-container,
+.react-datepicker__time,
+.react-datepicker__time-box {
   width: 64px;
   @media (min-width: 360px) {
     float: right;
     border-left: 1px solid #aeaeae;
-    width: 85px;
+    width: 77px;
   }
 }
 .react-datepicker__day--selected,
@@ -177,4 +180,16 @@
   line-height: 1.7rem;
   text-align: center;
   margin: 0.166;
+}
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box {
+  width: 64px;
+  overflow-x: hidden;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom-right-radius: 0.3rem;
+  @media (min-width: 360px) {
+    width: 77px;
+  }
 }

@@ -1,0 +1,59 @@
+@import '../../../variables';
+
+.extendsTtl {
+  color: $mainBlack;
+  margin: 16px 8px 0 8px;
+}
+.radioGroupColor {
+  display: flex;
+  margin: 8px 8px 0 8px;
+  @media (min-width: 1024px) {
+    margin: 16px 0 32px 0;
+  }
+}
+.radioLabel {
+  padding: 0 10px 4px 0;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  .active {
+    color: black;
+  }
+  &:hover .radioBtn ~ .customIndicator {
+    border-color: $mainAccent;
+  }
+  &:hover {
+    color: black;
+  }
+  .span {
+    padding: 0 10px 0 0;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.customIndicator {
+  margin: 0 4px 0 0;
+  background-color: white;
+  border: 1px solid $darkGray;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+}
+.radioBtn {
+  display: none;
+  opacity: 0;
+  z-index: -1;
+
+  &:focus ~ .customIndicator {
+    border-color: $mainAccent;
+    border: 3px solid $mainAccent;
+  }
+
+  &:checked ~ .customIndicator {
+    border: 3px solid $mainAccent;
+  }
+}
