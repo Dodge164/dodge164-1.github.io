@@ -119,15 +119,17 @@ export default function ExtendsContainer() {
                 name="color"
               />
 
-              <div
-                className={s.radioText}
+              <span
+                className={cn(s.radioLabel, {
+                  [s.active]: color === checkedColor,
+                })}
                 onClick={() => handleColor(color)}
                 onKeyPress={() => handleColor(color)}
                 role="button"
                 tabIndex="0"
               >
                 {color}
-              </div>
+              </span>
               <div className={s.customIndicator} />
             </label>
           ))}
