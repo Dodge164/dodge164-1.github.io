@@ -45,7 +45,13 @@ export default function RadioColorsContainer() {
             type="radio"
             id="Любой"
           />
-          <span className={s.span}>Любой</span>
+          <span
+            className={cn(s.span, {
+              [s.active]: checkedColor === 'Любой',
+            })}
+          >
+            Любой
+          </span>
           <div className={s.customIndicator} />
         </label>
         {car?.colors?.map((color) => (

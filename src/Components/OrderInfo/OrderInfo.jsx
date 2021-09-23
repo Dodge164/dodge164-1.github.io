@@ -13,38 +13,28 @@ import PriceComponent from './OrderComponents/OrderPriceComponent/PriceComponent
 
 export default function OrderInfo() {
   return (
-    <>
-      <form className={s.orderContainer}>
-        <h3 className={s.orderTitle}>Ваш заказ: </h3>
-        <div className={s.step}>
-          <LocationComponentContainer />
-        </div>
-        <div className={s.step}>
-          <CarComponentContainer />
-        </div>
-        <div className={s.step}>
-          <ColorComponent />
-        </div>
-        <div className={s.step}>
-          <TimeComponent />
-        </div>
-        <div className={s.step}>
-          <TaxComponent />
-        </div>
-        <div className={s.step}>
-          <FuelComponent />
-        </div>
-        <div className={s.step}>
-          <ChairComponent />
-        </div>
-        <div className={s.step}>
-          <WheelComponent />
-        </div>
-        <PriceComponent />
-      </form>
-      <div className={s.btn}>
-        <OrderStepBtnContainer />
-      </div>
-    </>
+    <form className={s.orderContainer}>
+      <h3 className={s.orderTitle}>Ваш заказ: </h3>
+
+      <LocationComponentContainer />
+
+      <CarComponentContainer />
+
+      <ColorComponent />
+
+      <TimeComponent />
+
+      <TaxComponent />
+
+      <FuelComponent />
+
+      <ChairComponent />
+
+      <WheelComponent />
+
+      <PriceComponent />
+
+      <OrderStepBtnContainer />
+    </form>
   );
 }

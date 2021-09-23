@@ -9,7 +9,8 @@ import OrderData from '../OrderInfo/OrderData';
 
 function App() {
   const [orderInfo, setOrderInfo] = useState(OrderData);
-  const [step, setStep] = useState(+localStorage.getItem('currentStep') || 0);
+  // const [step, setStep] = useState(+localStorage.getItem('currentStep') || 0);
+  const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const [isOrderBurgerClicked, setIsOrderBurgerClicked] = useState(false);

@@ -4,7 +4,7 @@ import Context from '../../../context';
 import s from './CheckBoxes.module.scss';
 
 export default function CheckBoxesContainer() {
-  const { setOrderInfo } = useContext(Context);
+  const { orderInfo, setOrderInfo } = useContext(Context);
   const [checkedFuelTank, setCheckedFuelTank] = useState('');
   const [checkedChair, setCheckedChair] = useState('');
   const [checkedWheel, setCheckedWheel] = useState('');
@@ -51,18 +51,14 @@ export default function CheckBoxesContainer() {
         <input
           type="checkbox"
           name="extra"
+          checked={orderInfo.extends.fuelTank}
           className={s.checkBtn}
-          onChange={() => handleChosenFuelTank('Полный бак, 500р.')}
+          onChange={(event) => handleChosenFuelTank(event.target.checked)}
         />
         <div className={s.customCheckbox} />
-        <span
-          className={cn(s.span, {
-            [s.active]: checkedFuelTank === 'Полный бак, 500р.',
-          })}
-        >
-          Полный бак, 500р
-        </span>
+        <span className={s.span}>Полный бак, 500р</span>
       </label>
+
       <label
         className={cn(s.checkboxGroup, {
           [s.active]: checkedChair === 'Детское кресло, 200р.',
@@ -71,17 +67,12 @@ export default function CheckBoxesContainer() {
         <input
           type="checkbox"
           name="extra"
+          checked={orderInfo.extends.chair}
           className={s.checkBtn}
-          onChange={() => handleChosenChair('Детское кресло, 200р.')}
+          onChange={(event) => handleChosenChair(event.target.checked)}
         />
         <div className={s.customCheckbox} />
-        <span
-          className={cn(s.span, {
-            [s.active]: checkedChair === 'Детское кресло, 200р.',
-          })}
-        >
-          Детское кресло, 200р
-        </span>
+        <span className={s.span}>Детское кресло, 200р</span>
       </label>
       <label
         className={cn(s.checkboxGroup, {
@@ -91,17 +82,12 @@ export default function CheckBoxesContainer() {
         <input
           type="checkbox"
           name="extra"
+          checked={orderInfo.extends.wheel}
           className={s.checkBtn}
-          onChange={() => handleChosenWheel('Правый руль, 1600р.')}
+          onChange={(event) => handleChosenWheel(event.target.checked)}
         />
         <div className={s.customCheckbox} />
-        <span
-          className={cn(s.span, {
-            [s.active]: checkedWheel === 'Правый руль, 1600р.',
-          })}
-        >
-          Правый руль, 1600р
-        </span>
+        <span className={s.span}>Правый руль, 1600р</span>
       </label>
     </>
   );

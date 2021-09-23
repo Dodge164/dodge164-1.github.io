@@ -1,17 +1,16 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable function-paren-newline */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import cn from 'classnames';
-import { getRateType, getRate } from '../../../Api/http';
+
 import Context from '../../../context';
 import s from './Tax.module.scss';
 
-export default function TaxContainer() {
-  const { setOrderInfo } = useContext(Context);
+export default function TaxContainer({ rate, rateType }) {
+  const { orderInfo, setOrderInfo } = useContext(Context);
   const [checkedTax, setCheckedTax] = useState('');
-  const [rate, setRate] = useState([]);
-  const [rateType, setRateType] = useState([]);
 
   function handleChosenTax(tax) {
     setCheckedTax(tax);
@@ -24,13 +23,15 @@ export default function TaxContainer() {
     }));
   }
 
-  useEffect(async () => {
-    setRateType(await getRateType());
-    setRate(await getRate());
-  }, []);
   return (
     <>
       <div className={s.extendsTtl}>Тариф</div>
+      {console.log('rateType', rateType)}
+      {console.log('rate', rate)}
+      {console.log(
+        'ratefilter',
+        rate.filter((elem) => elem.rateTypeId.name === orderInfo.extends.tax),
+      )}
       <div className={s.radioGroupRate}>
         {rateType.map((item) =>
           rate.map((elem) => {

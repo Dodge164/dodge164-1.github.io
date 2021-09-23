@@ -22,16 +22,13 @@
     margin: 16px 0 0 0;
   }
   .active {
-    color: black;
+    color: $mainBlack;
   }
   &:hover .radioBtn ~ .customIndicator {
     border-color: $mainAccent;
   }
   &:hover {
-    color: black;
-  }
-  .span {
-    padding: 0 10px 0 0;
+    color: $mainBlack;
   }
 }
 .checkBtn {
@@ -48,16 +45,16 @@
     border: 2px solid $mainAccent;
     &:after {
       content: '\2714';
-      color: black;
+      color: $mainBlack;
       padding: 0 0;
     }
   }
   &:active {
-    color: black;
+    color: $mainBlack;
     &:after {
       padding: 0 0;
       content: '\2714';
-      color: black;
+      color: $mainBlack;
     }
   }
 }
@@ -71,4 +68,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+// .span {
+//   padding: 0 10px 0 0;
+//   .active {
+//     color: black;
+//   }
+// }
+input:checked ~ span {
+  color: $mainBlack;
 }

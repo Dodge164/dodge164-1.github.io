@@ -11,13 +11,13 @@ export default function WheelComponent() {
   } = orderInfo;
   return (
     wheel && (
-      <>
+      <div className={s.step}>
         <div className={s.ttl}>Правый руль</div>
         <div className={s.dottedBottom}>{}</div>
         <div className={s.spots}>
-          <div>{wheel}</div>
+          <div>Да</div>
         </div>
-      </>
+      </div>
     )
   );
 }

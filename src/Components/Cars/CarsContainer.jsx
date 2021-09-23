@@ -79,9 +79,7 @@ export default function CarsContainer() {
             id="all"
           />
           <div className={s.customIndicator} />
-          <span
-            className={cn(s.radioLabel, { [s.active]: checkedId === 'all' })}
-          >
+          <span className={cn(s.span, { [s.active]: checkedId === 'all' })}>
             Все модели
           </span>
         </label>
@@ -103,7 +101,7 @@ export default function CarsContainer() {
             />
             <div className={s.customIndicator} />
             <span
-              className={cn(s.radioLabel, {
+              className={cn(s.span, {
                 [s.active]: checkedId === category.id,
               })}
             >

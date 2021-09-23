@@ -11,11 +11,11 @@ export default function ColorComponent() {
   } = orderInfo;
   return (
     color && (
-      <>
+      <div className={s.step}>
         <div className={s.ttl}>Цвет</div>
         <div className={s.dottedBottom}>{}</div>
         <div className={s.spots}>{color || 'Любой'}</div>
-      </>
+      </div>
     )
   );
 }

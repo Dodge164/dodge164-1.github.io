@@ -53,8 +53,8 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
-    height: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    height: auto;
   }
   @media (min-width: 1440px) {
     width: 80%;
@@ -64,7 +64,8 @@
 }
 
 .radioLabel {
-  padding: 0 12px 0 0;
+  // padding: 0 12px 0 0;
+  margin: 0 12px 0 0;
   flex: 0 0 auto;
 
   &:hover .radioBtn ~ .customIndicator {
@@ -74,9 +75,6 @@
     color: black;
   }
   .active {
-    color: black;
-  }
-  .active ~ span {
     color: black;
   }
 }
@@ -107,6 +105,11 @@
   }
 }
 .radioText {
+  .active {
+    color: black;
+  }
+}
+.span {
   .active {
     color: black;
   }

@@ -16,10 +16,11 @@ const OrderData = {
     timeTo: null,
     totalTime: null,
     tax: null,
-    fuelTank: false,
+    fuelTank: true,
     chair: false,
     wheel: false,
   },
+  price: null,
 };
 
 export default OrderData;

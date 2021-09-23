@@ -45,11 +45,9 @@ export default function DatepickerContainer() {
   };
   function calcTotalTime() {
     const totalTime = (endDate.getTime() - startDate.getTime()) / 1000;
-    const days = Math.floor(totalTime / 86400);
-    const hours = Math.floor(totalTime / 3600) - days * 24;
-    const minutes = Math.ceil(
-      (totalTime - days * 24 * 3600 - hours * 3600) / 60,
-    );
+    const days = Math.floor(totalTime / (60 * 60 * 24));
+    const hours = Math.floor((totalTime / 3600) % 24);
+    const minutes = Math.ceil((totalTime / 60) % 60);
     const rentTime = `${days}д.${hours}ч.${minutes}мин.`;
 
     if (startDate.getTime() < endDate.getTime()) {
@@ -97,6 +95,7 @@ export default function DatepickerContainer() {
           <div>По</div>
           <div>
             <DatePicker
+              disabled={orderInfo.timeFrom === 'null'}
               locale="ru"
               className={s.datePicker}
               placeholderText="Ведите дату и время"
