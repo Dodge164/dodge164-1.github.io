@@ -12,22 +12,12 @@ export default function SummaryContainer() {
   }
   return (
     <div>
-      {step === 3 && (
+      {step === 4 && (
         <div className={s.modal}>
-          <button
-            className={s.btn}
-            type="button"
-            onClick={handlePrevStep}
-            key={step}
-          >
+          <button className={s.btn} type="button" onClick={handlePrevStep}>
             setStep-1
           </button>
-          <button
-            className={s.btn}
-            type="button"
-            onClick={handleNextStep}
-            key={step}
-          >
+          <button className={s.btn} type="button" onClick={handleNextStep}>
             setStep+1
           </button>
         </div>
@@ -35,3 +25,10 @@ export default function SummaryContainer() {
     </div>
   );
 }
+
+// src={
+//   car?.thumbnail?.path.includes('base64')
+//     ? car?.thumbnail?.path
+//     : baseUrl + car?.thumbnail?.path
+// }
+// добавить к картинке lazyloading

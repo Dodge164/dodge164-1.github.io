@@ -38,6 +38,7 @@ export default function CarsContainer() {
     setLoading(true);
     setCheckedId(id);
     const categoryById = await getCarListByCategory(id);
+    console.log('categoryById', categoryById);
     setCarList(categoryById);
     setLoading(false);
   }
@@ -46,6 +47,7 @@ export default function CarsContainer() {
     setLoading(true);
     setCheckedId('all');
     const carListAll = await getCarList();
+
     setCarList(carListAll);
     setLoading(false);
   }
@@ -59,10 +61,11 @@ export default function CarsContainer() {
         priceMin: car.priceMin,
         priceMax: car.priceMax,
         colors: car.colors,
+        number: car.number,
       },
     }));
   }
-  // console.log('car', car);
+
   return (
     <>
       <div className={s.radioGroup}>

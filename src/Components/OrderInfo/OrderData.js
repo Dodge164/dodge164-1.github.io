@@ -9,6 +9,7 @@ const OrderData = {
     priceMin: null,
     colors: null,
     number: null,
+    path: null,
   },
   extends: {
     color: null,

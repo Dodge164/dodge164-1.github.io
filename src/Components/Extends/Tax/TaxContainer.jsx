@@ -9,7 +9,7 @@ import Context from '../../../context';
 import s from './Tax.module.scss';
 
 export default function TaxContainer({ rate, rateType }) {
-  const { orderInfo, setOrderInfo } = useContext(Context);
+  const { setOrderInfo } = useContext(Context);
   const [checkedTax, setCheckedTax] = useState('');
 
   function handleChosenTax(tax) {
@@ -26,18 +26,19 @@ export default function TaxContainer({ rate, rateType }) {
   return (
     <>
       <div className={s.extendsTtl}>Тариф</div>
-      {console.log('rateType', rateType)}
+      {/* {console.log('rateType', rateType)}
       {console.log('rate', rate)}
       {console.log(
         'ratefilter',
         rate.filter((elem) => elem.rateTypeId.name === orderInfo.extends.tax),
-      )}
+      )} */}
       <div className={s.radioGroupRate}>
         {rateType.map((item) =>
           rate.map((elem) => {
             if (elem.rateTypeId.id === item.id) {
               return (
                 <label
+                  key={elem.rateTypeId.id}
                   htmlFor={item.id}
                   className={cn(s.radioLabel, {
                     [s.active]: checkedTax === item.name,
