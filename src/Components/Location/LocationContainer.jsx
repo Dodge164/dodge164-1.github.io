@@ -27,9 +27,6 @@ export default function LocationContainer() {
   useEffect(async () => {
     const listOfCities = await getCityList();
     setCityList(listOfCities);
-    // return function cleanup() {
-    //   setCityList(listOfCities);
-    // };
   }, []);
 
   useEffect(async () => {

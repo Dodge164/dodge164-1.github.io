@@ -16,7 +16,8 @@ function App() {
   const [isOrderBurgerClicked, setIsOrderBurgerClicked] = useState(false);
   useEffect(() => {
     console.log('orderInfo', orderInfo);
-  }, [orderInfo]);
+    console.log('step', step);
+  }, [orderInfo, step]);
 
   return (
     <Context.Provider

@@ -7,7 +7,7 @@
   background-blend-mode: darken;
   font-size: 18px;
   line-height: 21px;
-  margin: 10px 0; ///
+  margin: 10px 0;
   border: none;
   outline: none;
   &:hover {
@@ -40,11 +40,38 @@
   @media (min-width: 1024px) {
     width: 150px;
     width: 287px;
+
     border-radius: 8px;
     margin: 0 0 0 56px;
   }
+  &.cancel {
+    background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+    &:hover {
+      background: linear-gradient(
+        90deg,
+        darken(#493013, 10) 2.61%,
+        darken(#493013, 10) 112.6%
+      );
+    }
+
+    &:focus {
+      background: linear-gradient(
+        90deg,
+        darken(#493013, 10) 2.61%,
+        darken(#493013, 10) 112.6%
+      );
+    }
+    &:active {
+      background: linear-gradient(
+        90deg,
+        darken(#493013, 20) 2.61%,
+        darken(#493013, 20) 112.6%
+      );
+    }
+  }
 }
-.btn:disabled {
+.btn:disabled,
+.btn[disabled] {
   pointer-events: none;
   -webkit-user-select: none;
   -moz-user-select: none;

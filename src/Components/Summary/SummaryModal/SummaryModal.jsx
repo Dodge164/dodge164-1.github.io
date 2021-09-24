@@ -11,19 +11,28 @@ export default function SummaryModal() {
     setStep((prev) => prev + 1);
   }
   return (
-    <div>
+    <>
       {step === 4 && (
         <div className={s.modal}>
-          <button className={s.btn} type="button" onClick={handlePrevStep}>
-            setStep-1
-          </button>
-          <button className={s.btn} type="button" onClick={handleNextStep}>
-            setStep+1
-          </button>
+          <div className={s.acceptTtl}> Подтвердить заказ </div>
+          <div className={s.btnGroup}>
+            <button
+              className={s.btnAccept}
+              type="button"
+              onClick={handleNextStep}
+            >
+              Подтвердить
+            </button>
+            <button
+              className={s.btnCancel}
+              type="button"
+              onClick={handlePrevStep}
+            >
+              Вернуться
+            </button>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
-
-// добавить к картинке lazyloading

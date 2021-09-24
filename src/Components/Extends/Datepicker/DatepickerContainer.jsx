@@ -23,7 +23,6 @@ export default function DatepickerContainer() {
   }
   function handleStartTime(timeFrom) {
     setStartDate(timeFrom);
-    console.log('timeFR', timeFrom);
     setOrderInfo((prev) => ({
       ...prev,
       extends: {

@@ -7,9 +7,11 @@ import cn from 'classnames';
 
 import Context from '../../../context';
 import s from './Tax.module.scss';
+import Loading from '../../../Helpers/Loading/Loading';
 
 export default function TaxContainer({ rate, rateType }) {
-  const { orderInfo, setOrderInfo } = useContext(Context);
+  const { orderInfo, setOrderInfo, loading } = useContext(Context);
+
   const [checkedTax, setCheckedTax] = useState(
     orderInfo.extends.tax ? orderInfo.extends.tax : '',
   );
@@ -28,46 +30,45 @@ export default function TaxContainer({ rate, rateType }) {
   return (
     <>
       <div className={s.extendsTtl}>Тариф</div>
-      {/* {console.log('rateType', rateType)}
-      {console.log('rate', rate)}
-      {console.log(
-        'ratefilter',
-        rate.filter((elem) => elem.rateTypeId.name === orderInfo.extends.tax),
-      )} */}
-      <div className={s.radioGroupRate}>
-        {rateType.map((item) =>
-          rate.map((elem) => {
-            if (elem.rateTypeId.id === item.id) {
-              return (
-                <label
-                  key={elem.rateTypeId.id}
-                  htmlFor={item.id}
-                  className={cn(s.radioLabel, {
-                    [s.active]: checkedTax === item.name,
-                  })}
-                >
-                  <input
-                    checked={checkedTax === item.name}
-                    className={s.radioBtn}
-                    name="rate"
-                    onChange={() => handleChosenTax(item.name)}
-                    type="radio"
-                    id={item.id}
-                  />
-                  <div className={s.customIndicator} />
-                  <span
-                    className={cn(s.span, {
+
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className={s.radioGroupRate}>
+          {rateType.map((item) =>
+            rate.map((elem) => {
+              if (elem.rateTypeId.id === item.id) {
+                return (
+                  <label
+                    key={elem.rateTypeId.id}
+                    htmlFor={item.id}
+                    className={cn(s.radioLabel, {
                       [s.active]: checkedTax === item.name,
                     })}
                   >
-                    {`${item.name} ${elem.price}₽/${item.unit}`}
-                  </span>
-                </label>
-              );
-            }
-          }),
-        )}
-      </div>
+                    <input
+                      checked={checkedTax === item.name}
+                      className={s.radioBtn}
+                      name="rate"
+                      onChange={() => handleChosenTax(item.name)}
+                      type="radio"
+                      id={item.id}
+                    />
+                    <div className={s.customIndicator} />
+                    <span
+                      className={cn(s.span, {
+                        [s.active]: checkedTax === item.name,
+                      })}
+                    >
+                      {`${item.name} ${elem.price}₽/${item.unit}`}
+                    </span>
+                  </label>
+                );
+              }
+            }),
+          )}
+        </div>
+      )}
     </>
   );
 }

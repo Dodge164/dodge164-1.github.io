@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import React from 'react';
 import btnData from '../OrderBtnData';
 import s from './OrderStepBtn.module.scss';
@@ -10,7 +11,7 @@ export default function OrderStepBtn({ onDisabled, step, onSetStep }) {
           btn.id === step && (
             <button
               disabled={onDisabled(btn.id)}
-              className={s.btn}
+              className={cn(s.btn, { [s.cancel]: step === 5 })}
               type="button"
               onClick={onSetStep}
               key={btn.id}

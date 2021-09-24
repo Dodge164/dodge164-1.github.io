@@ -10,6 +10,7 @@ const OrderData = {
     colors: null,
     number: null,
     path: null,
+    category: null,
   },
   extends: {
     color: null,

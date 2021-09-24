@@ -12,7 +12,7 @@ import Context from '../../context';
 import { getRate, getRateType } from '../../Api/http';
 
 export default function ExtendsContainer() {
-  const { orderInfo, setOrderInfo } = useContext(Context);
+  const { orderInfo, setOrderInfo, setLoading } = useContext(Context);
   const [rate, setRate] = useState([]);
   const [rateType, setRateType] = useState([]);
 
@@ -72,8 +72,10 @@ export default function ExtendsContainer() {
   }
 
   useEffect(async () => {
+    setLoading(true);
     setRateType(await getRateType());
     setRate(await getRate());
+    setLoading(false);
   }, []);
 
   useEffect(() => {

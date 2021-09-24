@@ -18,10 +18,3 @@ export default function SummaryConfirm() {
     </div>
   );
 }
-
-// src={
-//   car?.thumbnail?.path.includes('base64')
-//     ? car?.thumbnail?.path
-//     : baseUrl + car?.thumbnail?.path
-// }
-// добавить к картинке lazyloading

@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable no-undef */
 /* eslint-disable spaced-comment */
 /* eslint-disable react/void-dom-elements-no-children */
@@ -20,25 +21,31 @@ import {
 } from '../../Api/http';
 
 export default function CarsContainer() {
+  const { orderInfo, setOrderInfo, loading, setLoading } = useContext(Context);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [carList, setCarList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const [checkedId, setCheckedId] = useState('all');
-  const { setOrderInfo } = useContext(Context);
-  const { loading, setLoading } = useContext(Context);
+  const [checkedId, setCheckedId] = useState(
+    orderInfo.car.category ? orderInfo.car.category : 'all',
+  );
 
   useEffect(async () => {
     const listOfCategory = await getCarCategory();
     setCategoryList(listOfCategory);
-    const listOfCars = await getCarList();
-    setCarList(listOfCars);
+    if (orderInfo.car.category) {
+      const categoryById = await getCarListByCategory(orderInfo.car.category);
+      setCarList(categoryById);
+    } else {
+      const listOfCars = await getCarList();
+      setCarList(listOfCars);
+    }
+
     setLoading(false);
   }, []);
   async function handleCarByCategoryId(id) {
     setLoading(true);
     setCheckedId(id);
     const categoryById = await getCarListByCategory(id);
-    console.log('categoryById', categoryById);
     setCarList(categoryById);
     setLoading(false);
   }
@@ -63,6 +70,7 @@ export default function CarsContainer() {
         colors: car.colors,
         number: car.number,
         path: car.thumbnail.path,
+        category: car.categoryId.id,
       },
     }));
   }
@@ -119,7 +127,6 @@ export default function CarsContainer() {
         <Loading />
       ) : (
         <Cars
-          // valueModel={orderInfo.car.model}
           onChangeChosenCar={handleChosenCar}
           carList={carList}
           baseUrl={BASE_URL}

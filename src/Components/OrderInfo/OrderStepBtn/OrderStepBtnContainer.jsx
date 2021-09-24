@@ -14,23 +14,33 @@ export default function OrderStepBtnContainer() {
     extends: { color, totalTime, tax },
   } = orderInfo;
 
-  function onCheckStep() {
-    if (step === 0) {
+  function onCheckStep(btnId) {
+    if (btnId === 0) {
       return !city || !point;
     }
-    if (step === 1) {
+    if (btnId === 1) {
       return !model;
     }
-    if (step === 2) {
+    if (btnId === 2) {
       return !color || !totalTime || !tax;
     }
-    if (step === 3) {
+    if (btnId === 3) {
+      return false;
+    }
+    if (btnId === 4) {
+      return false;
+    }
+    if (btnId === 5) {
       return false;
     }
     return true;
   }
   function handleSetStep() {
-    setStep((prev) => prev + 1);
+    if (step === 5) {
+      console.log('cancel');
+    } else {
+      setStep((prev) => prev + 1);
+    }
   }
   return (
     <OrderStepBtn
