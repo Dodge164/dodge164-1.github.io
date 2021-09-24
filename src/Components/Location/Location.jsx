@@ -40,7 +40,6 @@ export default function Location({
             list="pointList"
             placeholder="Начните вводить пункт..."
             className={s.input}
-            // value={valuePoint && valuePoint}
             value={valuePoint ? valuePoint : ''}
             onChange={(event) => onChangePointValue(event.target.value)}
           />

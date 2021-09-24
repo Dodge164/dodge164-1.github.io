@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import Context from '../../context';
-import s from './Summary.module.scss';
+import Context from '../../../context';
+import s from '../Summary.module.scss';
 
-export default function SummaryContainer() {
+export default function SummaryModal() {
   const { step, setStep } = useContext(Context);
   function handlePrevStep() {
     setStep((prev) => prev - 1);
@@ -26,9 +26,4 @@ export default function SummaryContainer() {
   );
 }
 
-// src={
-//   car?.thumbnail?.path.includes('base64')
-//     ? car?.thumbnail?.path
-//     : baseUrl + car?.thumbnail?.path
-// }
 // добавить к картинке lazyloading

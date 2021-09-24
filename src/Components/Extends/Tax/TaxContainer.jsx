@@ -9,8 +9,10 @@ import Context from '../../../context';
 import s from './Tax.module.scss';
 
 export default function TaxContainer({ rate, rateType }) {
-  const { setOrderInfo } = useContext(Context);
-  const [checkedTax, setCheckedTax] = useState('');
+  const { orderInfo, setOrderInfo } = useContext(Context);
+  const [checkedTax, setCheckedTax] = useState(
+    orderInfo.extends.tax ? orderInfo.extends.tax : '',
+  );
 
   function handleChosenTax(tax) {
     setCheckedTax(tax);

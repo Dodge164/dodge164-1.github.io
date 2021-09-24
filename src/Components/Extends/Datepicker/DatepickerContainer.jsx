@@ -11,8 +11,8 @@ registerLocale('ru', ru);
 setDefaultLocale('ru', ru);
 export default function DatepickerContainer() {
   const { orderInfo, setOrderInfo } = useContext(Context);
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState(orderInfo.extends.timeFrom);
+  const [endDate, setEndDate] = useState(orderInfo.extends.timeTo);
 
   function handleEndTime(timeTo) {
     setEndDate(timeTo);

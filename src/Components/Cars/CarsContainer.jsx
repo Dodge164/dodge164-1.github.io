@@ -24,7 +24,7 @@ export default function CarsContainer() {
   const [carList, setCarList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [checkedId, setCheckedId] = useState('all');
-  const { orderInfo, setOrderInfo } = useContext(Context);
+  const { setOrderInfo } = useContext(Context);
   const { loading, setLoading } = useContext(Context);
 
   useEffect(async () => {
@@ -62,6 +62,7 @@ export default function CarsContainer() {
         priceMax: car.priceMax,
         colors: car.colors,
         number: car.number,
+        path: car.thumbnail.path,
       },
     }));
   }
