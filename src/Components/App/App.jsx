@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -9,15 +10,41 @@ import OrderData from '../OrderInfo/OrderData';
 
 function App() {
   const [orderInfo, setOrderInfo] = useState(OrderData);
-  // const [step, setStep] = useState(+localStorage.getItem('currentStep') || 0);
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const [isOrderBurgerClicked, setIsOrderBurgerClicked] = useState(false);
   useEffect(() => {
     console.log('orderInfo', orderInfo);
-    console.log('step', step);
   }, [orderInfo, step]);
+
+  function calcTotalTime() {
+    const totalTime =
+      (orderInfo.extends.timeTo.getTime() -
+        orderInfo.extends.timeFrom.getTime()) /
+      1000;
+    const days = Math.floor(totalTime / (60 * 60 * 24));
+    const hours = Math.floor((totalTime / 3600) % 24);
+    const minutes = Math.floor((totalTime / 60) % 60);
+    const rentTime = `${days}д.${hours}ч.${minutes}мин.`;
+
+    if (
+      orderInfo.extends.timeFrom.getTime() < orderInfo.extends.timeTo.getTime()
+    ) {
+      setOrderInfo((prev) => ({
+        ...prev,
+        extends: {
+          ...prev.extends,
+          totalTime: rentTime,
+        },
+      }));
+    }
+  }
+  useEffect(() => {
+    if (orderInfo.extends.timeFrom && orderInfo.extends.timeTo) {
+      calcTotalTime();
+    }
+  }, [orderInfo.extends.timeTo, orderInfo.extends.timeFrom]);
 
   return (
     <Context.Provider
@@ -38,6 +65,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={StartScreen} />
         <Route exact path="/order" component={OrderPage} />
+        <Route exact path="/order/:id" component={OrderPage} />
       </Switch>
     </Context.Provider>
   );

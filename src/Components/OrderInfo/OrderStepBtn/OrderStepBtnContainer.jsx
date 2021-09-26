@@ -1,9 +1,16 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable no-unused-vars */
+import axios from 'axios';
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { getOrderStatus } from '../../../Api/http';
 import Context from '../../../context';
+import OrderData from '../OrderData';
 import OrderStepBtn from './OrderStepBtn';
 
 export default function OrderStepBtnContainer() {
-  const { orderInfo, step, setStep } = useContext(Context);
+  const { orderInfo, step, setStep, setOrderInfo } = useContext(Context);
+  const history = useHistory();
   const {
     location: { city, point },
   } = orderInfo;
@@ -35,9 +42,37 @@ export default function OrderStepBtnContainer() {
     }
     return true;
   }
-  function handleSetStep() {
+  async function handleSetStep() {
     if (step === 5) {
-      console.log('cancel');
+      const statusList = await getOrderStatus();
+
+      const statusId = statusList.find(
+        (item) => item.name.toLowerCase() === 'отмененые',
+      ).id;
+
+      axios({
+        method: 'PUT',
+        url: `https://api-factory.simbirsoft1.com/api/db/order/${orderInfo.orderId}`,
+
+        data: {
+          orderStatusId: {
+            id: statusId,
+          },
+        },
+        headers: {
+          'X-Api-Factory-Application-Id': process.env.REACT_APP_DB_API_KEY,
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
+        },
+      })
+        .then((response) => {
+          setOrderInfo(OrderData);
+          setStep(0);
+          history.push('/order');
+        })
+        .catch((error) => {
+          alert('Ошибка подтверждения заказа', error);
+        });
     } else {
       setStep((prev) => prev + 1);
     }

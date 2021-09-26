@@ -7,7 +7,7 @@ import Context from '../../context';
 import s from './BreadCrumbs.module.scss';
 
 export default function BreadCrumbsContainer() {
-  const { step, setStep } = useContext(Context);
+  const { step, setStep, orderInfo } = useContext(Context);
   const handleClickBread = (itemId) => {
     setStep(itemId);
   };
@@ -25,7 +25,7 @@ export default function BreadCrumbsContainer() {
           />
         ))
       ) : (
-        <span>Заказ номер RU58491823</span>
+        <span>{`Заказ номер ${orderInfo.orderId}`}</span>
       )}
     </div>
   );

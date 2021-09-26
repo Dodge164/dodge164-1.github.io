@@ -11,16 +11,25 @@ export default function LocationContainer() {
   function handleChangePointValue(point) {
     setOrderInfo((prev) => ({
       ...prev,
-      location: { ...prev.location, point },
+      location: {
+        ...prev.location,
+        point,
+        pointId: pointList.find((item) => item.name === point)?.id,
+      },
     }));
   }
   function handleChangeCityValue(city) {
     if (city === '') {
-      handleChangePointValue(null);
+      setPointList([]);
     }
     setOrderInfo((prev) => ({
       ...prev,
-      location: { ...prev.location, city },
+      location: {
+        ...prev.location,
+        city,
+        cityId: cityList.find((item) => item.name === city)?.id,
+        point: city === '' ? null : prev.location.point,
+      },
     }));
   }
 
@@ -31,11 +40,10 @@ export default function LocationContainer() {
 
   useEffect(async () => {
     if (orderInfo.location.city !== null) {
-      const cityId = cityList.find(
+      const city = cityList.find(
         (item) => item.name === orderInfo.location.city,
       );
-
-      const listOfPoints = await getPointListByCityId(cityId?.id);
+      const listOfPoints = await getPointListByCityId(city?.id);
       setPointList(listOfPoints);
     }
   }, [orderInfo.location.city]);

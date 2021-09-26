@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// const queryString = require('query-string');
-
 const API_KEY = process.env.REACT_APP_DB_API_KEY;
 export const url = process.env.REACT_APP_NFDDB_URL;
 
@@ -50,5 +48,30 @@ export const getRate = async () => {
   const res = await fetchRequest('/db/rate');
   return res.data;
 };
+
+export const getOrderStatus = async () => {
+  const res = await fetchRequest('/db/orderStatus');
+  return res.data;
+};
+export const getOrderById = async (orderId) => {
+  const res = await fetchRequest(`/db/order/${orderId}`);
+  return res.data;
+};
+
+// const fetchPostRes = async (way, data) => {
+//   const res = await axios.post(`${url}${way}`, {
+//     data,
+//     headers: {
+//       'X-Api-Factory-Application-Id': API_KEY,
+//       'Access-Control-Allow-Origin': '*',
+//       'Content-type': 'application/json',
+//     },
+//   });
+//   return res.data;
+// };
+// export const postNewOrder = async (data) => {
+//   const res = await fetchPostRes('/db/order', data);
+//   return res.data;
+// };
 
 export default fetchRequest;

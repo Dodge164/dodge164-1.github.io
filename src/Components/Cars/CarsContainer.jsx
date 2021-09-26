@@ -65,6 +65,7 @@ export default function CarsContainer() {
       car: {
         ...prev.car,
         model: car.name,
+        carId: car.id,
         priceMin: car.priceMin,
         priceMax: car.priceMax,
         colors: car.colors,

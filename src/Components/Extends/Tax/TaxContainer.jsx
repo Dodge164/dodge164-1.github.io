@@ -23,6 +23,7 @@ export default function TaxContainer({ rate, rateType }) {
       extends: {
         ...prev.extends,
         tax,
+        rateId: rate.find((item) => item.rateTypeId.name === tax).rateTypeId.id,
       },
     }));
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ru from 'date-fns/locale/ru';
 import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
 import Context from '../../../context';
@@ -45,28 +45,6 @@ export default function DatepickerContainer() {
     const selectedEndDate = new Date(time);
     return startDate < selectedEndDate.getTime();
   };
-  function calcTotalTime() {
-    const totalTime = (endDate.getTime() - startDate.getTime()) / 1000;
-    const days = Math.floor(totalTime / (60 * 60 * 24));
-    const hours = Math.floor((totalTime / 3600) % 24);
-    const minutes = Math.floor((totalTime / 60) % 60);
-    const rentTime = `${days}д.${hours}ч.${minutes}мин.`;
-
-    if (startDate.getTime() < endDate.getTime()) {
-      setOrderInfo((prev) => ({
-        ...prev,
-        extends: {
-          ...prev.extends,
-          totalTime: rentTime,
-        },
-      }));
-    }
-  }
-  useEffect(() => {
-    if (startDate && endDate) {
-      calcTotalTime();
-    }
-  }, [endDate, startDate]);
 
   return (
     <>
