@@ -19,23 +19,35 @@ function App() {
   }, [orderInfo, step]);
 
   function calcTotalTime() {
-    const totalTime =
-      (orderInfo.extends.timeTo.getTime() -
-        orderInfo.extends.timeFrom.getTime()) /
-      1000;
-    const days = Math.floor(totalTime / (60 * 60 * 24));
-    const hours = Math.floor((totalTime / 3600) % 24);
-    const minutes = Math.floor((totalTime / 60) % 60);
-    const rentTime = `${days}д.${hours}ч.${minutes}мин.`;
+    if (orderInfo.extends.timeFrom && orderInfo.extends.timeTo) {
+      const totalTime =
+        (orderInfo.extends.timeTo.getTime() -
+          orderInfo.extends.timeFrom.getTime()) /
+        1000;
+      const days = Math.floor(totalTime / (60 * 60 * 24));
+      const hours = Math.floor((totalTime / 3600) % 24);
+      const minutes = Math.floor((totalTime / 60) % 60);
+      const rentTime = `${days}д.${hours}ч.${minutes}мин.`;
 
-    if (
-      orderInfo.extends.timeFrom.getTime() < orderInfo.extends.timeTo.getTime()
-    ) {
+      if (
+        orderInfo.extends.timeFrom.getTime() <
+        orderInfo.extends.timeTo.getTime()
+      ) {
+        setOrderInfo((prev) => ({
+          ...prev,
+          extends: {
+            ...prev.extends,
+            totalTime: rentTime,
+          },
+        }));
+      }
+    } else {
       setOrderInfo((prev) => ({
         ...prev,
+        price: 0,
         extends: {
           ...prev.extends,
-          totalTime: rentTime,
+          totalTime: null,
         },
       }));
     }

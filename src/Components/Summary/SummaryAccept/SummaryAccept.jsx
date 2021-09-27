@@ -4,6 +4,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOrderById } from '../../../Api/http';
 import Context from '../../../context';
+import fixCarNumber from '../../../utils/utils';
 import s from '../Summary.module.scss';
 
 export default function SummaryConfirm() {
@@ -11,24 +12,6 @@ export default function SummaryConfirm() {
   const params = useParams();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  function fixCarNumber(carNumber) {
-    if (carNumber) {
-      const number = carNumber.toUpperCase();
-
-      const reg = number.match(
-        /^[АВЕКМНОРСТУХA-Z]\d{3}(?<!000)[АВЕКМНОРСТУХA-Z]{2}\d{2,3}$/iu,
-      );
-      if (reg) {
-        const pattern = new RegExp(
-          '(^[АВЕКМНОРСТУХA-Z])(\\d{3})([АВЕКМНОРСТУХA-Z]{2})(\\d{2,3})',
-        );
-        const str = reg[0];
-        const rep = str.replace(pattern, '$1 $2 $3 $4');
-        return rep;
-      }
-    }
-    return carNumber;
-  }
   useEffect(async () => {
     if (params.id) {
       const order = await getOrderById(params.id);

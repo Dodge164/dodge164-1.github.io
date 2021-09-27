@@ -22,7 +22,7 @@ const OrderData = {
     totalTime: null,
     tax: null,
     rateId: null,
-    fuelTank: true,
+    fuelTank: false,
     chair: false,
     wheel: false,
   },

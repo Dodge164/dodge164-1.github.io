@@ -12,32 +12,35 @@ export default function SummaryModal() {
   function handlePrevStep() {
     setStep((prev) => prev - 1);
   }
-  async function handleNextStep() {
+  async function getOrderModel(orderInfData) {
     const statusList = await getOrderStatus();
     const statusId = statusList.find(
       (item) => item.name.toLowerCase() === 'новые',
     ).id;
+    return {
+      orderStatusId: {
+        id: statusId,
+      },
+      cityId: { id: orderInfData.location.cityId },
+      pointId: { id: orderInfData.location.pointId },
+      carId: { id: orderInfData.car.carId },
+      color: orderInfData.extends.color,
+      dateFrom: orderInfData.extends.timeFrom.getTime(),
+      dateTo: orderInfData.extends.timeTo.getTime(),
+      rateId: { id: orderInfData.extends.rateId },
+      price: orderInfData.price,
+      isFullTank: orderInfData.extends.fuelTank,
+      isNeedChildChair: orderInfData.extends.chair,
+      isRightWheel: orderInfData.extends.wheel,
+    };
+  }
 
+  async function handleNextStep() {
     axios({
       method: 'POST',
       url: 'https://api-factory.simbirsoft1.com/api/db/order',
 
-      data: {
-        orderStatusId: {
-          id: statusId,
-        },
-        cityId: { id: orderInfo.location.cityId },
-        pointId: { id: orderInfo.location.pointId },
-        carId: { id: orderInfo.car.carId },
-        color: orderInfo.extends.color,
-        dateFrom: orderInfo.extends.timeFrom.getTime(),
-        dateTo: orderInfo.extends.timeTo.getTime(),
-        rateId: { id: orderInfo.extends.rateId },
-        price: orderInfo.price,
-        isFullTank: orderInfo.extends.fuelTank,
-        isNeedChildChair: orderInfo.extends.chair,
-        isRightWheel: orderInfo.extends.wheel,
-      },
+      data: await getOrderModel(orderInfo),
       headers: {
         'X-Api-Factory-Application-Id': process.env.REACT_APP_DB_API_KEY,
         'Access-Control-Allow-Origin': '*',
