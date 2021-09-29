@@ -15,3 +15,11 @@
 [class*='ground-pane'] {
   filter: grayscale(1);
 }
+
+[class*='image'] {
+  background-repeat: no-repeat;
+}
+
+.placemark {
+  background-repeat: no-repeat;
+}

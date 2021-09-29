@@ -2,16 +2,17 @@
 /* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import StartScreen from '../../Pages/StartScreen/StartScreen';
+import StartScreen from '../../Pages/StartScreen/StartScreen';
 import OrderPage from '../../Pages/OrderPage';
 import Sidebar from '../Sidebar';
 import Context from '../../context';
 import OrderData from '../OrderInfo/OrderData';
-import YMapContainer from '../Location/YMap/YMapContainer';
 
 function App() {
   const [orderInfo, setOrderInfo] = useState(OrderData);
   const [step, setStep] = useState(0);
+  const [cityList, setCityList] = useState([]);
+  const [pointList, setPointList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const [isOrderBurgerClicked, setIsOrderBurgerClicked] = useState(false);
@@ -72,12 +73,15 @@ function App() {
         setIsBurgerClicked,
         isOrderBurgerClicked,
         setIsOrderBurgerClicked,
+        cityList,
+        setCityList,
+        pointList,
+        setPointList,
       }}
     >
       <Sidebar />
       <Switch>
-        <Route exact path="/" component={YMapContainer} />
-        {/* <Route exact path="/" component={StartScreen} /> */}
+        <Route exact path="/" component={StartScreen} />
         <Route exact path="/order" component={OrderPage} />
         <Route exact path="/order/:id" component={OrderPage} />
       </Switch>
