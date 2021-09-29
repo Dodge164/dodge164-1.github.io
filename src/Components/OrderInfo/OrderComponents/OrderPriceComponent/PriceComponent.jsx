@@ -1,4 +1,3 @@
-/* eslint-disable prefer-template */
 /* eslint-disable no-nested-ternary */
 import React, { useContext } from 'react';
 import Context from '../../../../context';

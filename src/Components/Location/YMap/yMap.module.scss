@@ -1,0 +1,17 @@
+.container {
+  width: 640px;
+  height: 480px;
+}
+.map {
+  width: 640px;
+  height: 480px;
+  /* background-color: #333; */
+}
+
+[class*='copyrights-pane'] {
+  display: none !important;
+}
+
+[class*='ground-pane'] {
+  filter: grayscale(1);
+}

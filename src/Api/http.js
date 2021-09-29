@@ -29,12 +29,12 @@ export const getCarList = async () => {
   return res.data;
 };
 
-export const getCarCategory = async () => {
+export const getCarsCategory = async () => {
   const res = await fetchRequest('/db/category');
   return res.data;
 };
 
-export const getCarListByCategory = async (catId) => {
+export const getCarsListByCategory = async (catId) => {
   const res = await fetchRequest(`/db/car?categoryId=${catId}`);
   return res.data;
 };

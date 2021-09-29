@@ -2,11 +2,12 @@
 /* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import StartScreen from '../../Pages/StartScreen/StartScreen';
+// import StartScreen from '../../Pages/StartScreen/StartScreen';
 import OrderPage from '../../Pages/OrderPage';
 import Sidebar from '../Sidebar';
 import Context from '../../context';
 import OrderData from '../OrderInfo/OrderData';
+import YMapContainer from '../Location/YMap/YMapContainer';
 
 function App() {
   const [orderInfo, setOrderInfo] = useState(OrderData);
@@ -28,7 +29,6 @@ function App() {
       const hours = Math.floor((totalTime / 3600) % 24);
       const minutes = Math.floor((totalTime / 60) % 60);
       const rentTime = `${days}д.${hours}ч.${minutes}мин.`;
-
       if (
         orderInfo.extends.timeFrom.getTime() <
         orderInfo.extends.timeTo.getTime()
@@ -41,6 +41,11 @@ function App() {
           },
         }));
       }
+    }
+  }
+  useEffect(() => {
+    if (orderInfo.extends.timeFrom && orderInfo.extends.timeTo) {
+      calcTotalTime();
     } else {
       setOrderInfo((prev) => ({
         ...prev,
@@ -48,13 +53,9 @@ function App() {
         extends: {
           ...prev.extends,
           totalTime: null,
+          timeTo: null,
         },
       }));
-    }
-  }
-  useEffect(() => {
-    if (orderInfo.extends.timeFrom && orderInfo.extends.timeTo) {
-      calcTotalTime();
     }
   }, [orderInfo.extends.timeTo, orderInfo.extends.timeFrom]);
 
@@ -75,7 +76,8 @@ function App() {
     >
       <Sidebar />
       <Switch>
-        <Route exact path="/" component={StartScreen} />
+        <Route exact path="/" component={YMapContainer} />
+        {/* <Route exact path="/" component={StartScreen} /> */}
         <Route exact path="/order" component={OrderPage} />
         <Route exact path="/order/:id" component={OrderPage} />
       </Switch>
