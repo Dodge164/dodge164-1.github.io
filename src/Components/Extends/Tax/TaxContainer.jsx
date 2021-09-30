@@ -1,4 +1,3 @@
-/* eslint-disable operator-linebreak */
 /* eslint-disable function-paren-newline */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */

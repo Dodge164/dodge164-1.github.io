@@ -6,7 +6,6 @@ export default function ColorComponent() {
   const { orderInfo } = useContext(Context);
 
   const {
-    // eslint-disable-next-line object-curly-newline
     extends: { color },
   } = orderInfo;
   return (

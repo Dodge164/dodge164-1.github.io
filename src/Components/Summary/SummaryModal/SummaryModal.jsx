@@ -6,7 +6,6 @@ import Context from '../../../context';
 import s from '../Summary.module.scss';
 
 export default function SummaryModal() {
-  // eslint-disable-next-line object-curly-newline
   const { step, setStep, orderInfo, setOrderInfo } = useContext(Context);
   const history = useHistory();
   function handlePrevStep() {

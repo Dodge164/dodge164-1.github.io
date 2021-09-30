@@ -1,4 +1,3 @@
-/* eslint-disable object-curly-newline */
 /* eslint-disable no-unused-vars */
 import axios from 'axios';
 import React, { useContext } from 'react';

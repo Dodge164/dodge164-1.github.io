@@ -6,7 +6,6 @@ export default function WheelComponent() {
   const { orderInfo } = useContext(Context);
 
   const {
-    // eslint-disable-next-line object-curly-newline
     extends: { wheel },
   } = orderInfo;
   return (

@@ -11,12 +11,19 @@ import OrderData from '../OrderInfo/OrderData';
 function App() {
   const [orderInfo, setOrderInfo] = useState(OrderData);
   const [step, setStep] = useState(0);
+  const [cityList, setCityList] = useState([]);
+  const [pointList, setPointList] = useState([]);
+  const [coordsOfAllPoints, setCoordsOfAllPoints] = useState([]);
+  const [defaultStateCity, setDefaultStateCity] = useState({
+    center: [55.752121, 37.617664],
+    zoom: 11,
+  });
   const [loading, setLoading] = useState(true);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const [isOrderBurgerClicked, setIsOrderBurgerClicked] = useState(false);
-  useEffect(() => {
-    console.log('orderInfo', orderInfo);
-  }, [orderInfo, step]);
+  // useEffect(() => {
+  //   console.log('orderInfo', orderInfo);
+  // }, [orderInfo, step]);
 
   function calcTotalTime() {
     if (orderInfo.extends.timeFrom && orderInfo.extends.timeTo) {
@@ -28,7 +35,6 @@ function App() {
       const hours = Math.floor((totalTime / 3600) % 24);
       const minutes = Math.floor((totalTime / 60) % 60);
       const rentTime = `${days}д.${hours}ч.${minutes}мин.`;
-
       if (
         orderInfo.extends.timeFrom.getTime() <
         orderInfo.extends.timeTo.getTime()
@@ -41,6 +47,11 @@ function App() {
           },
         }));
       }
+    }
+  }
+  useEffect(() => {
+    if (orderInfo.extends.timeFrom && orderInfo.extends.timeTo) {
+      calcTotalTime();
     } else {
       setOrderInfo((prev) => ({
         ...prev,
@@ -48,13 +59,9 @@ function App() {
         extends: {
           ...prev.extends,
           totalTime: null,
+          timeTo: null,
         },
       }));
-    }
-  }
-  useEffect(() => {
-    if (orderInfo.extends.timeFrom && orderInfo.extends.timeTo) {
-      calcTotalTime();
     }
   }, [orderInfo.extends.timeTo, orderInfo.extends.timeFrom]);
 
@@ -71,6 +78,14 @@ function App() {
         setIsBurgerClicked,
         isOrderBurgerClicked,
         setIsOrderBurgerClicked,
+        cityList,
+        setCityList,
+        pointList,
+        setPointList,
+        defaultStateCity,
+        setDefaultStateCity,
+        coordsOfAllPoints,
+        setCoordsOfAllPoints,
       }}
     >
       <Sidebar />

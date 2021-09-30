@@ -1,12 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
+/* eslint-disable operator-linebreak */
+import React, { useContext, useEffect } from 'react';
 import { getCityList, getPointListByCityId } from '../../Api/http';
 import Context from '../../context';
 import Location from './Location';
 
 export default function LocationContainer() {
-  const { orderInfo, setOrderInfo } = useContext(Context);
-  const [cityList, setCityList] = useState([]);
-  const [pointList, setPointList] = useState([]);
+  const {
+    orderInfo,
+    setOrderInfo,
+    cityList,
+    setCityList,
+    pointList,
+    setPointList,
+  } = useContext(Context);
 
   function handleChangePointValue(point) {
     setOrderInfo((prev) => ({

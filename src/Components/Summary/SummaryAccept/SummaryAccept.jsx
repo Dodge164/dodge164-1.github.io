@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-unneeded-ternary */
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOrderById } from '../../../Api/http';

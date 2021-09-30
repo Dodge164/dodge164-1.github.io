@@ -1,5 +1,5 @@
 /* eslint-disable operator-linebreak */
-/* eslint-disable no-unused-vars */
+
 import React, { useContext, useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './Extends.module.scss';
@@ -65,7 +65,6 @@ export default function ExtendsContainer() {
 
       setOrderInfo((prev) => ({
         ...prev,
-
         price: startPrice,
       }));
     } else {
