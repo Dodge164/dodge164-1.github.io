@@ -13,12 +13,17 @@ function App() {
   const [step, setStep] = useState(0);
   const [cityList, setCityList] = useState([]);
   const [pointList, setPointList] = useState([]);
+  const [coordsOfAllPoints, setCoordsOfAllPoints] = useState([]);
+  const [defaultStateCity, setDefaultStateCity] = useState({
+    center: [55.752121, 37.617664],
+    zoom: 11,
+  });
   const [loading, setLoading] = useState(true);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const [isOrderBurgerClicked, setIsOrderBurgerClicked] = useState(false);
-  useEffect(() => {
-    console.log('orderInfo', orderInfo);
-  }, [orderInfo, step]);
+  // useEffect(() => {
+  //   console.log('orderInfo', orderInfo);
+  // }, [orderInfo, step]);
 
   function calcTotalTime() {
     if (orderInfo.extends.timeFrom && orderInfo.extends.timeTo) {
@@ -77,6 +82,10 @@ function App() {
         setCityList,
         pointList,
         setPointList,
+        defaultStateCity,
+        setDefaultStateCity,
+        coordsOfAllPoints,
+        setCoordsOfAllPoints,
       }}
     >
       <Sidebar />
