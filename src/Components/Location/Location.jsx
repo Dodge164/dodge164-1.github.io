@@ -39,7 +39,7 @@ export default function Location({
             list="pointList"
             placeholder="Начните вводить пункт..."
             className={s.input}
-            value={valuePoint || ''}
+            value={valuePoint ?? ''}
             onChange={(event) => onChangePointValue(event.target.value)}
           />
           <datalist id="pointList">
