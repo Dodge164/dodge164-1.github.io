@@ -28,7 +28,7 @@ export default function YMapContainer() {
 
   const ymaps = useRef(null);
 
-  function setCity(city) {
+  function getCoordByCityNameAndSetToDefaultStateCity(city) {
     ymaps.current.geocode(city, { result: 1 }).then((res) => {
       const firstGeoObject = res.geoObjects.get(0);
       const coordsCity = firstGeoObject.geometry.getCoordinates();
@@ -37,16 +37,12 @@ export default function YMapContainer() {
         center: coordsCity,
         zoom: 11,
       }));
-
-      ymaps.current.setBounds(coordsCity, {
-        checkZoomRange: true,
-      });
     });
   }
 
   useEffect(() => {
     if (orderInfo.location.city && ymaps.current) {
-      setCity(orderInfo.location.city);
+      getCoordByCityNameAndSetToDefaultStateCity(orderInfo.location.city);
     }
   }, [orderInfo.location.city]);
 
