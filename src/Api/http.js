@@ -40,32 +40,15 @@ export const getCarListByCategory = async (catId) => {
   const res = await fetchRequest(`/db/car?categoryId=${catId}`);
   return res.data;
 };
-// export const getLeagueCalendarPage = async (leagueId) => {
-//   const data = await fetchRequest(`/competitions/${leagueId}`);
-//   return data;
-// };
 
-// export const getTeamsList = async () => {
-//   const data = await fetchRequest('/teams');
-//   return data;
-// };
+export const getRateType = async () => {
+  const res = await fetchRequest('/db/rateType');
+  return res.data;
+};
 
-// export const getTeamCalendarPage = async (teamId) => {
-//   const data = await fetchRequest(`/teams/${teamId}/matches`);
-//   return data;
-// };
-
-// export const getLeagueTeamsList = async (leagueId) => {
-//   const parse = queryString.parse(window.location.search);
-//   let path = '';
-//   if (parse.season) {
-//     path = `/competitions/${leagueId}/teams?season=${parse.season}`;
-//   } else {
-//     path = `/competitions/${leagueId}/teams`;
-//   }
-//   const data = await fetchRequest(path);
-
-//   return data;
-// };
+export const getRate = async () => {
+  const res = await fetchRequest('/db/rate');
+  return res.data;
+};
 
 export default fetchRequest;

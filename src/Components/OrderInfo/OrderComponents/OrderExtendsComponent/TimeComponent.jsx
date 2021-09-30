@@ -8,17 +8,17 @@ export default function TimeComponent() {
 
   const {
     // eslint-disable-next-line object-curly-newline
-    extends: { color, totalTime },
+    extends: { totalTime },
   } = orderInfo;
   return (
-    color && (
-      <>
+    totalTime && (
+      <div className={s.step}>
         <div className={s.ttl}>Длительность аренды</div>
         <div className={s.dottedBottom}>{}</div>
         <div className={s.spots}>
           <div>{totalTime}</div>
         </div>
-      </>
+      </div>
     )
   );
 }

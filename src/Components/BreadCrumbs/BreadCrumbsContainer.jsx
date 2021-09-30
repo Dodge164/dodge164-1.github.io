@@ -8,7 +8,7 @@ export default function BreadCrumbsContainer() {
   const { step, setStep } = useContext(Context);
   const handleClickBread = (itemId) => {
     setStep(itemId);
-    localStorage.setItem('currentStep', itemId);
+    // localStorage.setItem('currentStep', itemId);
   };
 
   return (

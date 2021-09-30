@@ -1,212 +1,92 @@
-// import React, { useContext, useState } from 'react';
-// import cn from 'classnames';
-// import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-// import ru from 'date-fns/locale/ru';
-// import s from './Extends.module.scss';
-// import './datepicker.scss';
-// import Context from '../../context';
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-unused-vars */
+import React, { useContext, useEffect, useState } from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
+import s from './Extends.module.scss';
+import './datepicker.scss';
+import DatepickerContainer from './Datepicker';
+import RadioColorsContainer from './RadioColors/RadioColorsContainer';
+import CheckBoxesContainer from './CheckBoxes/CheckBoxesContainer';
+import TaxContainer from './Tax/TaxContainer';
+import Context from '../../context';
+import { getRate, getRateType } from '../../Api/http';
 
-// registerLocale('ru', ru);
-// setDefaultLocale('ru', ru);
-// export default function ExtendsContainer({ onSetStartTime, onSetEndTime }) {
-//   const { step, setStep, orderInfo, setOrderInfo } = useContext(Context);
-//   const { car } = orderInfo;
-//   //
-//   const {
-//     extends: {
-//       color,
-//       timeFrom,
-//       timeTo,
-//       totalTime,
-//       tax,
-//       chair,
-//       fuelTank,
-//       wheel,
-//     },
-//   } = orderInfo;
-//   const [checkedColor, setCheckedColor] = useState('Любой');
+export default function ExtendsContainer() {
+  const { orderInfo, setOrderInfo } = useContext(Context);
+  const [rate, setRate] = useState([]);
+  const [rateType, setRateType] = useState([]);
 
-//   function handleAnyColor() {
-//     setCheckedColor(color);
-//     setOrderInfo((prev) => ({
-//       ...prev,
-//       extends: {
-//         ...prev.extends,
-//         color,
-//       },
-//     }));
-//   }
-//   //
-//   const [startDate, setStartDate] = useState(new Date());
-//   const [endDate, setEndDate] = useState('');
-//   const [allTime, setAllTime] = useState('');
+  function calculate(rateArr, tax) {
+    if (orderInfo.extends.timeTo && orderInfo.extends.timeFrom) {
+      const filter = rateArr.filter((elem) => elem.rateTypeId.name === tax);
+      const time =
+        (orderInfo.extends.timeTo - orderInfo.extends.timeFrom) / 1000;
+      let startPrice = 0;
+      switch (tax) {
+        case 'Поминутно': {
+          startPrice = Math.ceil((filter[0]?.price * time) / 60);
 
-//   const filterPassedTime = (time) => {
-//     const currentDate = new Date();
-//     const selectedDate = new Date(time);
-//     return currentDate.getTime() < selectedDate.getTime();
-//   };
+          break;
+        }
+        case 'Суточный': {
+          startPrice = Math.ceil(
+            Math.ceil(time / (60 * 60 * 24)) * filter[0]?.price,
+          );
+          break;
+        }
+        case '7 дней': {
+          startPrice = Math.ceil(
+            Math.ceil(time / (60 * 60 * 24 * 7)) * filter[0]?.price,
+          );
+          break;
+        }
+        case 'Недельный (Акция!)': {
+          startPrice = Math.ceil(
+            Math.ceil(time / (60 * 60 * 24 * 7)) * filter[0]?.price,
+          );
+          break;
+        }
+        case 'Месячный': {
+          startPrice = Math.ceil(time / (24 * 30 * 60 * 60)) * filter[0]?.price;
+          break;
+        }
+        default:
+          break;
+      }
+      if (orderInfo.extends.fuelTank) {
+        startPrice += 500;
+      }
+      if (orderInfo.extends.chair) {
+        startPrice += 200;
+      }
+      if (orderInfo.extends.wheel) {
+        startPrice += 1600;
+      }
 
-//   function handleSetStartTime() {
-//     setOrderInfo((prev) => ({
-//       ...prev,
-//       time: { ...prev.time, timeFrom },
-//     }));
-//   }
+      setOrderInfo((prev) => ({
+        ...prev,
 
-//   function handleSetEndTime() {
-//     setOrderInfo((prev) => ({
-//       ...prev,
-//       time: { ...prev.time, timeTo },
-//     }));
-//   }
-//   //   function handleAllTime(params) {}
+        price: startPrice,
+      }));
+    }
+  }
 
-//   return (
-//     <>
-//       <div className={s.extendsContainer}>
-//         <div className={s.extendsTtl}>Цвет</div>
-//         <div className={s.radioGroupColor}>
-//           <label
-//             htmlFor="any"
-//             className={cn(s.radioLabel, {
-//               [s.active]: checkedColor === 'Любой',
-//             })}
-//           >
-//             <input
-//               checked={checkedColor === 'Любой'}
-//               className={s.radioBtn}
-//               name="color"
-//               onChange={() => handleAnyColor('Любой')}
-//               type="radio"
-//               id="any"
-//             />
-//             <div className={s.radioText}>Любой</div>
-//             <div className={s.customIndicator} />
-//           </label>
-//           {car?.colors?.map(() => (
-//             <label
-//               key={color}
-//               htmlFor={color}
-//               className={cn(s.radioLabel, {
-//                 [s.active]: color === checkedColor,
-//               })}
-//             >
-//               <input
-//                 checked={checkedColor === color}
-//                 id={color}
-//                 onChange={() => handleAnyColor(color)}
-//                 className={s.radioBtn}
-//                 type="radio"
-//                 name="color"
-//               />
+  useEffect(async () => {
+    setRateType(await getRateType());
+    setRate(await getRate());
+  }, []);
 
-//               <div className={s.radioText}>{color}</div>
-//               <div className={s.customIndicator} />
-//             </label>
-//           ))}
-//         </div>
-
-//         <div className={s.extendsTtl}>Дата аренды</div>
-//         <div className={s.test}>
-//           <div className={s.pickerWrapper}>
-//             <div>C</div>
-//             <div>
-//               <DatePicker
-//                 locale="ru"
-//                 className={s.datePicker}
-//                 placeholderText="Ведите дату и время"
-//                 selected={startDate}
-//                 showTimeSelect
-//                 filterTime={filterPassedTime}
-//                 // onChange={(date) => setStartDate(date)}
-//                 onSetStartTime={(date) => handleSetStartTime(date)}
-//                 value={orderInfo.extends.time.from}
-//                 onChange={(event) => onSetStartTime(event.target.value)}
-//                 timeFormat="HH:mm"
-//                 timeIntervals={30}
-//                 dateFormat="dd.MM.yyyy HH:mm"
-//                 timeCaption="time"
-//                 minDate={new Date()}
-//                 isClearable
-//               />
-
-//               {console.log('date', onSetStartTime)}
-//             </div>
-//           </div>
-//           <div className={s.pickerWrapper}>
-//             <div>По</div>
-//             <div>
-//               <DatePicker
-//                 locale="ru"
-//                 className={s.datePicker}
-//                 selected={endDate}
-//                 showTimeSelect
-//                 filterTime={filterPassedTime}
-//                 onChange={(date) => setEndDate(date)}
-//                 onSetEndTime={(date) => handleSetEndTime(date)}
-//                 timeFormat="HH:mm"
-//                 timeIntervals={30}
-//                 dateFormat="dd.MM.yyyy HH:mm"
-//                 timeCaption="time"
-//                 minDate={new Date(startDate)}
-//                 placeholderText="Ведите дату и время"
-//                 isClearable
-//               />
-//             </div>
-//           </div>
-//         </div>
-//         <div>
-//           <div className={s.extendsTtlT}>Тариф</div>
-//           <div className={s.radioGroupRate}>
-//             <label className={s.radioLabel} htmlFor="radio-2.1">
-//               <span>Поминутно, 7 ₽/мин </span>
-//               <input
-//                 type="radio"
-//                 name="rate"
-//                 id="radio-2.1"
-//                 className={s.radioBtn}
-//               />
-//               <div className={s.customIndicator} />
-//             </label>
-//             <label className={s.radioLabel} htmlFor="radio-2.2">
-//               <span>На сутки, 1999 ₽/сутки</span>
-//               <input
-//                 type="radio"
-//                 name="rate"
-//                 id="radio-2.2"
-//                 className={s.radioBtn}
-//                 defaultChecked
-//               />
-//               <div className={s.customIndicator} />
-//             </label>
-//           </div>
-//         </div>
-//         <div>
-//           <div className={s.extendsTtl}>Доп услуги</div>
-//           <label className={s.checkboxGroup}>
-//             <input
-//               type="checkbox"
-//               name="extra"
-//               className={s.checkBtn}
-//               defaultChecked
-//             />
-//             <div className={s.customCheckbox} />
-//             <span>Полный бак, 500р</span>
-//           </label>
-//           <label className={s.checkboxGroup}>
-//             <input type="checkbox" name="extra" className={s.checkBtn} />
-//             <div className={s.customCheckbox} />
-//             <span>Детское кресло, 200р</span>
-//           </label>
-//           <label className={s.checkboxGroup}>
-//             <input type="checkbox" name="extra" className={s.checkBtn} />
-//             <div className={s.customCheckbox} />
-//             <span>Правый руль, 1600р</span>
-//           </label>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
+  useEffect(() => {
+    calculate(rate, orderInfo.extends.tax);
+  }, [orderInfo.extends]);
+  return (
+    <>
+      <div className={s.extendsContainer}>
+        <RadioColorsContainer />
+        <DatepickerContainer />
+        <TaxContainer rate={rate} rateType={rateType} />
+        <CheckBoxesContainer />
+      </div>
+    </>
+  );
+}

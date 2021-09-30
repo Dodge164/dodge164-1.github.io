@@ -9,6 +9,7 @@ const OrderData = {
     priceMin: null,
     colors: null,
     number: null,
+    path: null,
   },
   extends: {
     color: null,
@@ -20,6 +21,7 @@ const OrderData = {
     chair: false,
     wheel: false,
   },
+  price: null,
 };
 
 export default OrderData;

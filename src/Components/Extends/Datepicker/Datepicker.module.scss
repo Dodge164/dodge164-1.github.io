@@ -1,0 +1,31 @@
+@import '../../../variables';
+.pickerWrapper {
+  display: flex;
+  align-items: flex-end;
+  color: $mainBlack;
+  padding: 8px 0 0 0;
+  width: 228px;
+  justify-content: flex-end;
+  @media (min-width: 768px) {
+    width: 220px;
+  }
+  @media (min-width: 1024px) {
+    padding: 16px 0 0 0;
+  }
+}
+.datePicker {
+  width: 187px;
+  margin: 0 4px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid $darkGray;
+  font-size: 14px;
+  font-weight: 300;
+}
+.extendsTtl {
+  color: $mainBlack;
+  margin: 16px 0 0 8px;
+  @media (min-width: 768px) {
+    margin: 16px 0 0 0;
+  }
+}
