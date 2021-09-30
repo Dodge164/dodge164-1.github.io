@@ -12,41 +12,41 @@ import Context from '../../context';
 import { getRate, getRateType } from '../../Api/http';
 
 export default function ExtendsContainer() {
-  const { orderInfo, setOrderInfo } = useContext(Context);
+  const { orderInfo, setOrderInfo, setLoading } = useContext(Context);
   const [rate, setRate] = useState([]);
   const [rateType, setRateType] = useState([]);
 
-  function calculate(rateArr, tax) {
+  function calculate(rateArr, rateId) {
     if (orderInfo.extends.timeTo && orderInfo.extends.timeFrom) {
-      const filter = rateArr.filter((elem) => elem.rateTypeId.name === tax);
+      const filter = rateArr.filter((elem) => elem.rateTypeId.id === rateId);
       const time =
         (orderInfo.extends.timeTo - orderInfo.extends.timeFrom) / 1000;
       let startPrice = 0;
-      switch (tax) {
-        case 'Поминутно': {
+      switch (rateId) {
+        case '5e26a07f099b810b946c5d82': {
           startPrice = Math.ceil((filter[0]?.price * time) / 60);
 
           break;
         }
-        case 'Суточный': {
+        case '5e26a082099b810b946c5d83': {
           startPrice = Math.ceil(
             Math.ceil(time / (60 * 60 * 24)) * filter[0]?.price,
           );
           break;
         }
-        case '7 дней': {
+        case '5f622f029d3a610b850fd820': {
           startPrice = Math.ceil(
             Math.ceil(time / (60 * 60 * 24 * 7)) * filter[0]?.price,
           );
           break;
         }
-        case 'Недельный (Акция!)': {
+        case '60b9437e2aed9a0b9b7ed337': {
           startPrice = Math.ceil(
             Math.ceil(time / (60 * 60 * 24 * 7)) * filter[0]?.price,
           );
           break;
         }
-        case 'Месячный': {
+        case '6114e4182aed9a0b9b850843': {
           startPrice = Math.ceil(time / (24 * 30 * 60 * 60)) * filter[0]?.price;
           break;
         }
@@ -68,16 +68,23 @@ export default function ExtendsContainer() {
 
         price: startPrice,
       }));
+    } else {
+      setOrderInfo((prev) => ({
+        ...prev,
+        price: 0,
+      }));
     }
   }
 
   useEffect(async () => {
+    setLoading(true);
     setRateType(await getRateType());
     setRate(await getRate());
+    setLoading(false);
   }, []);
 
   useEffect(() => {
-    calculate(rate, orderInfo.extends.tax);
+    calculate(rate, orderInfo.extends.rateId);
   }, [orderInfo.extends]);
   return (
     <>

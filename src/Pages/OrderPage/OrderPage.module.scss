@@ -20,9 +20,7 @@
     height: 130px;
     margin: 0px 32px 0 96px;
   }
-  // @media (min-width: 1024px) {
-  //   margin: 0px 32px 0 96px;
-  // }
+
   @media (min-width: 1440px) {
     margin: 0px 64px 0 128px;
   }
@@ -44,7 +42,6 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  // 48-49 добавлено
   @media (min-width: 768px) {
     padding: 0 32px 0 96px;
   }

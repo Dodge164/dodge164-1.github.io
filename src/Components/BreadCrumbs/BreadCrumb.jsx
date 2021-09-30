@@ -9,23 +9,37 @@ import Context from '../../context';
 
 export default function BreadCrumb({ crumb, step, onClickBread, length }) {
   const { orderInfo } = useContext(Context);
-  // const {
-  //   location: { city, point },
-  // } = orderInfo;
-  // function onCheckStep(id) {
-  //   if (id < step + 1) {
-  //     // if ((step < 1 && id === 1) || step >= id) {
-  //     return !city || !point;
-  //     // 0 || 0 => 1 || 1 true disabled
-  //     // 1 || 0 => 0 || 1 true disabled
-  //     // 1 || 1 => 0 || 0 false active
-  //   }
+  const {
+    location: { city, point },
+  } = orderInfo;
+  const {
+    car: { model },
+  } = orderInfo;
+  const {
+    extends: { color, timeTo, timeFrom, tax },
+  } = orderInfo;
 
-  //   return true;
-  // }
+  function onCheckStep() {
+    if (crumb.id === 0) {
+      return false;
+    }
+    if (crumb.id === 1) {
+      return !city || !point;
+    }
+    if (crumb.id === 2) {
+      return !model || !city || !point;
+    }
+    if (crumb.id === 3) {
+      return (
+        !color || !timeTo || !timeFrom || !tax || !model || !city || !point
+      );
+    }
+    return true;
+  }
+
   return (
     <button
-      // disabled={onCheckStep(crumb.id)}
+      disabled={onCheckStep()}
       className={s.btn}
       onClick={() => onClickBread(crumb.id)}
       to={crumb.path}

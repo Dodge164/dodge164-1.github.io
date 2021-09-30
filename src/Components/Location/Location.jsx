@@ -22,7 +22,6 @@ export default function Location({
             className={s.input}
             placeholder="Введите город"
             value={valueCity ? valueCity : ''}
-            // value={valueCity && valueCity}
             onChange={(event) => onChangeCityValue(event.target.value)}
           />
 
@@ -40,7 +39,6 @@ export default function Location({
             list="pointList"
             placeholder="Начните вводить пункт..."
             className={s.input}
-            // value={valuePoint && valuePoint}
             value={valuePoint ? valuePoint : ''}
             onChange={(event) => onChangePointValue(event.target.value)}
           />
