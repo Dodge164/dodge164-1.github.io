@@ -24,6 +24,6 @@ module.exports = {
       required:
       { some: ['nesting', 'id'] },
     }],
-    'linebreak-style': ['error', 'windows'],
+    // 'linebreak-style': ['error', 'windows'],
   },
 };
