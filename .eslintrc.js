@@ -38,6 +38,6 @@ module.exports = {
         multiline: true, minProperties: 3,
       },
     }],
-    'linebreak-style': ['error', 'windows'],
+    // 'linebreak-style': ['error', 'windows'],
   },
 };
