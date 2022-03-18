@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react';
+import React, { useContext, useLayoutEffect } from 'react';
 import cn from 'classnames';
+import { useParams } from 'react-router-dom';
 import BreadCrumbs from '../../Components/BreadCrumbs';
 import Header from '../../Components/Header';
 import OrderSteps from '../../Components/OrderSteps';
@@ -12,7 +13,13 @@ import Context from '../../context';
 import OrderStepBtnContainer from '../../Components/OrderInfo/OrderStepBtn';
 
 export default function OrderPage() {
-  const { isOrderBurgerClicked } = useContext(Context);
+  const params = useParams();
+  const { isOrderBurgerClicked, setStep } = useContext(Context);
+  useLayoutEffect(() => {
+    if (params.id) {
+      setStep(5);
+    }
+  }, []);
   return (
     <>
       <div className={s.orderPageContainer}>

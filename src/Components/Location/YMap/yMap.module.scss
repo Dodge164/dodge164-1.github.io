@@ -1,0 +1,32 @@
+.container {
+  width: 640px;
+  height: 480px;
+}
+.map {
+  width: 640px;
+  height: 480px;
+}
+
+[class*='copyrights-pane'] {
+  display: none !important;
+}
+
+[class*='ground-pane'] {
+  filter: grayscale(1);
+}
+
+[class*='image'] {
+  background-repeat: no-repeat;
+}
+
+.placemark {
+  background-repeat: no-repeat;
+}
+
+.size {
+  width: 100%;
+  height: calc(100vh - 300px);
+  @media (min-width: 768px) {
+    height: calc(100vh - 430px);
+  }
+}

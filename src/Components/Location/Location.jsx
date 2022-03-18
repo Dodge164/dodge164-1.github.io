@@ -1,7 +1,7 @@
-/* eslint-disable no-unneeded-ternary */
 import React from 'react';
-import mapPng from '../../Assets/map.png';
+// import mapPng from '../../Assets/map.png';
 import s from './Location.module.scss';
+import YMapContainer from './YMap/YMapContainer';
 
 export default function Location({
   valueCity,
@@ -21,8 +21,7 @@ export default function Location({
             list="cityList"
             className={s.input}
             placeholder="Введите город"
-            value={valueCity ? valueCity : ''}
-            // value={valueCity && valueCity}
+            value={valueCity || ''}
             onChange={(event) => onChangeCityValue(event.target.value)}
           />
 
@@ -40,8 +39,7 @@ export default function Location({
             list="pointList"
             placeholder="Начните вводить пункт..."
             className={s.input}
-            // value={valuePoint && valuePoint}
-            value={valuePoint ? valuePoint : ''}
+            value={valuePoint ?? ''}
             onChange={(event) => onChangePointValue(event.target.value)}
           />
           <datalist id="pointList">
@@ -52,7 +50,8 @@ export default function Location({
         </div>
         <div className={s.mapContainer}>
           <div>Выбрать на карте:</div>
-          <img className={s.map} src={mapPng} alt="map" />
+          {/* <img className={s.map} src={mapPng} alt="map" /> */}
+          <YMapContainer />
         </div>
       </div>
     </>

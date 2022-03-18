@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import ru from 'date-fns/locale/ru';
 import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
 import Context from '../../../context';
@@ -11,24 +11,20 @@ registerLocale('ru', ru);
 setDefaultLocale('ru', ru);
 export default function DatepickerContainer() {
   const { orderInfo, setOrderInfo } = useContext(Context);
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
 
   function handleEndTime(timeTo) {
-    setEndDate(timeTo);
     setOrderInfo((prev) => ({
       ...prev,
       extends: { ...prev.extends, timeTo },
     }));
   }
   function handleStartTime(timeFrom) {
-    setStartDate(timeFrom);
-    console.log('timeFR', timeFrom);
     setOrderInfo((prev) => ({
       ...prev,
       extends: {
         ...prev.extends,
         timeFrom,
+        timeTo: timeFrom >= prev.extends.timeTo ? null : prev.extends.timeTo,
       },
     }));
     if (!timeFrom) {
@@ -44,30 +40,8 @@ export default function DatepickerContainer() {
 
   const filterEndTime = (time) => {
     const selectedEndDate = new Date(time);
-    return startDate < selectedEndDate.getTime();
+    return orderInfo.extends.timeFrom < selectedEndDate.getTime();
   };
-  function calcTotalTime() {
-    const totalTime = (endDate.getTime() - startDate.getTime()) / 1000;
-    const days = Math.floor(totalTime / (60 * 60 * 24));
-    const hours = Math.floor((totalTime / 3600) % 24);
-    const minutes = Math.floor((totalTime / 60) % 60);
-    const rentTime = `${days}д.${hours}ч.${minutes}мин.`;
-
-    if (startDate.getTime() < endDate.getTime()) {
-      setOrderInfo((prev) => ({
-        ...prev,
-        extends: {
-          ...prev.extends,
-          totalTime: rentTime,
-        },
-      }));
-    }
-  }
-  useEffect(() => {
-    if (startDate && endDate) {
-      calcTotalTime();
-    }
-  }, [endDate, startDate]);
 
   return (
     <>
@@ -80,7 +54,7 @@ export default function DatepickerContainer() {
               locale="ru"
               className={s.datePicker}
               placeholderText="Ведите дату и время"
-              selected={startDate}
+              selected={orderInfo.extends.timeFrom}
               showTimeSelect
               filterTime={filterPassedTime}
               onChange={(timeFrom) => handleStartTime(timeFrom)}
@@ -102,7 +76,7 @@ export default function DatepickerContainer() {
               locale="ru"
               className={s.datePicker}
               placeholderText="Ведите дату и время"
-              selected={endDate}
+              selected={orderInfo.extends.timeTo}
               showTimeSelect
               filterTime={filterEndTime}
               onChange={(timeTo) => handleEndTime(timeTo)}
@@ -111,7 +85,7 @@ export default function DatepickerContainer() {
               timeIntervals={30}
               dateFormat="dd.MM.yyyy HH:mm"
               timeCaption="time"
-              minDate={new Date(startDate)}
+              minDate={new Date(orderInfo.extends.timeFrom)}
               isClearable
             />
           </div>

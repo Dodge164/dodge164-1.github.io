@@ -6,7 +6,9 @@ import s from './RadioColor.module.scss';
 export default function RadioColorsContainer() {
   const { orderInfo, setOrderInfo } = useContext(Context);
   const { car } = orderInfo;
-  const [checkedColor, setCheckedColor] = useState('Любой');
+  const [checkedColor, setCheckedColor] = useState(
+    orderInfo.extends.color ? orderInfo.extends.color : 'Любой',
+  );
 
   function handleColor(color) {
     setCheckedColor(color);

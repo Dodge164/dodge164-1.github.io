@@ -1,12 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable spaced-comment */
-/* eslint-disable react/void-dom-elements-no-children */
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable indent */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable operator-linebreak */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useContext } from 'react';
 import cn from 'classnames';
 import Context from '../../context';
@@ -14,41 +5,33 @@ import Loading from '../../Helpers/Loading/Loading';
 import Cars from './Cars';
 import s from './Cars.module.scss';
 import {
-  getCarCategory,
+  getCarsCategory,
   getCarList,
-  getCarListByCategory,
+  getCarsListByCategory,
 } from '../../Api/http';
 
 export default function CarsContainer() {
+  const { orderInfo, setOrderInfo, loading, setLoading } = useContext(Context);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [carList, setCarList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const [checkedId, setCheckedId] = useState('all');
-  const { orderInfo, setOrderInfo } = useContext(Context);
-  const { loading, setLoading } = useContext(Context);
-
-  useEffect(async () => {
-    const listOfCategory = await getCarCategory();
-    setCategoryList(listOfCategory);
-    const listOfCars = await getCarList();
-    setCarList(listOfCars);
-    setLoading(false);
-  }, []);
-  async function handleCarByCategoryId(id) {
-    setLoading(true);
-    setCheckedId(id);
-    const categoryById = await getCarListByCategory(id);
-    console.log('categoryById', categoryById);
-    setCarList(categoryById);
-    setLoading(false);
-  }
+  const [checkedCategory, setCheckedCategory] = useState(
+    orderInfo.car.category ? orderInfo.car.category : 'all',
+  );
 
   async function handleAllCategories() {
     setLoading(true);
-    setCheckedId('all');
+    setCheckedCategory('all');
     const carListAll = await getCarList();
-
     setCarList(carListAll);
+    setLoading(false);
+  }
+
+  async function handleCarsByCategoryId(id) {
+    setLoading(true);
+    setCheckedCategory(id);
+    const categoryById = await getCarsListByCategory(id);
+    setCarList(categoryById);
     setLoading(false);
   }
 
@@ -58,22 +41,41 @@ export default function CarsContainer() {
       car: {
         ...prev.car,
         model: car.name,
+        carId: car.id,
         priceMin: car.priceMin,
         priceMax: car.priceMax,
         colors: car.colors,
         number: car.number,
+        path: car.thumbnail.path,
+        category: car.categoryId.id,
       },
     }));
   }
+
+  useEffect(async () => {
+    const listOfCategory = await getCarsCategory();
+    setCategoryList(listOfCategory);
+    if (orderInfo.car.category) {
+      const categoryById = await getCarsListByCategory(orderInfo.car.category);
+      setCarList(categoryById);
+    } else {
+      const listOfCars = await getCarList();
+      setCarList(listOfCars);
+    }
+
+    setLoading(false);
+  }, []);
 
   return (
     <>
       <div className={s.radioGroup}>
         <label
-          className={cn(s.radioLabel, { [s.active]: checkedId === 'all' })}
+          className={cn(s.radioLabel, {
+            [s.active]: checkedCategory === 'all',
+          })}
         >
           <input
-            checked={checkedId === 'all'}
+            checked={checkedCategory === 'all'}
             className={s.radioBtn}
             name="class"
             value="category?.id"
@@ -82,7 +84,11 @@ export default function CarsContainer() {
             id="all"
           />
           <div className={s.customIndicator} />
-          <span className={cn(s.span, { [s.active]: checkedId === 'all' })}>
+          <span
+            className={cn(s.span, {
+              [s.active]: checkedCategory === 'all',
+            })}
+          >
             Все модели
           </span>
         </label>
@@ -90,22 +96,22 @@ export default function CarsContainer() {
           <label
             key={category?.id}
             className={cn(s.radioLabel, {
-              [s.active]: checkedId === category.id,
+              [s.active]: checkedCategory === category.id,
             })}
           >
             <input
-              checked={checkedId === category.id}
+              checked={checkedCategory === category.id}
               className={s.radioBtn}
               name="class"
               value="category?.id"
-              onChange={() => handleCarByCategoryId(category?.id)}
+              onChange={() => handleCarsByCategoryId(category?.id)}
               type="radio"
               id={category?.id}
             />
             <div className={s.customIndicator} />
             <span
               className={cn(s.span, {
-                [s.active]: checkedId === category.id,
+                [s.active]: checkedCategory === category.id,
               })}
             >
               {category?.name}
@@ -118,7 +124,6 @@ export default function CarsContainer() {
         <Loading />
       ) : (
         <Cars
-          // valueModel={orderInfo.car.model}
           onChangeChosenCar={handleChosenCar}
           carList={carList}
           baseUrl={BASE_URL}

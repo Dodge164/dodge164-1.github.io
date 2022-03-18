@@ -6,7 +6,6 @@ export default function TaxComponent() {
   const { orderInfo } = useContext(Context);
 
   const {
-    // eslint-disable-next-line object-curly-newline
     extends: { tax },
   } = orderInfo;
   return (

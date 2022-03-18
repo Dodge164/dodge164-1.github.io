@@ -6,7 +6,6 @@ export default function ChairComponent() {
   const { orderInfo } = useContext(Context);
 
   const {
-    // eslint-disable-next-line object-curly-newline
     extends: { chair },
   } = orderInfo;
   return (
